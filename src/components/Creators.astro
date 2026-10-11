@@ -2,7 +2,7 @@
 import Hero from './Hero.astro';
 import ProductCards from './ProductCards.astro';
 import Steps from './Steps.astro';
-import PayBlock from './PayBlock.astro';
+import FindBlock from './FindBlock.astro';
 import Faq from './Faq.astro';
 import FinalCta from './FinalCta.astro';
 import type { Copy } from '../i18n/en';
@@ -45,6 +45,6 @@ const p = copy.creatorsPage;
 
 <Steps title={p.publishTitle} steps={p.publishSteps.map((s, i) => ({ n: `0${i + 1}`, t: s.t, d: s.d }))} />
 
-<PayBlock copy={copy} />
+<FindBlock copy={copy} />
 <Faq copy={copy} />
 <FinalCta copy={copy} title={p.ctaTitle} text={p.ctaText} role="creator" />

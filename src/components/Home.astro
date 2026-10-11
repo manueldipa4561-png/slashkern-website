@@ -2,7 +2,7 @@
 import Hero from './Hero.astro';
 import ProductCards from './ProductCards.astro';
 import Steps from './Steps.astro';
-import PayBlock from './PayBlock.astro';
+import FindBlock from './FindBlock.astro';
 import Faq from './Faq.astro';
 import FinalCta from './FinalCta.astro';
 import { hrefFor } from '../i18n';
@@ -29,7 +29,7 @@ const h = copy.hero;
 
 <Steps id={copy.how.id} title={copy.how.title} steps={copy.how.steps} />
 
-<PayBlock copy={copy} />
+<FindBlock copy={copy} />
 
 <section class="section" aria-label={`${copy.creatorsBlock.eyebrow} / ${copy.companiesBlock.eyebrow}`}>
   <div class="wrap split">

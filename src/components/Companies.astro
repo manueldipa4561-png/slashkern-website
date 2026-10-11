@@ -2,7 +2,7 @@
 import Hero from './Hero.astro';
 import ProductCards from './ProductCards.astro';
 import Steps from './Steps.astro';
-import PayBlock from './PayBlock.astro';
+import FindBlock from './FindBlock.astro';
 import FinalCta from './FinalCta.astro';
 import type { Copy } from '../i18n/en';
 interface Props { copy: Copy }
@@ -37,5 +37,5 @@ const p = copy.companiesPage;
 
 <Steps id={copy.how.id} title={p.howTitle} steps={p.steps} />
 
-<PayBlock copy={copy} />
+<FindBlock copy={copy} />
 <FinalCta copy={copy} title={p.ctaTitle} text={p.ctaText} role="company" />

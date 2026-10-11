@@ -8,21 +8,21 @@ export const it: Copy = {
   ogLocale: 'it_IT',
   paths: { creators: 'creators', companies: 'companies', privacy: 'privacy', terms: 'terms' },
   skip: 'Vai al contenuto',
-  slogan: 'Il tuo primo progetto pagato.',
+  slogan: 'Fai qualcosa per cui le aziende possano sceglierti.',
   example: 'Esempio',
   switchTo: { label: 'English', short: 'EN', aria: 'Read this site in English' },
   nav: { creators: 'Per i creator', companies: 'Per le aziende', cta: 'Richiedi accesso', aria: 'Principale', home: `${NAME}, home` },
 
   meta: {
     home: {
-      title: `${NAME}: il tuo primo progetto pagato`,
+      title: `${NAME}: fai qualcosa per cui le aziende possano sceglierti`,
       description:
-        'Fai un progetto vero con un coach che fa solo domande, tienilo sulla tua pagina e fatti trovare dalle aziende. Accesso anticipato: per ora nessuno viene pagato.',
+        'Fai un progetto con un coach che ti fa le domande giuste, tienilo sulla tua pagina e fatti trovare dalle aziende. Accesso anticipato.',
     },
     creators: {
       title: `Per i creator · ${NAME}`,
       description:
-        'Parti da un brief breve, fai il progetto con un coach che fa solo domande, tienilo sulla tua pagina e fatti trovare. Gratis per i creator. Accesso anticipato.',
+        'Fai un breve progetto con un coach che ti fa le domande giuste, tienilo sulla tua pagina e fatti trovare dalle aziende. Gratis per i creator. Accesso anticipato.',
     },
     companies: {
       title: `Per le aziende · ${NAME}`,
@@ -35,17 +35,28 @@ export const it: Copy = {
 
   hero: {
     chip: 'Accesso anticipato',
-    before: 'Il tuo primo progetto ',
-    mark: 'pagato',
+    before: 'Fai qualcosa per cui ',
+    mark: 'le aziende possano sceglierti',
     after: '.',
-    sub: 'Nessuna esperienza richiesta. Brief brevi dalle aziende e un coach che ti fa le domande giuste.',
+    sub: 'Progetti brevi. Nessuna esperienza richiesta. Un coach che ti aiuta a realizzarlo.',
     ctaPrimary: 'Richiedi accesso',
     ctaSecondary: 'Come funziona',
-    note: 'Gratis per i creator. Per ora nessuno viene pagato: ogni prezzo in questa pagina è un esempio.',
+    note: 'Gratis per i creator. Questo è l’accesso anticipato.',
   },
 
   cards: {
     aria: 'Schermate di esempio dell’app',
+    practice: {
+      label: 'Progetto di pratica',
+      title: 'Gira un video di 15 secondi di una bevanda',
+      rows: [
+        ['Campo', 'Video'],
+        ['Tempo', 'Circa 40 minuti'],
+        ['Livello', 'Nessuna esperienza richiesta'],
+      ],
+      body: 'Un’inquadratura, un’idea. Il coach chiede, decidi tu.',
+      foot: 'Gratis. Niente è pubblico finché non lo pubblichi.',
+    },
     brief: {
       label: 'Brief',
       from: 'da un bar',
@@ -56,15 +67,19 @@ export const it: Copy = {
         ['Tempi', 'Una settimana'],
       ],
       body: 'Fai vedere le nuove bevande estive. Tono calmo e caldo.',
-      price: 'Circa 60 €',
-      priceNote: 'Prezzo di esempio, pagato dall’azienda quando accetta il progetto.',
+      foot: 'Pubblicato da un’azienda',
     },
     coach: {
       label: 'Coach',
       you: 'Ho filmato le nuove bevande del bar.',
       question: 'Cosa deve sentire, nei primi tre secondi, chi non ti conosce?',
-      reply: 'Calma e calore. Parto dalla tazza, non dall’insegna.',
-      hint: 'Il coach chiede. Decidi tu e lo migliori.',
+      reply: 'Calma e calore.',
+      action: 'Crea una prima versione con l’AI',
+      draftLabel: 'Bozza',
+      draftChip: 'Fatto con l’aiuto dell’AI',
+      draft: 'Apri sulla tazza, non sull’insegna. Vapore, un versamento lento, niente voce. Ultimo fotogramma: il nome del bar.',
+      draftNote: 'La puoi modificare. Il progetto resta tuo.',
+      mic: 'Parla invece di scrivere: tocca il microfono.',
     },
     page: {
       label: 'La tua pagina',
@@ -83,22 +98,23 @@ export const it: Copy = {
     id: 'come-funziona',
     title: 'Come funziona in tre passi',
     steps: [
-      { n: '01', t: 'Fai un progetto vero', d: 'Parti da un brief breve. Il coach fa solo domande, così il progetto lo migliori tu. Non lo fa mai al posto tuo.' },
+      { n: '01', t: 'Fai un progetto con un coach', d: 'Il coach ti fa le domande giuste e, se glielo chiedi, può preparare una prima versione. La modifichi tu, quindi il progetto resta tuo.' },
       { n: '02', t: 'Tienilo sulla tua pagina', d: 'Ogni progetto finito va sulla tua pagina. Si vede solo quello che scegli di pubblicare. Niente è pubblico senza il tuo ok.' },
       { n: '03', t: 'Fatti trovare dalle aziende', d: 'Le aziende leggono i tuoi progetti e ti scrivono tramite la piattaforma. La tua email resta privata.' },
     ],
   },
 
-  pay: {
-    id: 'pagamenti',
-    title: 'Come funzionerà il pagamento',
+  find: {
+    id: 'come-ti-trovano',
+    title: 'Come ti troveranno le aziende',
     lead: 'Niente è nascosto. Ecco cosa sappiamo oggi e cosa non abbiamo ancora deciso.',
     rows: [
-      ['Chi paga', 'L’azienda che ha pubblicato il brief.'],
-      ['Quando', 'Dopo che l’azienda accetta il tuo progetto.'],
-      ['La commissione della piattaforma', 'Non è ancora decisa. Te lo diciamo prima che partano i pagamenti.'],
+      ['Cosa vedono le aziende', 'Solo i progetti che scegli di pubblicare sulla tua pagina.'],
+      ['Cosa è pubblico', 'Decidi tu. Niente è pubblico senza il tuo ok.'],
+      ['Chi riceve un progetto', 'Un’azienda sceglie a chi affidarlo e lo paga.'],
+      ['La commissione della piattaforma', 'Non è ancora decisa. Te lo diciamo prima che si applichi.'],
     ],
-    notice: 'Per ora nessuno viene pagato. Questo è l’accesso anticipato e ogni prezzo in questa pagina è un esempio.',
+    notice: 'Per ora nessuno paga. Questo è l’accesso anticipato.',
   },
 
   fields: [
@@ -114,7 +130,7 @@ export const it: Copy = {
   creatorsBlock: {
     eyebrow: 'Per i creator',
     title: 'Primi progetti piccoli. Ma veri.',
-    text: 'Nessuna esperienza richiesta. Parti da un brief breve, fai il progetto con il coach e tienilo sulla tua pagina. Gratis per i creator.',
+    text: 'Nessuna esperienza richiesta. Scegli un progetto breve, fallo con il coach e tienilo sulla tua pagina. Gratis per i creator.',
     link: 'Tutto per i creator',
   },
   companiesBlock: {
@@ -128,10 +144,10 @@ export const it: Copy = {
   faq: {
     title: 'Domande',
     items: [
-      { q: 'È gratis per i creator?', a: 'Sì. Non paghi per iscriverti, per fare un progetto o per pubblicarlo. Per ora nessuno viene pagato e la commissione della piattaforma non è ancora decisa. Te lo diciamo prima che partano i pagamenti.' },
+      { q: 'È gratis per i creator?', a: 'Sì. Non paghi per iscriverti, per fare un progetto o per pubblicarlo.' },
       { q: 'Chi può iscriversi?', a: 'Chiunque abbia 18 anni o più. Non serve esperienza.' },
-      { q: 'L’AI fa il progetto al posto mio?', a: 'No. Il coach fa solo domande e ti indica cosa manca. Il progetto lo fai e lo migliori tu, quindi resta tuo.' },
-      { q: 'È una truffa?', a: 'Domanda giusta. Per ora nessuno viene pagato, ai creator non viene addebitato nessun costo e decidi tu cosa pubblicare. Ogni prezzo su questo sito è un esempio. Se qualcuno ti chiede di pagare per ricevere un brief, non siamo noi: scrivici.' },
+      { q: 'L’AI fa il progetto al posto mio?', a: 'Non da sola. Il coach ti fa domande e ti indica cosa manca. Se glielo chiedi, può preparare una prima versione da cui partire. La modifichi, la cambi e decidi tu cosa pubblicare.' },
+      { q: 'È una truffa?', a: 'Domanda giusta. Per ora nessuno viene pagato, ai creator non viene addebitato nessun costo e decidi tu cosa pubblicare. Se qualcuno ti chiede di pagare per ricevere un progetto, non siamo noi: scrivici.' },
       { q: 'Come mi contattano le aziende?', a: `Tramite la piattaforma. Un’azienda ti scrive su ${NAME} e tu decidi se rispondere. La tua email resta privata.` },
       { q: 'Quando apre?', a: `Non abbiamo ancora una data. ${NAME} è in accesso anticipato e lo stiamo ancora costruendo a Torino. Lascia la tua email e ti scriviamo una volta, quando apre.` },
     ],
@@ -175,15 +191,15 @@ export const it: Copy = {
     before: 'Fai un progetto ',
     mark: 'vero',
     after: '.\nFatti trovare.',
-    sub: 'Parti da un brief breve di un’azienda, fai il progetto con un coach che fa solo domande e tienilo sulla tua pagina. Nessuna esperienza richiesta.',
+    sub: 'Fai un breve progetto con un coach che ti fa le domande giuste e tienilo sulla tua pagina. Nessuna esperienza richiesta.',
     cta: 'Richiedi accesso',
     ctaSecondary: 'Conosci il coach',
-    coachTitle: 'Un coach che chiede. Non uno che fa al posto tuo.',
-    coachText: 'Il coach è un’AI. Ti fa la domanda che rende migliore il progetto, così lo migliori tu. Il progetto resta tuo.',
+    coachTitle: 'Un coach che ti fa le domande giuste.',
+    coachText: 'Il coach è un’AI. Ti fa la domanda che rende migliore il progetto. Se vuoi un punto di partenza, chiedi una prima versione e modificala. Il progetto resta tuo.',
     doTitle: 'Il coach',
-    doItems: ['Fa una domanda alla volta.', 'Ti indica cosa è poco chiaro o manca.', 'Ti chiede di riprovare dopo ogni modifica.'],
+    doItems: ['Fa una domanda alla volta.', 'Ti indica cosa è poco chiaro o manca.', 'Prepara una prima versione solo se glielo chiedi, segnata “Fatto con l’aiuto dell’AI”.'],
     dontTitle: 'Il coach non',
-    dontItems: ['Scrive il tuo progetto.', 'Ti dà una risposta finita da copiare.', 'Decide al posto tuo.'],
+    dontItems: ['Pubblica qualcosa al posto tuo.', 'Decide al posto tuo.', 'Nasconde il suo aiuto: le bozze dicono “Fatto con l’aiuto dell’AI”.'],
     fieldsTitle: 'Sette campi, un progetto alla volta.',
     fieldsText: 'Progetti brevi in sette campi. Ecco cosa puoi fare.',
     publishTitle: 'Decidi tu cosa diventa pubblico.',
@@ -288,7 +304,7 @@ export const it: Copy = {
         { h: 'Accesso anticipato', p: [`${NAME} è in accesso anticipato e lo stiamo ancora costruendo a Torino. Non è ancora aperto. Questo sito, schermate di esempio comprese, mostra l’idea e può cambiare. Possiamo cambiare, mettere in pausa o fermare il progetto.`] },
         { h: 'Chi può usarlo', p: ['Per usare il modulo di iscrizione devi avere 18 anni o più.'] },
         { h: 'Nessuna garanzia', p: [`Non garantiamo quando ${NAME} aprirà, cosa conterrà o cosa otterrai. Non promettiamo che qualcuno ti contatti, ti scelga o ti paghi. Questo sito è offerto così com’è.`] },
-        { h: 'Esempi', p: ['Le schermate, i testi e i prezzi segnati come Esempio sono campioni. Non sono utenti, aziende, progetti, prezzi o pagamenti reali.'] },
+        { h: 'Esempi', p: ['Le schermate e i testi segnati come Esempio sono campioni. Non sono utenti, aziende, progetti o risultati reali.'] },
         { h: 'La tua email', p: ['Se ti iscrivi, usiamo la tua email solo come descrive la pagina Privacy.'] },
         { h: 'Legge applicabile', p: ['A questi termini si applica la legge italiana. Questo non toglie i diritti che hai come consumatore secondo la legge del tuo Paese.'] },
         { h: 'Modifiche', p: ['Se questi termini cambiano, aggiorniamo la data in alto.'] },

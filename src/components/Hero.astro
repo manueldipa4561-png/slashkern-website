@@ -1,5 +1,6 @@
 ---
 // Near-black hero block: huge serif headline, one lime button, ghost mark in the corner.
+// The key words get a lime block each; blocks sit edge to edge so the marker wraps cleanly across lines.
 interface Link { label: string; href: string }
 interface Props {
   chip: string;
@@ -24,7 +25,7 @@ const { chip, before, mark, after = '', sub, primary, secondary, note, overlap =
   </svg>
   <div class="wrap hero__inner">
     <span class="chip chip--dark">{chip}</span>
-    <h1>{before}<span class="hl">{mark}</span>{after.split('\n').flatMap((line, i) => (i ? [<br />, line] : [line]))}</h1>
+    <h1>{before}{mark.split(' ').map((word) => <span class="hl">{word}</span>)}{after.split('\n').flatMap((line, i) => (i ? [<br />, line] : [line]))}</h1>
     <p class="hero__sub">{sub}</p>
     <div class="cta-row">
       <a class="btn btn--lime" href={primary.href}>{primary.label}</a>

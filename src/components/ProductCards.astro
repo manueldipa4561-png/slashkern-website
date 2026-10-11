@@ -1,14 +1,28 @@
 ---
-// HTML/CSS mock screens. Everything here is labelled Example; no real brands, people or numbers.
+// HTML/CSS mock screens. Everything here is labelled Example; no real brands, people, prices or numbers.
 import Logo from './Logo.astro';
 import type { Copy } from '../i18n/en';
-type CardName = 'brief' | 'coach' | 'page';
+type CardName = 'practice' | 'brief' | 'coach' | 'page';
 interface Props { copy: Copy; show?: CardName[]; class?: string }
-const { copy, show = ['brief', 'coach', 'page'], class: extra = '' } = Astro.props;
+const { copy, show = ['practice', 'coach', 'page'], class: extra = '' } = Astro.props;
 const c = copy.cards;
 const art = ['a', 'b', 'c'];
 ---
 <section class:list={['cards', extra]} data-count={show.length} aria-label={c.aria}>
+  {show.includes('practice') && (
+    <article class="card">
+      <div class="card__head">
+        <span class="card__label">{c.practice.label}</span>
+        <span class="chip chip--example">{copy.example}</span>
+      </div>
+      <h3>{c.practice.title}</h3>
+      <dl class="card__rows">
+        {c.practice.rows.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+      </dl>
+      <p>{c.practice.body}</p>
+      <p class="card__foot">{c.practice.foot}</p>
+    </article>
+  )}
   {show.includes('brief') && (
     <article class="card">
       <div class="card__head">
@@ -20,10 +34,7 @@ const art = ['a', 'b', 'c'];
         {c.brief.rows.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
       </dl>
       <p>{c.brief.body}</p>
-      <div class="card__foot">
-        <span class="chip chip--price">{c.brief.price}</span>
-        <span>{c.brief.priceNote}</span>
-      </div>
+      <p class="card__foot">{c.brief.foot}</p>
     </article>
   )}
   {show.includes('coach') && (
@@ -37,7 +48,21 @@ const art = ['a', 'b', 'c'];
         <p class="bubble bubble--coach">{c.coach.question}</p>
         <p class="bubble bubble--you">{c.coach.reply}</p>
       </div>
-      <p class="card__foot">{c.coach.hint}</p>
+      <div class="card__actions">
+        <span class="fake-btn">{c.coach.action}</span>
+        <span class="mic" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" focusable="false"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>
+        </span>
+      </div>
+      <div class="draft">
+        <div class="draft__head">
+          <span class="card__label">{c.coach.draftLabel}</span>
+          <span class="chip chip--ink">{c.coach.draftChip}</span>
+        </div>
+        <p>{c.coach.draft}</p>
+        <p class="draft__note">{c.coach.draftNote}</p>
+      </div>
+      <p class="card__foot">{c.coach.mic}</p>
     </article>
   )}
   {show.includes('page') && (

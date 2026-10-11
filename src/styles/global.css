@@ -1,5 +1,5 @@
 /* yourKERN site. Light only. Tokens first, then base, layout, components. Mobile first, sizes in rem.
-   Lime (#d6ff3d) is only ever a fill behind dark text: price chips, one button per section, the key-word marker. */
+   Lime (#d6ff3d) is only ever a fill behind dark text: the hero button and the key-word marker. */
 :root {
   color-scheme: light;
   --bg: #ffffff;
@@ -95,7 +95,6 @@ h3 { font: 800 1.375rem/1.15 var(--font-ui); letter-spacing: -0.03em; text-wrap:
 .chip--dark { background: rgb(255 255 255 / 0.12); color: #fff; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22); }
 .chip--ink { background: var(--ink); color: #fff; }
 .chip--plain { background: #fff; box-shadow: inset 0 0 0 1px var(--line-strong); font-size: 0.9375rem; font-weight: 600; padding: 0.4375rem 0.9375rem; }
-.chip--price { background: var(--lime); color: var(--ink); font-size: 1rem; font-weight: 800; letter-spacing: -0.01em; padding: 0.375rem 0.875rem; }
 .chip--example {
   background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink);
   font-size: 0.75rem; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.25rem 0.625rem;
@@ -152,13 +151,14 @@ h3 { font: 800 1.375rem/1.15 var(--font-ui); letter-spacing: -0.03em; text-wrap:
 .hero--lg .hero__ghost { top: 50%; width: clamp(14rem, 34vw, 25rem); right: clamp(-5rem, -3vw, -1rem); }
 .hero__inner { position: relative; }
 .hero h1 {
-  margin-top: 1.5rem; max-width: 15ch;
-  font: 500 clamp(3.25rem, 0.6rem + 14vw, 8.5rem)/0.96 var(--font-serif);
+  margin-top: 1.5rem; max-width: 18ch;
+  font: 500 clamp(2.75rem, 0.5rem + 11.5vw, 7.25rem)/1.12 var(--font-serif);
   letter-spacing: -0.025em; text-wrap: balance;
 }
 .hero--lg h1 { font-size: clamp(3rem, 0.6rem + 9.4vw, 6.25rem); max-width: 17ch; }
-/* the key word: lime block, dark text */
-.hl { display: inline-block; padding: 0.02em 0.14em 0.1em; margin-inline: 0.02em; border-radius: 0.12em; background: var(--lime); color: var(--ink); line-height: 0.95; }
+.hero--lg h1 { line-height: 1.08; }
+/* the key words: one lime block per word, dark text, edge to edge (the padding is the word space) */
+.hl { display: inline-block; padding: 0 0.11em 0.13em; background: var(--lime); color: var(--ink); line-height: 0.92; }
 .hero__sub { max-width: 34rem; margin-top: 1.75rem; font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.4375rem); line-height: 1.45; color: var(--on-dark-muted); text-wrap: pretty; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
 .cta-row .btn { flex: 1 1 13rem; }
@@ -180,14 +180,18 @@ h3 { font: 800 1.375rem/1.15 var(--font-ui); letter-spacing: -0.03em; text-wrap:
 .card__rows div { display: flex; justify-content: space-between; gap: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--line); }
 .card__rows dt { color: var(--muted); }
 .card__rows dd { font-weight: 700; text-align: right; }
-.card__foot { display: flex; align-items: center; gap: 0.625rem 0.875rem; flex-wrap: wrap; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.875rem; line-height: 1.4; color: var(--muted); }
-.card__foot .chip--price { flex: none; }
-.card__foot > span:not(.chip) { flex: 1 1 10rem; }
+.card__foot { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.875rem; line-height: 1.4; color: var(--muted); }
 .chat { display: flex; flex-direction: column; gap: 0.625rem; }
 .bubble { max-width: 90%; padding: 0.625rem 0.9375rem; border-radius: 1.125rem; font-size: 0.9375rem; line-height: 1.4; }
 .bubble--you { align-self: flex-end; background: var(--soft); border-bottom-right-radius: 0.25rem; }
 .bubble--coach { align-self: flex-start; background: var(--ink); color: #fff; border-bottom-left-radius: 0.25rem; font-weight: 600; }
 .coach-who { display: flex; align-items: center; gap: 0.5rem; }
+.card__actions { display: flex; align-items: center; gap: 0.625rem; }
+.fake-btn { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0.375rem 1rem; border-radius: 999px; background: var(--ink); color: #fff; font-size: 0.875rem; font-weight: 700; line-height: 1.2; }
+.mic { flex: none; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--soft); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.draft { display: grid; gap: 0.5rem; padding: 0.875rem 1rem; border-radius: var(--radius-sm); background: var(--soft); font-size: 0.9375rem; line-height: 1.4; }
+.draft__head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.draft__note { font-size: 0.8125rem; color: var(--muted); }
 .who { display: flex; align-items: center; gap: 0.75rem; font-size: 1rem; line-height: 1.3; }
 .avatar { flex: none; position: relative; overflow: hidden; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--soft); box-shadow: inset 0 0 0 1px var(--line-strong); }
 .avatar::before { content: ''; position: absolute; left: 50%; top: 20%; width: 36%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: var(--muted); }
@@ -206,7 +210,7 @@ h3 { font: 800 1.375rem/1.15 var(--font-ui); letter-spacing: -0.03em; text-wrap:
 .tile__t { font-size: 0.8125rem; font-weight: 700; line-height: 1.25; }
 .tile__f { font-size: 0.8125rem; color: var(--muted); }
 @media (min-width: 40rem) {
-  .cards { grid-template-columns: repeat(2, 1fr); align-items: stretch; }
+  .cards { grid-template-columns: repeat(2, 1fr); align-items: start; }
   .cards[data-count='3'] > :nth-child(3) { grid-column: 1 / -1; }
 }
 @media (min-width: 64rem) {
@@ -231,8 +235,7 @@ h3 { font: 800 1.375rem/1.15 var(--font-ui); letter-spacing: -0.03em; text-wrap:
 
 /* how getting paid will work */
 .pay { display: grid; gap: 2.5rem; }
-.notice { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.75rem; margin-top: 1.75rem; padding: 1rem 1.125rem; background: #fff; border-radius: var(--radius-sm); line-height: 1.45; }
-.notice .chip { align-self: center; }
+.notice { margin-top: 1.75rem; padding: 1rem 1.125rem; background: #fff; border-radius: var(--radius-sm); line-height: 1.45; }
 .pay__rows { display: grid; gap: 0.75rem; align-content: start; }
 .pay__rows div { display: grid; gap: 0.25rem; padding: 1.25rem 1.375rem; background: #fff; border-radius: var(--radius); }
 .pay__rows dt { font-size: 0.9375rem; font-weight: 700; color: var(--muted); }

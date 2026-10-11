@@ -7,21 +7,21 @@ export const en = {
   ogLocale: 'en_US',
   paths: { creators: 'creators', companies: 'companies', privacy: 'privacy', terms: 'terms' },
   skip: 'Skip to content',
-  slogan: 'Your first paid project.',
+  slogan: 'Make something companies can hire you for.',
   example: 'Example',
   switchTo: { label: 'Italiano', short: 'IT', aria: 'Leggi questo sito in italiano' },
   nav: { creators: 'For creators', companies: 'For companies', cta: 'Get early access', aria: 'Main', home: `${NAME} home` },
 
   meta: {
     home: {
-      title: `${NAME}: your first paid project`,
+      title: `${NAME}: make something companies can hire you for`,
       description:
-        'Make a real project with a coach that only asks questions, keep it on your own page and get found by companies. Early access: nobody is paid yet.',
+        'Make a project with a coach that asks the right questions, keep it on your own page and get found by companies. Early access.',
     },
     creators: {
       title: `For creators · ${NAME}`,
       description:
-        'Take a short brief, make the project with a coach that only asks questions, keep it on your own page and get found. Free for creators. Early access.',
+        'Make a short project with a coach that asks the right questions, keep it on your own page and get found by companies. Free for creators. Early access.',
     },
     companies: {
       title: `For companies · ${NAME}`,
@@ -34,17 +34,28 @@ export const en = {
 
   hero: {
     chip: 'Early access',
-    before: 'Your first ',
-    mark: 'paid',
-    after: ' project.',
-    sub: 'No experience needed. Short briefs from companies, and a coach that asks the right questions.',
+    before: 'Make something ',
+    mark: 'companies can hire you',
+    after: ' for.',
+    sub: 'Short projects. No experience needed. A coach that helps you make it.',
     ctaPrimary: 'Get early access',
     ctaSecondary: 'How it works',
-    note: 'Free for creators. Nobody is paid yet: every price on this page is an example.',
+    note: 'Free for creators. This is early access.',
   },
 
   cards: {
     aria: 'Example screens from the app',
+    practice: {
+      label: 'Practice project',
+      title: 'Film a 15 second video of a drink',
+      rows: [
+        ['Field', 'Video'],
+        ['Time', 'About 40 minutes'],
+        ['Level', 'No experience needed'],
+      ],
+      body: 'One shot, one idea. The coach asks, you decide.',
+      foot: 'Free. Nothing is public until you publish it.',
+    },
     brief: {
       label: 'Brief',
       from: 'from a café',
@@ -55,15 +66,19 @@ export const en = {
         ['Timing', 'One week'],
       ],
       body: 'Show the new summer drinks. Calm and warm.',
-      price: 'About €60',
-      priceNote: 'Example price, paid by the company once it accepts the project.',
+      foot: 'Posted by a company',
     },
     coach: {
       label: 'Coach',
       you: 'I filmed the café’s new drinks.',
       question: 'What should a stranger feel in the first three seconds?',
-      reply: 'Calm and warm. I will start on the cup, not the sign.',
-      hint: 'The coach asks. You decide and improve it.',
+      reply: 'Calm and warm.',
+      action: 'Make a first version with AI',
+      draftLabel: 'Draft',
+      draftChip: 'Made with AI help',
+      draft: 'Open on the cup, not the sign. Steam, a slow pour, no voice-over. Last frame: the café’s name.',
+      draftNote: 'You can edit it. The project stays yours.',
+      mic: 'Talk instead of typing: tap the microphone.',
     },
     page: {
       label: 'Your page',
@@ -82,22 +97,23 @@ export const en = {
     id: 'how',
     title: 'How it works in three steps',
     steps: [
-      { n: '01', t: 'Make a real project', d: 'Start from a short brief. The coach only asks questions, so you improve the project yourself. It never does the work for you.' },
+      { n: '01', t: 'Make a project with a coach', d: 'The coach asks the right questions, and can draft a first version if you ask. You edit it, so the project stays yours.' },
       { n: '02', t: 'Keep it on your own page', d: 'Every finished project goes on your page. Only what you choose to publish is visible. Nothing goes public before you say so.' },
       { n: '03', t: 'Get found by companies', d: 'Companies read your projects and write to you through the platform. Your email stays private.' },
     ],
   },
 
-  pay: {
-    id: 'pay',
-    title: 'How getting paid will work',
+  find: {
+    id: 'how-found',
+    title: 'How companies will find you',
     lead: 'Nothing is hidden. This is what we know today, and what we have not decided yet.',
     rows: [
-      ['Who pays', 'The company that posted the brief.'],
-      ['When', 'After the company accepts your project.'],
-      ['The platform’s cut', 'Not decided yet. We will tell you before payments start.'],
+      ['What companies see', 'Only the projects you choose to publish on your page.'],
+      ['What is public', 'You decide. Nothing goes public before you say so.'],
+      ['Who gets a project', 'A company chooses who gets a project, and pays them.'],
+      ['The platform’s cut', 'Not decided yet. We will tell you before it applies.'],
     ],
-    notice: 'Nobody is paying yet. This is early access and every price on this page is an example.',
+    notice: 'Nobody is paying yet. This is early access.',
   },
 
   fields: [
@@ -113,7 +129,7 @@ export const en = {
   creatorsBlock: {
     eyebrow: 'For creators',
     title: 'Small first projects. Real ones.',
-    text: 'No experience needed. Take a short brief, make the project with the coach and keep it on your own page. Free for creators.',
+    text: 'No experience needed. Pick a short project, make it with the coach and keep it on your own page. Free for creators.',
     link: 'More for creators',
   },
   companiesBlock: {
@@ -127,10 +143,10 @@ export const en = {
   faq: {
     title: 'Questions',
     items: [
-      { q: 'Is it free for creators?', a: 'Yes. You do not pay to join, to make a project or to publish it. Nothing is paid out yet, and the platform’s cut is not decided. We will tell you before payments start.' },
+      { q: 'Is it free for creators?', a: 'Yes. You do not pay to join, to make a project or to publish it.' },
       { q: 'Who can join?', a: 'Anyone aged 18 or older. You do not need experience.' },
-      { q: 'Does the AI do my work?', a: 'No. The coach only asks questions and points at what is missing. You make the project and improve it, so it stays yours.' },
-      { q: 'Is this a scam?', a: 'Fair question. Nothing is paid yet, no fees are charged to creators, and you decide what to publish. Every price on this site is an example. If anyone asks you to pay to get a brief, it is not us: write to us.' },
+      { q: 'Does the AI do my work?', a: 'Not on its own. The coach asks questions and points at what is missing. If you ask, it can draft a first version to start from. You edit it, change it and decide what to publish.' },
+      { q: 'Is this a scam?', a: 'Fair question. Nothing is paid yet, no fees are charged to creators, and you decide what to publish. If anyone asks you to pay to get a project, it is not us: write to us.' },
       { q: 'How do companies contact me?', a: `Through the platform. A company sends you a message on ${NAME} and you decide whether to reply. Your email stays private.` },
       { q: 'When does it open?', a: `We have no date yet. ${NAME} is in early access and still being built in Turin. Leave your email and we write once, when it opens.` },
     ],
@@ -174,15 +190,15 @@ export const en = {
     before: 'Make a ',
     mark: 'real',
     after: ' project.\nGet found.',
-    sub: 'Take a short brief from a company, make the project with a coach that only asks questions, and keep it on your own page. No experience needed.',
+    sub: 'Make a short project with a coach that asks the right questions, and keep it on your own page. No experience needed.',
     cta: 'Get early access',
     ctaSecondary: 'Meet the coach',
-    coachTitle: 'A coach that asks. Not one that does it for you.',
-    coachText: 'The coach is an AI. It asks the question that makes your project better, so you improve it yourself. The project stays yours.',
+    coachTitle: 'A coach that asks the right questions.',
+    coachText: 'The coach is an AI. It asks the question that makes your project better. If you want a start, ask for a first version and edit it. The project stays yours.',
     doTitle: 'The coach does',
-    doItems: ['Asks one question at a time.', 'Points at what is unclear or missing.', 'Asks you to try again after each change.'],
+    doItems: ['Asks one question at a time.', 'Points at what is unclear or missing.', 'Drafts a first version only if you ask, marked Made with AI help.'],
     dontTitle: 'The coach does not',
-    dontItems: ['Write your project.', 'Give you a finished answer to copy.', 'Decide for you.'],
+    dontItems: ['Publish anything for you.', 'Decide for you.', 'Hide its help: drafts say Made with AI help.'],
     fieldsTitle: 'Seven fields, one project at a time.',
     fieldsText: 'Short projects in seven fields. Here is what you can make.',
     publishTitle: 'You choose what goes public.',
@@ -287,7 +303,7 @@ export const en = {
         { h: 'Early access', p: [`${NAME} is in early access and still being built in Turin, Italy. It is not open yet. This site, including the example screens, shows the idea and can change. We may change, pause or stop the project.`] },
         { h: 'Who can use it', p: ['You must be 18 or older to use the sign-up form.'] },
         { h: 'No guarantees', p: [`We give no guarantee about when ${NAME} opens, what it will include, or what you will get from it. We do not promise that anyone will contact, choose or pay you. This site is provided as it is.`] },
-        { h: 'Examples', p: ['Screens, texts and prices marked Example are samples. They are not real users, companies, projects, prices or payments.'] },
+        { h: 'Examples', p: ['Screens and texts marked Example are samples. They are not real users, companies, projects or results.'] },
         { h: 'Your email', p: ['If you sign up, we use your email only as the Privacy page describes.'] },
         { h: 'Law', p: ['Italian law applies to these terms. This does not remove any rights you have as a consumer under the law of your country.'] },
         { h: 'Changes', p: ['If these terms change, we update the date at the top.'] },
