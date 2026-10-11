@@ -1,0 +1,19 @@
+---
+// The honest money block. Shown on home, creators and companies so nobody has to hunt for it.
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const p = copy.pay;
+---
+<section class="section section--soft" id={p.id} aria-labelledby={`${p.id}-title`}>
+  <div class="wrap pay">
+    <div>
+      <h2 id={`${p.id}-title`}>{p.title}</h2>
+      <p class="lead lead--tight">{p.lead}</p>
+      <p class="notice"><span class="chip chip--example">{copy.example}</span><strong>{p.notice}</strong></p>
+    </div>
+    <dl class="pay__rows">
+      {p.rows.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+    </dl>
+  </div>
+</section>

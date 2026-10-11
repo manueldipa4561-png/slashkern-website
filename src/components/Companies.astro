@@ -1,26 +1,32 @@
 ---
+import Hero from './Hero.astro';
 import ProductCards from './ProductCards.astro';
 import Steps from './Steps.astro';
+import PayBlock from './PayBlock.astro';
 import FinalCta from './FinalCta.astro';
 import type { Copy } from '../i18n/en';
 interface Props { copy: Copy }
 const { copy } = Astro.props;
 const p = copy.companiesPage;
 ---
-<section class="page-hero">
+<Hero
+  chip={p.eyebrow}
+  before={p.before}
+  mark={p.mark}
+  after={p.after}
+  sub={p.sub}
+  primary={{ label: p.cta, href: `#${copy.final.id}` }}
+  secondary={{ label: p.ctaSecondary, href: `#${copy.how.id}` }}
+/>
+
+<section class="section" aria-labelledby="show-title">
   <div class="wrap">
-    <span class="eyebrow">{p.eyebrow}</span>
-    <h1>{p.title}</h1>
-    <p class="lead">{p.sub}</p>
-    <div class="cta-row">
-      <a class="btn btn--primary" href={`#${copy.final.id}`}>{p.cta}</a>
-      <a class="btn btn--ghost" href={`#${copy.how.id}`}>{p.ctaSecondary}</a>
-    </div>
-    <ProductCards copy={copy} show={['draft', 'brief', 'project']} />
+    <div class="section-head"><h2 id="show-title">{p.showTitle}</h2><p class="lead lead--tight">{p.showText}</p></div>
+    <ProductCards copy={copy} show={['brief', 'page']} class="cards--plain" />
   </div>
 </section>
 
-<section class="section" aria-labelledby="features-title">
+<section class="section section--soft" aria-labelledby="features-title">
   <div class="wrap">
     <div class="section-head"><h2 id="features-title">{p.featuresTitle}</h2></div>
     <ul class="features">
@@ -31,16 +37,5 @@ const p = copy.companiesPage;
 
 <Steps id={copy.how.id} title={p.howTitle} steps={p.steps} />
 
-<section class="section" style="padding-top:0" aria-labelledby="pricing-title">
-  <div class="wrap">
-    <div class="note-card">
-      <div>
-        <span class="chip chip--lime">{copy.early.chip}</span>
-        <h2 id="pricing-title" style="margin-top:0.75rem">{p.pricingTitle}</h2>
-      </div>
-      <p class="lead">{p.pricingText}</p>
-    </div>
-  </div>
-</section>
-
+<PayBlock copy={copy} />
 <FinalCta copy={copy} title={p.ctaTitle} text={p.ctaText} role="company" />

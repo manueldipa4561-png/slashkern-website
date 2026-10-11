@@ -16,6 +16,8 @@ const meta = copy.meta[page];
 const slug = page === 'home' ? undefined : copy.paths[page];
 const abs = (l: string) => SITE_URL + hrefFor(l, slug);
 const ogImage = `${SITE_URL}/og.png`;
+// Pages that open with the near-black hero get a dark header; the legal pages stay white.
+const dark = page === 'home' || page === 'creators' || page === 'companies';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -29,8 +31,9 @@ const ogImage = `${SITE_URL}/og.png`;
     <link rel="alternate" hreflang="it" href={abs('it')} />
     <link rel="alternate" hreflang="x-default" href={abs('en')} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#f4f8ff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f140e" media="(prefers-color-scheme: dark)" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content={dark ? '#0a0a0a' : '#ffffff'} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={NAME} />
     <meta property="og:title" content={meta.title} />
@@ -50,7 +53,7 @@ const ogImage = `${SITE_URL}/og.png`;
   </head>
   <body>
     <a class="skip" href="#main">{copy.skip}</a>
-    <Nav copy={copy} page={page} other={other} />
+    <Nav copy={copy} page={page} other={other} dark={dark} />
     <main id="main" tabindex="-1">
       <slot />
     </main>

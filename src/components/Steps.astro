@@ -1,11 +1,11 @@
 ---
-interface Props { id?: string; title: string; steps: Array<{ n: string; t: string; d: string }>; headingLevel?: 'h2' }
+interface Props { id?: string; title: string; steps: Array<{ n: string; t: string; d: string }> }
 const { id, title, steps } = Astro.props;
 ---
 <section class="section" id={id} aria-labelledby={id ? `${id}-title` : undefined}>
   <div class="wrap">
     <div class="section-head"><h2 id={id ? `${id}-title` : undefined}>{title}</h2></div>
-    <ol class="steps">
+    <ol class="steps" data-count={steps.length}>
       {steps.map((s) => (
         <li class="step">
           <span class="step__n" aria-hidden="true">{s.n}</span>

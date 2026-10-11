@@ -1,15 +1,17 @@
 ---
-// Placeholder logo: swap this one file to change the mark and wordmark everywhere.
+// The mark: one solid disc with one diagonal slit (design/logo/out-slit), plus the lowercase wordmark.
+// tone="white" is the version for the dark hero.
 import { WORDMARK } from '../site';
-interface Props { size?: number; markOnly?: boolean }
-const { size = 36, markOnly = false } = Astro.props;
+interface Props { size?: number; markOnly?: boolean; tone?: 'ink' | 'white' }
+const { size = 32, markOnly = false, tone = 'ink' } = Astro.props;
+const fill = tone === 'white' ? '#FFFFFF' : '#0A0A0A';
 ---
-<span class="logo">
-  <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-    <rect class="logo__bg" width="64" height="64" rx="16" />
-    <rect x="13" y="41" width="38" height="12" rx="6" fill="#fff" />
-    <rect x="19" y="28" width="26" height="11" rx="5.5" fill="#fff" />
-    <rect x="24" y="16" width="16" height="10" rx="5" fill="#C9F24A" />
+<span class:list={['logo', `logo--${tone}`]}>
+  <svg width={size} height={size} viewBox="6 6 52 52" aria-hidden="true" focusable="false">
+    <g transform="rotate(-45 32 32)" fill={fill}>
+      <path d="M7 29A25 25 0 0 1 57 29Z" />
+      <path d="M7 35A25 25 0 0 0 57 35Z" />
+    </g>
   </svg>
-  {!markOnly && <span class="logo__word" aria-hidden="true">{WORDMARK}<i class="logo__dot"></i></span>}
+  {!markOnly && <span class="logo__word" aria-hidden="true">{WORDMARK}</span>}
 </span>
