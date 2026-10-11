@@ -1,0 +1,69 @@
+---
+import ProductCards from './ProductCards.astro';
+import Steps from './Steps.astro';
+import Faq from './Faq.astro';
+import FinalCta from './FinalCta.astro';
+import { hrefFor } from '../i18n';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const lang = copy.lang;
+const toForm = (slug: string) => `${hrefFor(lang, slug)}#${copy.final.id}`;
+---
+<section class="hero">
+  <div class="wrap">
+    <span class="chip chip--lime">{copy.hero.chip}</span>
+    <h1>{copy.hero.before}<span class="mark">{copy.hero.mark}</span></h1>
+    <p class="lead">{copy.hero.sub}</p>
+    <div class="cta-row">
+      <a class="btn btn--primary" href={toForm(copy.paths.creators)}>{copy.hero.ctaCreator}</a>
+      <a class="btn btn--ghost" href={toForm(copy.paths.companies)}>{copy.hero.ctaCompany}</a>
+    </div>
+    <p class="hero__note">{copy.hero.note}</p>
+    <ProductCards copy={copy} />
+  </div>
+</section>
+
+<Steps id={copy.how.id} title={copy.how.title} steps={copy.how.steps} />
+
+<section class="section" style="padding-top:0">
+  <div class="wrap split">
+    <article class="panel">
+      <span class="eyebrow">{copy.creatorsBlock.eyebrow}</span>
+      <h2>{copy.creatorsBlock.title}</h2>
+      <p class="lead">{copy.creatorsBlock.text}</p>
+      <ul class="chips" aria-label={copy.creatorsPage.fieldsTitle}>
+        {copy.fields.map((f) => <li class="chip">{f.name}</li>)}
+      </ul>
+      <p class="muted" style="margin-top:1rem"><strong>{copy.creatorsBlock.free}</strong></p>
+      <a class="arrow-link" href={hrefFor(lang, copy.paths.creators)}>{copy.creatorsBlock.link}</a>
+    </article>
+    <article class="panel">
+      <span class="eyebrow">{copy.companiesBlock.eyebrow}</span>
+      <h2>{copy.companiesBlock.title}</h2>
+      <p class="lead">{copy.companiesBlock.text}</p>
+      <ul class="ticks">
+        {copy.companiesBlock.points.map((p) => <li>{p}</li>)}
+      </ul>
+      <a class="arrow-link" href={hrefFor(lang, copy.paths.companies)}>{copy.companiesBlock.link}</a>
+    </article>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="early-title">
+  <div class="wrap">
+    <div class="early">
+      <div>
+        <span class="chip chip--lime">{copy.early.chip}</span>
+        <h2 id="early-title">{copy.early.title}</h2>
+        <p class="lead">{copy.early.text}</p>
+      </div>
+      <dl class="facts">
+        {copy.early.rows.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+      </dl>
+    </div>
+  </div>
+</section>
+
+<Faq copy={copy} />
+<FinalCta copy={copy} title={copy.final.title} text={copy.final.text} />

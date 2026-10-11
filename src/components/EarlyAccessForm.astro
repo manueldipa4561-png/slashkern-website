@@ -1,0 +1,122 @@
+---
+// Netlify Forms static form. Collects an email and a role, nothing else. The script only adds
+// friendly validation and an inline thank-you; without JS the form still posts natively.
+import { FORM_NAME } from '../site';
+import { hrefFor } from '../i18n';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy; role?: 'creator' | 'company' }
+const { copy, role = 'creator' } = Astro.props;
+const f = copy.form;
+const action = `${hrefFor(copy.lang)}?sent=1`;
+---
+<div class="form-wrap" data-form-wrap>
+  <form
+    class="form"
+    name={FORM_NAME}
+    method="POST"
+    action={action}
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    data-sending={f.sending}
+    data-err-empty={f.errEmailEmpty}
+    data-err-invalid={f.errEmailInvalid}
+    data-err-consent={f.errConsent}
+    data-err-send={f.errSend}
+  >
+    <input type="hidden" name="form-name" value={FORM_NAME} />
+    <p hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+    <div class="field">
+      <label for="ea-email">{f.emailLabel}</label>
+      <input class="input" id="ea-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder={f.emailPlaceholder} required aria-describedby="ea-email-err" />
+      <p class="error" id="ea-email-err" aria-live="polite"></p>
+    </div>
+
+    <div class="field">
+      <label for="ea-role">{f.roleLabel}</label>
+      <select class="input" id="ea-role" name="role">
+        <option value="creator" selected={role === 'creator'}>{f.roleCreator}</option>
+        <option value="company" selected={role === 'company'}>{f.roleCompany}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="consent" for="ea-consent">
+        <input id="ea-consent" name="consent" type="checkbox" value="yes" required aria-describedby="ea-consent-err" />
+        <span>{f.consentBefore}<a href={hrefFor(copy.lang, copy.paths.privacy)}>{f.consentLink}</a>{f.consentAfter}</span>
+      </label>
+      <p class="error" id="ea-consent-err" aria-live="polite"></p>
+    </div>
+
+    <button class="btn btn--primary" type="submit">{f.submit}</button>
+    <p class="error" data-send-err aria-live="polite" style="text-align:center"></p>
+    <p class="form__small">{f.small}</p>
+  </form>
+
+  <div class="form-ok" data-ok role="status" tabindex="-1" hidden>
+    <h3>{f.okTitle}</h3>
+    <p>{f.okText}</p>
+  </div>
+</div>
+
+<script>
+  const wrap = document.querySelector<HTMLElement>('[data-form-wrap]');
+  const form = wrap?.querySelector<HTMLFormElement>('form');
+  const ok = wrap?.querySelector<HTMLElement>('[data-ok]');
+  if (wrap && form && ok) {
+    const email = form.elements.namedItem('email') as HTMLInputElement;
+    const consent = form.elements.namedItem('consent') as HTMLInputElement;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const sendErr = form.querySelector<HTMLElement>('[data-send-err]')!;
+    const emailShape = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    const showSent = () => {
+      form.hidden = true;
+      ok.hidden = false;
+      ok.scrollIntoView({ block: 'center' });
+      ok.focus({ preventScroll: true });
+    };
+    if (new URLSearchParams(location.search).get('sent') === '1') showSent();
+
+    const setError = (input: HTMLInputElement, message: string) => {
+      const out = document.getElementById(input.getAttribute('aria-describedby') ?? '');
+      if (out) out.textContent = message;
+      if (message) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+    };
+    const check = () => {
+      const value = email.value.trim();
+      const emailMessage = !value ? form.dataset.errEmpty! : emailShape.test(value) ? '' : form.dataset.errInvalid!;
+      setError(email, emailMessage);
+      setError(consent, consent.checked ? '' : form.dataset.errConsent!);
+      return [email, consent].find((i) => i.getAttribute('aria-invalid')) ?? null;
+    };
+
+    form.noValidate = true; // our messages replace the browser bubbles; no JS keeps native validation
+    email.addEventListener('input', () => email.hasAttribute('aria-invalid') && check());
+    consent.addEventListener('change', () => consent.hasAttribute('aria-invalid') && check());
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      sendErr.textContent = '';
+      const firstBad = check();
+      if (firstBad) return firstBad.focus();
+
+      const label = button.textContent;
+      button.disabled = true;
+      button.textContent = form.dataset.sending!;
+      try {
+        // Netlify Forms accepts a urlencoded POST to any path on the site.
+        const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
+        const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+        if (!res.ok) throw new Error(String(res.status));
+        showSent();
+      } catch {
+        sendErr.textContent = form.dataset.errSend!;
+      } finally {
+        button.disabled = false;
+        button.textContent = label;
+      }
+    });
+  }
+</script>

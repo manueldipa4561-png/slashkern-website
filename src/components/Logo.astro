@@ -1,0 +1,15 @@
+---
+// Placeholder logo: swap this one file to change the mark and wordmark everywhere.
+import { WORDMARK } from '../site';
+interface Props { size?: number; markOnly?: boolean }
+const { size = 36, markOnly = false } = Astro.props;
+---
+<span class="logo">
+  <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+    <rect class="logo__bg" width="64" height="64" rx="16" />
+    <rect x="13" y="41" width="38" height="12" rx="6" fill="#fff" />
+    <rect x="19" y="28" width="26" height="11" rx="5.5" fill="#fff" />
+    <rect x="24" y="16" width="16" height="10" rx="5" fill="#C9F24A" />
+  </svg>
+  {!markOnly && <span class="logo__word" aria-hidden="true">{WORDMARK}<i class="logo__dot"></i></span>}
+</span>

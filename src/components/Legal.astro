@@ -1,0 +1,32 @@
+---
+import { hrefFor } from '../i18n';
+import { LAST_UPDATED } from '../site';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy; doc: 'privacy' | 'terms' }
+const { copy, doc } = Astro.props;
+const d = copy.legal[doc];
+const summary = doc === 'privacy' ? copy.legal.privacy.summary : null;
+const summaryTitle = doc === 'privacy' ? copy.legal.privacy.summaryTitle : '';
+const updated = LAST_UPDATED[copy.lang as 'en' | 'it'];
+---
+<article class="wrap legal">
+  <h1>{d.title}</h1>
+  <p class="legal__meta">{copy.legal.updated}: {updated}</p>
+  <p class="draft-note"><span class="chip chip--lime">{copy.legal.noteLabel}</span><span>{copy.legal.note}</span></p>
+  <p class="lead">{d.intro}</p>
+  {summary && (
+    <section class="summary" aria-labelledby="summary-title">
+      <h2 id="summary-title">{summaryTitle}</h2>
+      <dl>
+        {summary.map(([k, v]) => <div><dt>{k}</dt><dd set:html={v} /></div>)}
+      </dl>
+    </section>
+  )}
+  {d.sections.map((s) => (
+    <section>
+      <h2>{s.h}</h2>
+      {s.p.map((para) => <p set:html={para} />)}
+    </section>
+  ))}
+  <a class="back-link" href={hrefFor(copy.lang)}>← {copy.legal.back}</a>
+</article>

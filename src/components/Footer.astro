@@ -1,0 +1,44 @@
+---
+import Logo from './Logo.astro';
+import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, NAME } from '../site';
+import type { Copy } from '../i18n/en';
+import { hrefFor } from '../i18n';
+interface Props { copy: Copy; }
+const { copy } = Astro.props;
+const lang = copy.lang;
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="logo-link" href={hrefFor(lang)} aria-label={copy.nav.home}><Logo /></a>
+        <p class="footer__slogan">{copy.slogan}</p>
+      </div>
+      <div>
+        <h2>{NAME}</h2>
+        <ul>
+          <li><a href={hrefFor(lang, copy.paths.creators)}>{copy.nav.creators}</a></li>
+          <li><a href={hrefFor(lang, copy.paths.companies)}>{copy.nav.companies}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>{copy.footer.legal}</h2>
+        <ul>
+          <li><a href={hrefFor(lang, copy.paths.privacy)}>{copy.legal.privacy.title}</a></li>
+          <li><a href={hrefFor(lang, copy.paths.terms)}>{copy.legal.terms.title}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>{copy.footer.contact}</h2>
+        <ul>
+          <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+          <li><a href={INSTAGRAM_URL} rel="noopener noreferrer" target="_blank">{copy.footer.follow} {INSTAGRAM_HANDLE}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span>© 2026 {NAME}</span>
+      <span>{copy.footer.built}</span>
+    </div>
+  </div>
+</footer>

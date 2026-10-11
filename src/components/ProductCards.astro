@@ -1,0 +1,62 @@
+---
+// HTML/CSS mock screens. Everything here is labelled Example; no real brands, people or numbers.
+import Logo from './Logo.astro';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy; show?: Array<'draft' | 'brief' | 'project' | 'coach'>; class?: string }
+const { copy, show = ['brief', 'project', 'coach'], class: extra = '' } = Astro.props;
+const c = copy.cards;
+---
+<section class:list={['cards', extra]} aria-label={c.aria}>
+  {show.includes('draft') && (
+    <article class="card">
+      <div class="card__head">
+        <span class="card__label">{c.draft.label}</span>
+        <span class="chip chip--example">{copy.example}</span>
+      </div>
+      <h3>{c.draft.title}</h3>
+      <p class="url-field" aria-label={c.draft.field}>{c.draft.url}</p>
+      <p><span class="fake-btn">{c.draft.action}</span></p>
+      <p class="muted card__foot">{c.draft.result}</p>
+    </article>
+  )}
+  {show.includes('brief') && (
+    <article class="card">
+      <div class="card__head">
+        <span class="card__label">{c.brief.label} · {c.brief.from}</span>
+        <span class="chip chip--example">{copy.example}</span>
+      </div>
+      <h3>{c.brief.title}</h3>
+      <dl class="card__rows">
+        {c.brief.rows.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+      </dl>
+      <p>{c.brief.body}</p>
+      <div class="card__foot"><span>{c.brief.foot}</span></div>
+    </article>
+  )}
+  {show.includes('project') && (
+    <article class="card">
+      <div class="card__head">
+        <span class="chip chip--lime">{c.project.chip}</span>
+        <span class="chip chip--example">{copy.example}</span>
+      </div>
+      <div class="thumb" aria-hidden="true"></div>
+      <h3>{c.project.title}</h3>
+      <div class="who"><span class="avatar" aria-hidden="true"></span><span>{c.project.by} · {c.project.field}</span></div>
+      <p class="muted">{c.project.note}</p>
+      <div class="card__foot"><span class="fake-btn">{c.project.action}</span></div>
+    </article>
+  )}
+  {show.includes('coach') && (
+    <article class="card">
+      <div class="card__head">
+        <span class="coach-who"><Logo size={28} markOnly /><span class="card__label">{c.coach.label}</span></span>
+        <span class="chip chip--example">{copy.example}</span>
+      </div>
+      <div class="chat">
+        <p class="bubble bubble--you">{c.coach.you}</p>
+        <p class="bubble bubble--coach">{c.coach.question}</p>
+      </div>
+      <p class="muted card__foot">{c.coach.hint}</p>
+    </article>
+  )}
+</section>

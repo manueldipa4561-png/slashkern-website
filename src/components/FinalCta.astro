@@ -1,0 +1,15 @@
+---
+import EarlyAccessForm from './EarlyAccessForm.astro';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy; title: string; text: string; role?: 'creator' | 'company' }
+const { copy, title, text, role } = Astro.props;
+---
+<section class="section" id={copy.final.id} aria-labelledby="final-title">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2 id="final-title">{title}</h2>
+      <p class="lead">{text}</p>
+      <EarlyAccessForm copy={copy} role={role} />
+    </div>
+  </div>
+</section>

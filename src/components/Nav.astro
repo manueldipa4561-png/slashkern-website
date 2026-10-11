@@ -1,0 +1,22 @@
+---
+import Logo from './Logo.astro';
+import type { Copy } from '../i18n/en';
+import { hrefFor } from '../i18n';
+interface Props { copy: Copy; page: string; other: string }
+const { copy, page, other } = Astro.props;
+const lang = copy.lang;
+const cur = (p: string) => (page === p ? 'page' : undefined);
+---
+<header class="nav">
+  <div class="wrap nav__row">
+    <a class="logo-link" href={hrefFor(lang)} aria-label={copy.nav.home}><Logo /></a>
+    <nav class="nav__links" aria-label={copy.nav.aria}>
+      <a href={hrefFor(lang, copy.paths.creators)} aria-current={cur('creators')}>{copy.nav.creators}</a>
+      <a href={hrefFor(lang, copy.paths.companies)} aria-current={cur('companies')}>{copy.nav.companies}</a>
+      <a class="nav__lang" href={hrefFor(other)} hreflang={other} lang={other} aria-label={copy.switchTo.aria}>
+        <span class="short" aria-hidden="true">{copy.switchTo.short}</span><span class="long">{copy.switchTo.label}</span>
+      </a>
+    </nav>
+    <a class="btn btn--primary btn--sm nav__cta" href={hrefFor(lang) + '#early-access'}>{copy.nav.cta}</a>
+  </div>
+</header>

@@ -1,0 +1,59 @@
+---
+import '@fontsource-variable/geist/wght.css';
+import '@fontsource/eb-garamond/latin-500.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_URL, NAME } from '../site';
+import type { Copy } from '../i18n/en';
+import { hrefFor } from '../i18n';
+
+interface Props { copy: Copy; page: 'home' | 'creators' | 'companies' | 'privacy' | 'terms'; }
+const { copy, page } = Astro.props;
+const lang = copy.lang;
+const other = lang === 'it' ? 'en' : 'it';
+const meta = copy.meta[page];
+const slug = page === 'home' ? undefined : copy.paths[page];
+const abs = (l: string) => SITE_URL + hrefFor(l, slug);
+const ogImage = `${SITE_URL}/og.png`;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={abs(lang)} />
+    <link rel="alternate" hreflang="en" href={abs('en')} />
+    <link rel="alternate" hreflang="it" href={abs('it')} />
+    <link rel="alternate" hreflang="x-default" href={abs('en')} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f4f8ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f140e" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={NAME} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={abs(lang)} />
+    <meta property="og:locale" content={copy.ogLocale} />
+    <meta property="og:locale:alternate" content={other === 'it' ? 'it_IT' : 'en_US'} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${NAME}: ${copy.slogan}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <a class="skip" href="#main">{copy.skip}</a>
+    <Nav copy={copy} page={page} other={other} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer copy={copy} />
+  </body>
+</html>

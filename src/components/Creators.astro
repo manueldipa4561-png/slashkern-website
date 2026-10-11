@@ -1,0 +1,59 @@
+---
+import ProductCards from './ProductCards.astro';
+import Steps from './Steps.astro';
+import FinalCta from './FinalCta.astro';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const p = copy.creatorsPage;
+---
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">{p.eyebrow}</span>
+    <h1>{p.title}</h1>
+    <p class="lead">{p.sub}</p>
+    <div class="cta-row">
+      <a class="btn btn--primary" href={`#${copy.final.id}`}>{p.cta}</a>
+      <a class="btn btn--ghost" href="#fields">{p.ctaSecondary}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="fields" style="padding-top:1rem" aria-labelledby="fields-title">
+  <div class="wrap">
+    <div class="section-head"><h2 id="fields-title">{p.fieldsTitle}</h2><p class="lead lead--tight">{p.fieldsText}</p></div>
+    <ul class="fields">
+      {copy.fields.map((f) => <li class="field-item"><strong>{f.name}</strong><span>{f.line}</span></li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="coach-title">
+  <div class="wrap split split--coach">
+    <div>
+      <h2 id="coach-title">{p.coachTitle}</h2>
+      <p class="lead lead--tight">{p.coachText}</p>
+      <div class="dos">
+        <div><h3>{p.doTitle}</h3><ul>{p.doItems.map((i) => <li>{i}</li>)}</ul></div>
+        <div class="dos--no"><h3>{p.dontTitle}</h3><ul>{p.dontItems.map((i) => <li>{i}</li>)}</ul></div>
+      </div>
+    </div>
+    <ProductCards copy={copy} show={['coach']} class="cards--single" />
+  </div>
+</section>
+
+<Steps title={p.publishTitle} steps={p.publishSteps.map((s, i) => ({ n: `0${i + 1}`, t: s.t, d: s.d }))} />
+
+<section class="section" style="padding-top:0" aria-labelledby="free-title">
+  <div class="wrap">
+    <div class="note-card">
+      <div>
+        <span class="chip chip--lime">{copy.early.chip}</span>
+        <h2 id="free-title" style="margin-top:0.75rem">{p.freeTitle}</h2>
+      </div>
+      <p class="lead">{p.freeText}</p>
+    </div>
+  </div>
+</section>
+
+<FinalCta copy={copy} title={p.ctaTitle} text={p.ctaText} role="creator" />
