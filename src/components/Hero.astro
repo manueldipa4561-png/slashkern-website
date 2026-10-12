@@ -1,6 +1,7 @@
 ---
-// Near-black hero block: huge serif headline, one lime button, ghost mark in the corner.
-// The key words get a lime block each; blocks sit edge to edge so the marker wraps cleanly across lines.
+// Light hero: copy on the left, a visual on the right (the page passes the real product video, sub pages get Slash).
+// Four text elements at most: one chip, the headline, one sub line, the buttons. The key words get an ice marker each.
+import Slash from './Slash.astro';
 interface Link { label: string; href: string }
 interface Props {
   chip: string;
@@ -10,27 +11,25 @@ interface Props {
   sub: string;
   primary: Link;
   secondary?: Link;
-  note?: string;
-  overlap?: boolean; // leave room for the card strip that overlaps the hero's lower edge
   size?: 'xl' | 'lg';
 }
-const { chip, before, mark, after = '', sub, primary, secondary, note, overlap = false, size = 'lg' } = Astro.props;
+const { chip, before, mark, after = '', sub, primary, secondary, size = 'lg' } = Astro.props;
+const hasVisual = Astro.slots.has('default');
 ---
-<section class:list={['hero', `hero--${size}`, overlap && 'hero--overlap']}>
-  <svg class="hero__ghost" viewBox="6 6 52 52" aria-hidden="true" focusable="false">
-    <g transform="rotate(-45 32 32)">
-      <path d="M7 29A25 25 0 0 1 57 29Z" />
-      <path d="M7 35A25 25 0 0 0 57 35Z" />
-    </g>
-  </svg>
-  <div class="wrap hero__inner">
-    <span class="chip chip--dark">{chip}</span>
-    <h1>{before}{mark.split(' ').map((word) => <span class="hl">{word}</span>)}{after.split('\n').flatMap((line, i) => (i ? [<br />, line] : [line]))}</h1>
-    <p class="hero__sub">{sub}</p>
-    <div class="cta-row">
-      <a class="btn btn--lime" href={primary.href}>{primary.label}</a>
-      {secondary && <a class="btn btn--ghost-dark" href={secondary.href}>{secondary.label}</a>}
+<section class:list={['hero', `hero--${size}`]}>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="chip">{chip}</span>
+      <h1>{before}{mark.split(' ').map((word) => <span class="hl">{word}</span>)}{after.split('\n').flatMap((line, i) => (i ? [<br />, line] : [line]))}</h1>
+      <p class="hero__sub">{sub}</p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href={primary.href}>{primary.label}</a>
+        {secondary && <a class="arrow-link" href={secondary.href}>{secondary.label}</a>}
+      </div>
     </div>
-    {note && <p class="hero__note">{note}</p>}
+    <div class="hero__visual">
+      {!hasVisual && <Slash class="hero__slash" size="clamp(11rem, 24vw, 18rem)" float look grounded />}
+      {hasVisual && <slot />}
+    </div>
   </div>
 </section>

@@ -1,0 +1,33 @@
+---
+// A sample creator page: illustrated picture, name, a line about them and their finished projects.
+import Avatar from './Avatar.astro';
+import ProjectArt from './ProjectArt.astro';
+import { PROFILES, type Who } from '../examples';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy; who: 'Sanne' | 'Elin' | 'Mats'; full?: boolean }
+const { copy, who, full = false } = Astro.props;
+const e = copy.examples;
+const person = e.people[who];
+const wide = ['web', 'prompt', 'music'];
+---
+<article class:list={['profile', full && 'profile--full']} aria-label={`${who}: ${e.profile.label}`}>
+  {full && <div class="profile__bar" aria-hidden="true"><i></i><i></i><i></i><span>{e.profile.label}</span></div>}
+  <div class="profile__head">
+    <Avatar who={who as Who} size={full ? '4.5rem' : '3.25rem'} />
+    <div class="profile__id"><strong>{who}</strong><span>{person.cats}</span></div>
+    <span class="chip chip--example">{copy.example}</span>
+  </div>
+  <p class="profile__bio">{person.bio}</p>
+  <ul class="profile__grid">
+    {PROFILES[who].map((kind) => (
+      <li>
+        <figure>
+          <div class="thumb"><ProjectArt kind={kind} lines={e.items[kind].lines} label={e.items[kind].t} slice={!wide.includes(kind)} /></div>
+          <figcaption>{e.items[kind].t}</figcaption>
+        </figure>
+      </li>
+    ))}
+    {full && <li class="profile__next" aria-hidden="true"><span>+</span>{e.profile.next}</li>}
+  </ul>
+  {full && <span class="fake-btn">{e.profile.msg}</span>}
+</article>

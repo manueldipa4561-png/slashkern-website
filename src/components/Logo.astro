@@ -1,17 +1,16 @@
 ---
-// The mark: one solid disc with one diagonal slit (design/logo/out-slit), plus the lowercase wordmark.
-// tone="white" is the version for the dark hero.
+// The logo is the mark alone: the eyes pointer (navy body, ice eyes), no text in it. The header sets the name beside it.
+// tone="white" is the reversed version for dark grounds. Geometry: src/slash.json (same drawing as Slash, the assistant).
 import { WORDMARK } from '../site';
+import geo from '../slash.json';
 interface Props { size?: number; markOnly?: boolean; tone?: 'ink' | 'white' }
 const { size = 32, markOnly = false, tone = 'ink' } = Astro.props;
-const fill = tone === 'white' ? '#FFFFFF' : '#0A0A0A';
+const [body, eyes] = tone === 'white' ? ['#F5F2EA', '#0E1B3D'] : ['#0E1B3D', '#DCE6FF'];
 ---
 <span class:list={['logo', `logo--${tone}`]}>
-  <svg width={size} height={size} viewBox="6 6 52 52" aria-hidden="true" focusable="false">
-    <g transform="rotate(-45 32 32)" fill={fill}>
-      <path d="M7 29A25 25 0 0 1 57 29Z" />
-      <path d="M7 35A25 25 0 0 0 57 35Z" />
-    </g>
+  <svg width={size} height={size} viewBox={geo.viewBox} aria-hidden="true" focusable="false">
+    <path d={geo.body} fill={body} />
+    <path d={geo.eyes.neutral} fill={eyes} />
   </svg>
   {!markOnly && <span class="logo__word" aria-hidden="true">{WORDMARK}</span>}
 </span>

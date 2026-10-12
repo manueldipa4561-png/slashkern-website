@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // SITE_URL lives in src/site.ts too; keep both in sync when the real domain is chosen.
 export default defineConfig({
-  site: 'https://yourkern.com',
+  site: 'https://slashkern.com',
   devToolbar: { enabled: false },
   trailingSlash: 'always',
   build: { format: 'directory' },

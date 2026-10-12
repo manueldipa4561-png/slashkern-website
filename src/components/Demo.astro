@@ -1,0 +1,15 @@
+---
+// The hero phone: the app's real opening screen, a still image. The animated run lives in SpotDemo.
+import Slash from './Slash.astro';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const d = copy.demo;
+---
+<figure class="demo">
+  <div class="phone">
+    <Slash class="phone__slash" size="5.25rem" look />
+    <img src="/demo/app-open.jpg" width="780" height="1688" alt={d.alt} />
+  </div>
+  <figcaption>{d.note}</figcaption>
+</figure>

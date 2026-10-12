@@ -1,6 +1,6 @@
 ---
 // HTML/CSS mock screens. Everything here is labelled Example; no real brands, people, prices or numbers.
-import Logo from './Logo.astro';
+import Slash from './Slash.astro';
 import type { Copy } from '../i18n/en';
 type CardName = 'practice' | 'brief' | 'coach' | 'page';
 interface Props { copy: Copy; show?: CardName[]; class?: string }
@@ -40,7 +40,7 @@ const art = ['a', 'b', 'c'];
   {show.includes('coach') && (
     <article class="card">
       <div class="card__head">
-        <span class="coach-who"><Logo size={26} markOnly /><span class="card__label">{c.coach.label}</span></span>
+        <span class="coach-who"><Slash mood="asking" size="1.75rem" /><span class="card__label">{c.coach.label}</span></span>
         <span class="chip chip--example">{copy.example}</span>
       </div>
       <div class="chat">

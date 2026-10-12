@@ -24,6 +24,8 @@ const action = `${hrefFor(copy.lang)}?sent=1`;
     data-err-send={f.errSend}
   >
     <input type="hidden" name="form-name" value={FORM_NAME} />
+    <input type="hidden" name="ref" value="" />
+    <input type="hidden" name="code" value="" />
     <p hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
 
     <div class="field">
@@ -56,6 +58,13 @@ const action = `${hrefFor(copy.lang)}?sent=1`;
   <div class="form-ok" data-ok role="status" tabindex="-1" hidden>
     <h3>{f.okTitle}</h3>
     <p>{f.okText}</p>
+    <div class="share-box">
+      <p class="share-box__t">{f.shareTitle}</p>
+      <p>{f.shareText}</p>
+      <input class="input" type="text" readonly data-share-link aria-label={f.shareButton} />
+      <button type="button" class="btn btn--primary" data-share data-text={f.shareMessage} data-url="" data-copied={f.shareCopied} data-label={f.shareButton}><span data-share-label>{f.shareButton}</span></button>
+      <span class="sr-only" role="status" data-share-live></span>
+    </div>
   </div>
 </div>
 
@@ -70,13 +79,25 @@ const action = `${hrefFor(copy.lang)}?sent=1`;
     const sendErr = form.querySelector<HTMLElement>('[data-send-err]')!;
     const emailShape = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-    const showSent = () => {
+    // Sharing: a random code for this person's own link, and the code of the friend whose link they used (if any).
+    const refField = form.elements.namedItem('ref') as HTMLInputElement;
+    const codeField = form.elements.namedItem('code') as HTMLInputElement;
+    const refParam = new URLSearchParams(location.search).get('ref') ?? '';
+    refField.value = /^[a-z0-9]{4,12}$/i.test(refParam) ? refParam : '';
+    codeField.value = Array.from(crypto.getRandomValues(new Uint8Array(6)), (b) => (b % 36).toString(36)).join('');
+
+    const showSent = (withCode = false) => {
       form.hidden = true;
+      const link = `${location.origin}${location.pathname.split('?')[0]}${withCode && codeField.value ? `?ref=${codeField.value}` : ''}`;
+      const linkInput = ok.querySelector<HTMLInputElement>('[data-share-link]');
+      const shareBtn = ok.querySelector<HTMLElement>('[data-share]');
+      if (linkInput) linkInput.value = link;
+      if (shareBtn) shareBtn.dataset.url = link;
       ok.hidden = false;
       ok.scrollIntoView({ block: 'center' });
       ok.focus({ preventScroll: true });
     };
-    if (new URLSearchParams(location.search).get('sent') === '1') showSent();
+    if (new URLSearchParams(location.search).get('sent') === '1') showSent(false);
 
     const setError = (input: HTMLInputElement, message: string) => {
       const out = document.getElementById(input.getAttribute('aria-describedby') ?? '');
@@ -110,7 +131,7 @@ const action = `${hrefFor(copy.lang)}?sent=1`;
         const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
         const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
         if (!res.ok) throw new Error(String(res.status));
-        showSent();
+        showSent(true);
       } catch {
         sendErr.textContent = form.dataset.errSend!;
       } finally {

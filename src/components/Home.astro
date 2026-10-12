@@ -1,10 +1,13 @@
 ---
 import Hero from './Hero.astro';
-import ProductCards from './ProductCards.astro';
 import Steps from './Steps.astro';
 import FindBlock from './FindBlock.astro';
 import Faq from './Faq.astro';
 import FinalCta from './FinalCta.astro';
+import Rich from './Rich.astro';
+import Examples from './Examples.astro';
+import Demo from './Demo.astro';
+import SpotDemo from './SpotDemo.astro';
 import { hrefFor } from '../i18n';
 import type { Copy } from '../i18n/en';
 interface Props { copy: Copy }
@@ -14,7 +17,6 @@ const h = copy.hero;
 ---
 <Hero
   size="xl"
-  overlap
   chip={h.chip}
   before={h.before}
   mark={h.mark}
@@ -22,29 +24,46 @@ const h = copy.hero;
   sub={h.sub}
   primary={{ label: h.ctaPrimary, href: `#${copy.final.id}` }}
   secondary={{ label: h.ctaSecondary, href: `#${copy.how.id}` }}
-  note={h.note}
-/>
+>
+  <Demo copy={copy} />
+</Hero>
 
-<div class="strip"><div class="wrap"><ProductCards copy={copy} /></div></div>
+<SpotDemo copy={copy} />
+
+<section class="section" aria-labelledby="catch-title">
+  <div class="wrap catch">
+    <h2 id="catch-title"><Rich text={copy.catch.title} /></h2>
+    <p class="lead">{copy.catch.text}</p>
+  </div>
+</section>
+
+<Examples copy={copy} />
 
 <Steps id={copy.how.id} title={copy.how.title} steps={copy.how.steps} />
 
+<section class="section section--tight" aria-labelledby="band-title">
+  <div class="wrap">
+    <div class="band">
+      <div><h2 id="band-title">{copy.band.title}</h2><p>{copy.band.text}</p></div>
+      <a class="btn btn--white" href={hrefFor(lang, copy.paths.quiz)}>{copy.band.cta}</a>
+    </div>
+  </div>
+</section>
+
 <FindBlock copy={copy} />
 
-<section class="section" aria-label={`${copy.creatorsBlock.eyebrow} / ${copy.companiesBlock.eyebrow}`}>
+<section class="section" aria-label={`${copy.nav.creators} / ${copy.nav.companies}`}>
   <div class="wrap split">
     <article class="panel">
-      <span class="eyebrow">{copy.creatorsBlock.eyebrow}</span>
-      <h2>{copy.creatorsBlock.title}</h2>
+      <h2><Rich text={copy.creatorsBlock.title} /></h2>
       <p class="lead">{copy.creatorsBlock.text}</p>
-      <ul class="chips" aria-label={copy.creatorsPage.fieldsTitle}>
+      <ul class="chips" aria-label={copy.creatorsPage.fieldsTitle.replaceAll('*', '')}>
         {copy.fields.map((f) => <li class="chip chip--plain">{f.name}</li>)}
       </ul>
       <a class="arrow-link" href={hrefFor(lang, copy.paths.creators)}>{copy.creatorsBlock.link}</a>
     </article>
     <article class="panel">
-      <span class="eyebrow">{copy.companiesBlock.eyebrow}</span>
-      <h2>{copy.companiesBlock.title}</h2>
+      <h2><Rich text={copy.companiesBlock.title} /></h2>
       <p class="lead">{copy.companiesBlock.text}</p>
       <ul class="ticks">
         {copy.companiesBlock.points.map((p) => <li>{p}</li>)}

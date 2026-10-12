@@ -4,13 +4,15 @@ import ProductCards from './ProductCards.astro';
 import Steps from './Steps.astro';
 import FindBlock from './FindBlock.astro';
 import FinalCta from './FinalCta.astro';
+import Profile from './Profile.astro';
+import Rich from './Rich.astro';
 import type { Copy } from '../i18n/en';
 interface Props { copy: Copy }
 const { copy } = Astro.props;
 const p = copy.companiesPage;
 ---
 <Hero
-  chip={p.eyebrow}
+  chip={copy.nav.companies}
   before={p.before}
   mark={p.mark}
   after={p.after}
@@ -26,7 +28,18 @@ const p = copy.companiesPage;
   </div>
 </section>
 
-<section class="section section--soft" aria-labelledby="features-title">
+<section class="section section--soft" aria-labelledby="browse-title">
+  <div class="wrap">
+    <div class="section-head"><h2 id="browse-title"><Rich text={p.browseTitle} /></h2><p class="lead lead--tight">{p.browseText}</p></div>
+    <div class="profiles">
+      <Profile copy={copy} who="Sanne" />
+      <Profile copy={copy} who="Elin" />
+      <Profile copy={copy} who="Mats" />
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="features-title">
   <div class="wrap">
     <div class="section-head"><h2 id="features-title">{p.featuresTitle}</h2></div>
     <ul class="features">

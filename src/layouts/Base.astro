@@ -1,6 +1,6 @@
 ---
 import '@fontsource-variable/geist/wght.css';
-import '@fontsource/eb-garamond/latin-500.css';
+import '@fontsource-variable/geist-mono/wght.css';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -8,7 +8,7 @@ import { SITE_URL, NAME } from '../site';
 import type { Copy } from '../i18n/en';
 import { hrefFor } from '../i18n';
 
-interface Props { copy: Copy; page: 'home' | 'creators' | 'companies' | 'privacy' | 'terms'; }
+interface Props { copy: Copy; page: 'home' | 'creators' | 'companies' | 'quiz' | 'privacy' | 'terms'; }
 const { copy, page } = Astro.props;
 const lang = copy.lang;
 const other = lang === 'it' ? 'en' : 'it';
@@ -16,8 +16,7 @@ const meta = copy.meta[page];
 const slug = page === 'home' ? undefined : copy.paths[page];
 const abs = (l: string) => SITE_URL + hrefFor(l, slug);
 const ogImage = `${SITE_URL}/og.png`;
-// Pages that open with the near-black hero get a dark header; the legal pages stay white.
-const dark = page === 'home' || page === 'creators' || page === 'companies';
+const dark = false; // one light theme for the whole site
 ---
 <!doctype html>
 <html lang={lang}>
@@ -33,7 +32,7 @@ const dark = page === 'home' || page === 'creators' || page === 'companies';
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content={dark ? '#0a0a0a' : '#ffffff'} />
+    <meta name="theme-color" content={dark ? '#0e1b3d' : '#ffffff'} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={NAME} />
     <meta property="og:title" content={meta.title} />
@@ -58,5 +57,89 @@ const dark = page === 'home' || page === 'creators' || page === 'companies';
       <slot />
     </main>
     <Footer copy={copy} />
+    <script is:inline>
+      // Slash looks toward the pointer (eyes only, a few pixels). Pointer devices only, never with reduced motion.
+      (function () {
+        if (!window.matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) return;
+        var kerns = document.querySelectorAll('[data-slash-look]');
+        if (!kerns.length) return;
+        var raf = 0, px = 0, py = 0;
+        document.addEventListener('pointermove', function (e) {
+          px = e.clientX; py = e.clientY;
+          if (raf) return;
+          raf = requestAnimationFrame(function () {
+            raf = 0;
+            kerns.forEach(function (k) {
+              var r = k.getBoundingClientRect();
+              var dx = (px - (r.left + r.width / 2)) / Math.max(r.width * 4, 240), dy = (py - (r.top + r.height / 2)) / Math.max(r.height * 4, 240);
+              k.style.setProperty('--lx', Math.max(-1, Math.min(1, dx)).toFixed(2));
+              k.style.setProperty('--ly', Math.max(-1, Math.min(1, dy)).toFixed(2));
+            });
+          });
+        }, { passive: true });
+      })();
+    </script>
+    <script is:inline>
+      // Share buttons: the phone's share sheet where there is one, otherwise copy the link.
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('[data-share]');
+        if (!b) return;
+        var url = b.getAttribute('data-url') || location.origin + location.pathname;
+        var text = b.getAttribute('data-text') || document.title;
+        var live = b.parentNode.querySelector('[data-share-live]');
+        function copied() {
+          var l = b.querySelector('[data-share-label]'), old = b.getAttribute('data-label'), msg = b.getAttribute('data-copied');
+          if (l) l.textContent = msg;
+          if (live) live.textContent = msg;
+          setTimeout(function () { if (l) l.textContent = old; if (live) live.textContent = ''; }, 2400);
+        }
+        if (navigator.share) {
+          navigator.share({ title: document.title, text: text, url: url }).catch(function (err) {
+            if (!err || err.name !== 'AbortError') copyIt();
+          });
+        } else copyIt();
+        function copyIt() {
+          function show() { if (live) live.textContent = url; }
+          if (navigator.clipboard) navigator.clipboard.writeText(url).then(copied, show);
+          else show();
+        }
+      });
+    </script>
+    <script is:inline>
+      // Videos play only while visible. People who prefer less motion get a still poster and the play button.
+      (function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var vids = document.querySelectorAll('video[data-autoplay]');
+        function sync(v) {
+          var b = v.parentNode.querySelector('[data-toggle-video]');
+          if (!b) return;
+          var paused = v.paused;
+          b.setAttribute('data-paused', paused ? 'true' : 'false');
+          b.setAttribute('aria-label', paused ? b.getAttribute('data-play') : b.getAttribute('data-pause'));
+        }
+        vids.forEach(function (v) {
+          v.userPaused = reduce;
+          if (v.getAttribute('data-beats')) {
+            var cuts = v.getAttribute('data-beats').split(',').map(Number);
+            v.addEventListener('timeupdate', function () {
+              var t = v.currentTime, i = 0;
+              while (i < cuts.length && t >= cuts[i]) i += 1;
+              v.parentNode.setAttribute('data-beat', String(i));
+            });
+          }
+          v.addEventListener('play', function () { sync(v); });
+          v.addEventListener('pause', function () { sync(v); });
+          sync(v);
+          if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (e) {
+              if (e[0].isIntersecting && !v.userPaused) v.play().catch(function () {});
+              else v.pause();
+            }, { threshold: 0.35 }).observe(v);
+          }
+          var b = v.parentNode.querySelector('[data-toggle-video]');
+          if (b) b.addEventListener('click', function () { if (v.paused) { v.userPaused = false; v.play().catch(function () {}); } else { v.userPaused = true; v.pause(); } });
+        });
+      })();
+    </script>
   </body>
 </html>

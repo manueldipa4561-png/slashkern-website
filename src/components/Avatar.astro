@@ -1,0 +1,22 @@
+---
+// Illustrated profile picture (flat shapes, no photo). Decorative: the name is always written next to it.
+import { LOOKS, type Who } from '../examples';
+interface Props { who: Who; size?: string }
+const { who, size = '2.25rem' } = Astro.props;
+const { bg, skin, hair, shirt, style } = LOOKS[who];
+---
+<svg class="pfp" style={`--s:${size}`} viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+  <circle cx="40" cy="40" r="40" fill={bg} />
+  <g>
+    {style === 'long' && <path d="M24 32C20 48 22 62 27 68L35 64V34Z M56 32C60 48 58 62 53 68L45 64V34Z" fill={hair} />}
+    {style === 'curly' && <g fill={hair}><circle cx="27" cy="30" r="9" /><circle cx="35" cy="20" r="9" /><circle cx="46" cy="20" r="9" /><circle cx="54" cy="30" r="9" /></g>}
+    {style === 'bob' && <path d="M24 32C22 44 23 52 26 56L36 54V34Z M56 32C58 44 57 52 54 56L44 54V34Z" fill={hair} />}
+    <path d="M10 80C10 62 24 55 40 55S70 62 70 80Z" fill={shirt} />
+    <rect x="34" y="44" width="12" height="16" rx="6" fill={skin} />
+    <ellipse cx="40" cy="34" rx="14" ry="16" fill={skin} />
+    {style === 'bun' && <circle cx="40" cy="13" r="7" fill={hair} />}
+    {style === 'buzz'
+      ? <path d="M26.500 31C26.500 21 32.500 17.500 40 17.500S53.500 21 53.500 31C49.500 25 45.500 24 40 24S30.500 25 26.500 31Z" fill={hair} />
+      : <path d="M25.500 33C24.500 19 32.500 14 40 14S55.500 19 54.500 33C50.500 26 46 24 40 24S29.500 26 25.500 33Z" fill={hair} />}
+  </g>
+</svg>

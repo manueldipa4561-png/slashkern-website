@@ -1,0 +1,19 @@
+---
+// Slash, the AI assistant: the eyes pointer from the logo (navy body, ice eyes, white keyline so it reads on any ground).
+// Always an AI character (a pointer, never a person, friend or companion) and always decorative: the words beside it say who speaks.
+// Moods: neutral, asking (one eye bigger), thinking (eyes up), happy (smiling eyes). `speaking` blinks, `float` bobs, `look` follows the pointer.
+import geo from '../slash.json';
+type Mood = 'neutral' | 'asking' | 'thinking' | 'happy';
+interface Props { mood?: Mood; size?: string; speaking?: boolean; float?: boolean; look?: boolean; grounded?: boolean; class?: string }
+const { mood = 'neutral', size = '4rem', speaking = false, float = false, look = false, grounded = false, class: extra = '' } = Astro.props;
+const [x, y, w, h] = geo.viewBox.split(' ').map(Number);
+const vb = grounded ? `${x} ${y} ${w} ${h + 22}` : geo.viewBox;
+---
+<svg class:list={['slash', `slash--${mood}`, speaking && 'slash--speaking', float && 'slash--float', extra]} style={`--s:${size}`} viewBox={vb} aria-hidden="true" focusable="false" data-slash-look={look ? '' : undefined}>
+  {grounded && <ellipse class="slash__ground" cx={x + w * 0.45} cy={y + h + 12} rx={w * 0.34} ry="7" />}
+  <g class="slash__all">
+    <path class="slash__key" d={geo.body} />
+    <path class="slash__body" d={geo.body} />
+    <path class="slash__eyes" d={geo.eyes[mood]} />
+  </g>
+</svg>

@@ -1,0 +1,62 @@
+---
+// Home gallery: eight sample projects with illustrated creators, filterable by category. Everything here is sample content and says so.
+import Avatar from './Avatar.astro';
+import ProjectArt from './ProjectArt.astro';
+import Rich from './Rich.astro';
+import { GALLERY } from '../examples';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const e = copy.examples;
+// the filter chips follow the order of the categories on the site, and only list categories that have a sample
+const cats = copy.fields.map((f) => f.name).filter((name) => GALLERY.some(({ kind }) => e.items[kind].cat === name));
+---
+<section class="section section--soft examples" aria-labelledby="examples-title">
+  <div class="wrap">
+    <div class="examples__head">
+      <h2 id="examples-title"><Rich text={e.title} /></h2>
+      <p class="lead">{e.lead}</p>
+    </div>
+    <div class="examples__filter" role="group" aria-label={e.filter} data-ex-filter>
+      <button type="button" class="fchip" aria-pressed="true" data-cat="">{e.all}</button>
+      {cats.map((c) => <button type="button" class="fchip" aria-pressed="false" data-cat={c}>{c}</button>)}
+    </div>
+    <ul class="gallery" data-ex-list>
+      {GALLERY.map(({ kind, who }) => {
+        const item = e.items[kind];
+        return (
+          <li class="ex" data-cat={item.cat}>
+            <div class="ex__art">
+              {kind === 'video'
+                ? <div class="vid"><video src="/examples/drink.mp4" poster="/examples/drink-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label={item.t}></video><ProjectArt kind="video" lines={item.lines} label={item.t} overlay /><button type="button" class="vbtn" data-toggle-video aria-label={copy.demo.pause} data-play={copy.demo.play} data-pause={copy.demo.pause}><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg></button></div>
+                : <ProjectArt kind={kind} lines={item.lines} label={item.t} />}
+            </div>
+            <div class="ex__body">
+              <span class="ex__cat">{item.cat}</span>
+              <h3>{item.t}</h3>
+              <div class="ex__who"><Avatar who={who} size="1.75rem" /><span>{who}</span><span class="chip chip--example">{copy.example}</span></div>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+    <p class="gallery__cta"><a class="btn btn--accent" href={`#${copy.final.id}`}>{e.mine}</a></p>
+  </div>
+</section>
+
+<script>
+  // Category filter: one chip pressed at a time, "All" shows everything. Without the script everything shows.
+  const bar = document.querySelector<HTMLElement>('[data-ex-filter]');
+  const list = document.querySelector<HTMLElement>('[data-ex-list]');
+  if (bar && list) {
+    const chips = [...bar.querySelectorAll<HTMLButtonElement>('button')];
+    const items = [...list.querySelectorAll<HTMLElement>('li')];
+    bar.addEventListener('click', (ev) => {
+      const b = (ev.target as HTMLElement).closest<HTMLButtonElement>('button');
+      if (!b) return;
+      const cat = b.dataset.cat ?? '';
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === b)));
+      items.forEach((li) => { li.hidden = cat !== '' && li.dataset.cat !== cat; });
+    });
+  }
+</script>

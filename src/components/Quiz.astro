@@ -1,0 +1,219 @@
+---
+// A one minute quiz that ends in a share card. Runs in the browser, sends nothing anywhere.
+import Rich from './Rich.astro';
+import { hrefFor } from '../i18n';
+import type { Copy } from '../i18n/en';
+import { NAME } from '../site';
+import geo from '../slash.json';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const q = copy.quiz;
+const data = {
+  quizPath: hrefFor(copy.lang, copy.paths.quiz),
+  joinHref: `${hrefFor(copy.lang)}#${copy.final.id}`,
+  brand: NAME,
+  mark: { viewBox: geo.viewBox, body: geo.body, eyes: geo.eyes.neutral },
+  t: { progress: q.progress, friend: q.friend, youAre: q.youAre, cardTop: q.cardTop, fun: q.fun, share: q.share, saved: q.saved, copy: q.copy, copied: q.copied, again: q.again, join: q.join, shareText: q.shareText },
+  questions: q.questions,
+  results: q.results,
+};
+---
+<section class="section quiz" aria-labelledby="quiz-title">
+  <div class="wrap quiz__wrap">
+    <span class="eyebrow">{q.eyebrow}</span>
+    <h1 id="quiz-title"><Rich text={q.title} /></h1>
+    <div data-intro>
+      <p class="lead">{q.lead}</p>
+      <p class="quiz__friend" data-friend hidden></p>
+      <button class="btn btn--primary quiz__start" type="button" data-start hidden>{q.start}</button>
+      <noscript><p class="notice">{q.noscript} <a href={`${hrefFor(copy.lang)}#${copy.final.id}`}>{copy.nav.cta}</a></p></noscript>
+    </div>
+    <div class="quiz__stage" data-stage></div>
+  </div>
+</section>
+<script type="application/json" id="quiz-data" set:html={JSON.stringify(data)} />
+
+<script>
+  type Answer = [string, string];
+  type Data = {
+    quizPath: string; joinHref: string; brand: string;
+    t: Record<string, string>;
+    questions: Array<{ q: string; a: Answer[] }>;
+    results: Record<string, { name: string; line: string; first: string }>;
+    mark: { viewBox: string; body: string; eyes: string };
+  };
+  const raw = document.getElementById('quiz-data');
+  const stage = document.querySelector<HTMLElement>('[data-stage]');
+  const intro = document.querySelector<HTMLElement>('[data-intro]');
+  const startBtn = document.querySelector<HTMLButtonElement>('[data-start]');
+  const friend = document.querySelector<HTMLElement>('[data-friend]');
+  if (raw && stage && intro && startBtn && friend) {
+    const d: Data = JSON.parse(raw.textContent ?? '{}');
+    const keys = Object.keys(d.results);
+    const fmt = (s: string, vars: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
+    const el = <K extends keyof HTMLElementTagNameMap>(tag: K, cls: string, text = '') => {
+      const node = document.createElement(tag);
+      node.className = cls;
+      if (text) node.textContent = text;
+      return node;
+    };
+
+    startBtn.hidden = false;
+    const fromFriend = new URLSearchParams(location.search).get('r');
+    if (fromFriend && d.results[fromFriend]) {
+      friend.textContent = fmt(d.t.friend, { name: d.results[fromFriend].name });
+      friend.hidden = false;
+    }
+
+    const scores: Record<string, number> = {};
+    const firstSeen: Record<string, number> = {};
+    let step = 0;
+
+    const start = () => {
+      step = 0;
+      for (const k of keys) { scores[k] = 0; delete firstSeen[k]; }
+      intro.hidden = true;
+      renderQuestion();
+    };
+    startBtn.addEventListener('click', start);
+
+    function renderQuestion() {
+      const item = d.questions[step];
+      stage!.replaceChildren();
+      const box = el('div', 'quiz__step');
+      const heading = el('h2', 'quiz__q', item.q);
+      heading.tabIndex = -1;
+      const list = el('div', 'quiz__answers');
+      item.a.forEach(([text, key]) => {
+        const b = el('button', 'ans', text);
+        b.type = 'button';
+        b.addEventListener('click', () => {
+          scores[key] = (scores[key] ?? 0) + 1;
+          if (!(key in firstSeen)) firstSeen[key] = step;
+          step += 1;
+          if (step < d.questions.length) renderQuestion();
+          else renderResult();
+        });
+        list.append(b);
+      });
+      const dots = el('div', 'quiz__dots');
+      d.questions.forEach((_, i) => dots.append(el('i', i <= step ? 'on' : '')));
+      box.append(el('p', 'quiz__prog', fmt(d.t.progress, { n: step + 1, total: d.questions.length })), dots, heading, list);
+      stage!.append(box);
+      heading.focus({ preventScroll: true });
+      box.scrollIntoView({ block: 'nearest' });
+    }
+
+    const winner = () => [...keys].sort((a, b) => (scores[b] - scores[a]) || ((firstSeen[a] ?? 9) - (firstSeen[b] ?? 9)))[0];
+
+    function renderResult() {
+      const key = winner();
+      const r = d.results[key];
+      const link = `${location.origin}${d.quizPath}?r=${key}`;
+      const text = fmt(d.t.shareText, { name: r.name });
+      const png = makeBlob(r.name, r.line, r.first); // render now so the share click can answer at once (iOS needs it)
+      stage!.replaceChildren();
+      const card = el('div', 'rcard');
+      const name = el('h2', 'rcard__name');
+      r.name.split(' ').forEach((w) => name.append(el('span', 'hl', w), ' '));
+      card.append(el('p', 'rcard__top', d.t.cardTop), el('p', 'rcard__you', d.t.youAre), name, el('p', 'rcard__line', r.line), el('p', 'rcard__first', r.first));
+      const actions = el('div', 'quiz__actions');
+      const shareBtn = el('button', 'btn btn--primary', d.t.share);
+      shareBtn.type = 'button';
+      const copyBtn = el('button', 'btn btn--ghost', d.t.copy);
+      copyBtn.type = 'button';
+      const again = el('button', 'btn btn--ghost', d.t.again);
+      again.type = 'button';
+      const join = el('a', 'btn btn--accent', d.t.join);
+      join.href = d.joinHref;
+      actions.append(shareBtn, copyBtn, join, again);
+      const live = el('p', 'form__small quiz__live', d.t.fun);
+      live.setAttribute('role', 'status');
+      stage!.append(card, actions, live);
+      card.tabIndex = -1;
+      card.focus({ preventScroll: true });
+      card.scrollIntoView({ block: 'start' });
+
+      const say = (msg: string) => { live.textContent = msg; setTimeout(() => { live.textContent = d.t.fun; }, 2400); };
+      const copyLink = async () => { try { await navigator.clipboard.writeText(link); say(d.t.copied); } catch { live.textContent = link; } }; // no clipboard: show the link to copy by hand
+      copyBtn.addEventListener('click', copyLink);
+      again.addEventListener('click', () => { history.replaceState(null, '', d.quizPath); start(); });
+      shareBtn.addEventListener('click', async () => {
+        const blob = await png;
+        const file = blob ? new File([blob], 'slashkern.png', { type: 'image/png' }) : null;
+        try {
+          if (file && navigator.canShare?.({ files: [file] })) return void (await navigator.share({ files: [file], text: `${text} ${link}` }));
+          if (navigator.share) return void (await navigator.share({ text, url: link }));
+        } catch (err) {
+          if ((err as Error).name === 'AbortError') return;
+        }
+        if (blob) { // no share sheet (desktop): save the image and copy the link
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'slashkern.png';
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+        }
+        await copyLink();
+      });
+    }
+
+    // The share image: 1080 x 1350, drawn with the site's own fonts.
+    async function makeBlob(name: string, line: string, first: string): Promise<Blob | null> {
+      try {
+        await Promise.all([
+          document.fonts.load('700 120px "Geist Variable"'),
+          document.fonts.load('600 40px "Geist Variable"'),
+          document.fonts.load('500 28px "Geist Mono Variable"'),
+        ]);
+        const W = 1080, H = 1350, M = 80;
+        const c = document.createElement('canvas');
+        c.width = W; c.height = H;
+        const g = c.getContext('2d')!;
+        g.fillStyle = '#0E1B3D'; g.fillRect(0, 0, W, H);
+        // the mark, reversed for the navy ground: cream pointer, navy eyes
+        const [vx, vy, , vh] = d.mark.viewBox.split(' ').map(Number), ms = 110 / vh;
+        g.save(); g.translate(M, M - 10); g.scale(ms, ms); g.translate(-vx, -vy);
+        g.fillStyle = '#F5F2EA'; g.fill(new Path2D(d.mark.body)); g.fillStyle = '#0E1B3D'; g.fill(new Path2D(d.mark.eyes)); g.restore();
+
+        const wrap = (text: string, font: string, maxW: number) => {
+          g.font = font;
+          const lines: string[] = []; let cur = '';
+          for (const w of text.split(' ')) { const t = cur ? `${cur} ${w}` : w; if (g.measureText(t).width > maxW && cur) { lines.push(cur); cur = w; } else cur = t; }
+          if (cur) lines.push(cur);
+          return lines;
+        };
+        g.fillStyle = 'rgba(255,255,255,0.7)'; g.font = '500 30px "Geist Mono Variable", monospace';
+        g.fillText(d.t.cardTop.toUpperCase(), M, 300);
+        g.fillStyle = '#FFFFFF'; g.font = '650 70px "Geist Variable", sans-serif';
+        g.fillText(d.t.youAre, M, 400);
+
+        let fs = 190; let lines = wrap(name, `650 ${fs}px "Geist Variable", sans-serif`, W - 2 * M);
+        while (lines.length > 3 && fs > 110) { fs -= 20; lines = wrap(name, `650 ${fs}px "Geist Variable", sans-serif`, W - 2 * M); }
+        let y = 400 + fs * 1.02;
+        g.font = `650 ${fs}px "Geist Variable", sans-serif`;
+        for (const ln of lines) {
+          let x = M;
+          for (const w of ln.split(' ')) {
+            const wd = g.measureText(w).width, pad = fs * 0.09;
+            g.fillStyle = '#DCE6FF'; g.fillRect(x, y - fs * 0.78, wd + 2 * pad, fs * 0.98);
+            g.fillStyle = '#0E1B3D'; g.fillText(w, x + pad, y);
+            x += wd + 2 * pad + fs * 0.12;
+          }
+          y += fs * 1.04;
+        }
+        g.fillStyle = '#FFFFFF';
+        const lineFont = '500 52px "Geist Variable", sans-serif';
+        let ly = y + 40;
+        for (const ln of wrap(line, lineFont, W - 2 * M)) { g.font = lineFont; g.fillText(ln, M, ly); ly += 66; }
+        g.fillStyle = '#DCE6FF'; g.font = '600 40px "Geist Variable", sans-serif';
+        g.fillText(first, M, Math.min(ly + 40, H - 210));
+        g.fillStyle = '#FFFFFF'; g.font = '800 58px "Geist Variable", sans-serif';
+        g.fillText(d.brand, M, H - 80);
+        g.fillStyle = 'rgba(255,255,255,0.6)'; g.font = '500 28px "Geist Mono Variable", monospace'; g.textAlign = 'right';
+        g.fillText(location.host, W - M, H - 86);
+        return await new Promise<Blob | null>((res) => c.toBlob(res, 'image/png'));
+      } catch { return null; }
+    }
+  }
+</script>

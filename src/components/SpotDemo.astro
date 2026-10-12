@@ -1,0 +1,115 @@
+---
+// One story, in order: the app run plays (open the app, open a project, type the idea, get the plan), then the finished example spot plays.
+// The page script below runs the sequence; nothing plays while the section is off screen or when the visitor asked for less motion.
+import Rich from './Rich.astro';
+import Slash from './Slash.astro';
+import type { Copy } from '../i18n/en';
+interface Props { copy: Copy }
+const { copy } = Astro.props;
+const s = copy.spot;
+const d = copy.demo;
+const CHAPTERS = '0,2,4,7.9'; // seconds into the app run where steps 1 to 4 start (run recorded at 1.15x)
+---
+<section class="section spot" aria-labelledby="spot-title">
+  <div class="wrap spot__grid">
+    <div class="spot__copy">
+      <h2 id="spot-title"><Rich text={s.title} /></h2>
+      <p class="lead">{s.text}</p>
+      <ol class="spot__steps" data-spot-steps>{s.steps.map((t) => <li><span>{t}</span></li>)}</ol>
+      <button type="button" class="btn btn--ghost btn--sm spot__toggle" data-spot-toggle data-play={d.play} data-pause={d.pause}>{d.play}</button>
+    </div>
+    <div class="spot__stage" data-spot data-chapters={CHAPTERS}>
+      <figure class="spot__fig">
+        <div class="phone phone--sm">
+          <video data-role="app" src="/demo/spot-app.mp4" poster="/demo/spot-app-poster.jpg" muted playsinline preload="metadata" aria-label={s.labelApp}></video>
+        </div>
+        <figcaption>{s.app}</figcaption>
+      </figure>
+      <span class="spot__arrow" aria-hidden="true">→</span>
+      <figure class="spot__fig">
+        <div class="phone phone--sm" data-state="wait" data-beat="0">
+          <video data-role="out" src="/examples/bottle.mp4" poster="/examples/bottle-poster.jpg" muted playsinline preload="metadata" data-beats="1.7,3.3" aria-label={s.labelOut}></video>
+          <div class="spot__wait" aria-hidden="true"><Slash mood="thinking" size="4.5rem" speaking float /></div>
+          <span class="chip chip--ink spot__ai">{s.ai}</span>
+          <div class="spot__cap" aria-hidden="true">
+            <p>{s.caps[0]}</p>
+            <p>{s.caps[1]}</p>
+            <p><span class="hl">{s.caps[2]}</span></p>
+          </div>
+        </div>
+        <figcaption>{s.out}</figcaption>
+      </figure>
+    </div>
+    <p class="spot__note">{s.note}</p>
+  </div>
+</section>
+
+<script>
+  const stage = document.querySelector<HTMLElement>('[data-spot]');
+  if (stage) {
+    const app = stage.querySelector<HTMLVideoElement>('video[data-role="app"]')!;
+    const out = stage.querySelector<HTMLVideoElement>('video[data-role="out"]')!;
+    const phone = out.closest<HTMLElement>('.phone')!;
+    const steps = [...document.querySelectorAll<HTMLElement>('[data-spot-steps] li')];
+    const toggle = document.querySelector<HTMLButtonElement>('[data-spot-toggle]')!;
+    const chapters = (stage.dataset.chapters ?? '0').split(',').map(Number);
+    const cuts = (out.dataset.beats ?? '').split(',').map(Number);
+    const SPOT_RATE = 1.2; // the finished spot plays a little faster too
+    const REVEAL_MS = 700; // a short beat on the app's last frame before the spot appears
+    const SPOT_LOOPS = 2;
+    let phase: 'idle' | 'app' | 'out' = 'idle';
+    let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let visible = false;
+    let loops = 0;
+
+    const current = () => (phase === 'out' ? out : app);
+    const setStep = (n: number) => steps.forEach((li, i) => li.classList.toggle('is-on', i === n));
+    const label = () => { toggle.textContent = paused || phase === 'idle' ? toggle.dataset.play! : toggle.dataset.pause!; };
+    const play = (v: HTMLVideoElement) => { v.playbackRate = v === out ? SPOT_RATE : 1; v.play().catch(() => {}); };
+
+    function startApp() {
+      phase = 'app'; loops = 0;
+      phone.dataset.state = 'wait'; phone.dataset.beat = '0';
+      out.pause(); out.currentTime = 0; app.currentTime = 0;
+      setStep(0);
+      if (!paused && visible) play(app);
+      label();
+    }
+    app.addEventListener('timeupdate', () => {
+      let n = 0;
+      chapters.forEach((c, i) => { if (app.currentTime >= c) n = i; });
+      setStep(n);
+    });
+    // the spot stays hidden until the app has made the first version (the end of the app run), then appears after a short beat
+    app.addEventListener('ended', () => {
+      phase = 'out'; setStep(3); out.currentTime = 0;
+      window.setTimeout(() => {
+        if (phase !== 'out') return;
+        phone.dataset.state = 'play';
+        if (!paused && visible) play(out);
+      }, REVEAL_MS);
+    });
+    out.addEventListener('timeupdate', () => {
+      let n = 0;
+      while (n < cuts.length && out.currentTime >= cuts[n]) n += 1;
+      phone.dataset.beat = String(n);
+    });
+    out.addEventListener('ended', () => {
+      loops += 1;
+      if (loops < SPOT_LOOPS) { out.currentTime = 0; play(out); } else startApp();
+    });
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (!visible) { app.pause(); out.pause(); return; }
+      if (paused) return;
+      if (phase === 'idle') startApp(); else play(current());
+    }, { threshold: 0.35 }).observe(stage);
+    toggle.addEventListener('click', () => {
+      if (phase === 'idle') { paused = false; startApp(); return; }
+      paused = !paused;
+      if (paused) current().pause(); else play(current());
+      label();
+    });
+    label();
+  }
+</script>

@@ -1,0 +1,10 @@
+---
+// Opens the phone's share sheet; where there is none it copies the link. The script is in Base.astro.
+interface Props { label: string; text: string; copied: string; url?: string; class?: string }
+const { label, text, copied, url = '', class: extra = '' } = Astro.props;
+---
+<button type="button" class:list={['share-btn', extra]} data-share data-text={text} data-url={url} data-copied={copied} data-label={label}>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V4M8 8l4-4 4 4M5 13v6h14v-6" /></svg>
+  <span data-share-label>{label}</span>
+</button>
+<span class="sr-only" role="status" data-share-live></span>

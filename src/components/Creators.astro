@@ -5,25 +5,32 @@ import Steps from './Steps.astro';
 import FindBlock from './FindBlock.astro';
 import Faq from './Faq.astro';
 import FinalCta from './FinalCta.astro';
+import Rich from './Rich.astro';
+import Profile from './Profile.astro';
+import Slash from './Slash.astro';
 import type { Copy } from '../i18n/en';
 interface Props { copy: Copy }
 const { copy } = Astro.props;
 const p = copy.creatorsPage;
 ---
 <Hero
-  chip={p.eyebrow}
+  chip={copy.nav.creators}
   before={p.before}
   mark={p.mark}
   after={p.after}
   sub={p.sub}
   primary={{ label: p.cta, href: `#${copy.final.id}` }}
-  secondary={{ label: p.ctaSecondary, href: '#coach' }}
+  secondary={{ label: p.ctaSecondary, href: '#assistant' }}
 />
 
-<section class="section" id="coach" aria-labelledby="coach-title">
+<section class="section" id="assistant" aria-labelledby="assistant-title">
   <div class="wrap split split--coach">
     <div>
-      <h2 id="coach-title">{p.coachTitle}</h2>
+      <div class="meet">
+        <Slash mood="neutral" size="5.5rem" speaking float look grounded />
+        <p class="meet__says">{p.slashSays}</p>
+      </div>
+      <h2 id="assistant-title">{p.coachTitle}</h2>
       <p class="lead lead--tight">{p.coachText}</p>
       <div class="dos">
         <div><h3>{p.doTitle}</h3><ul>{p.doItems.map((i) => <li>{i}</li>)}</ul></div>
@@ -36,10 +43,20 @@ const p = copy.creatorsPage;
 
 <section class="section section--soft" id="fields" aria-labelledby="fields-title">
   <div class="wrap">
-    <div class="section-head"><h2 id="fields-title">{p.fieldsTitle}</h2><p class="lead lead--tight">{p.fieldsText}</p></div>
+    <div class="section-head"><h2 id="fields-title"><Rich text={p.fieldsTitle} /></h2><p class="lead lead--tight">{p.fieldsText}</p></div>
     <ul class="fields">
       {copy.fields.map((f) => <li class="field-item"><strong>{f.name}</strong><span>{f.line}</span></li>)}
     </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="page-title">
+  <div class="wrap split split--coach">
+    <div>
+      <h2 id="page-title"><Rich text={p.pageTitle} /></h2>
+      <p class="lead lead--tight">{p.pageText}</p>
+    </div>
+    <Profile copy={copy} who="Elin" full />
   </div>
 </section>
 
