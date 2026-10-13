@@ -212,15 +212,15 @@ export const en = {
 
   find: {
     id: 'how-found',
-    title: 'How companies will *find you*',
-    lead: 'What we know today, and what is still open.',
+    title: 'Your work. *Your call.*',
+    lead: 'You choose what companies see, and who you talk to.',
     rows: [
-      ['What companies see', 'Only the projects you publish.'],
-      ['What is public', 'Nothing, until you press publish.'],
-      ['Who gets a brief', 'The company that posted it decides.'],
-      ['Our cut', 'Not decided. You will hear before it applies.'],
+      ['Companies see', 'Only the projects you are proud of.'],
+      ['Your email', 'Stays private. Companies write to you on slashkern.'],
+      ['Going public', 'One tap, when you are ready.'],
+      ['For creators', 'Free to join, make and publish.'],
     ],
-    notice: 'Nobody pays or gets paid yet.',
+    notice: 'Your page shows what you can do.',
   },
 
   fields: [

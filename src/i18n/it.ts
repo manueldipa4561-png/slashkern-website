@@ -212,15 +212,15 @@ export const it: Copy = {
 
   find: {
     id: 'come-ti-trovano',
-    title: 'Come ti *troveranno* le aziende',
-    lead: 'Cosa sappiamo oggi e cosa è ancora aperto.',
+    title: 'Il tuo progetto. *Decidi tu.*',
+    lead: 'Scegli tu cosa vedono le aziende e con chi parlare.',
     rows: [
-      ['Cosa vedono le aziende', 'Solo i progetti che pubblichi.'],
-      ['Cosa è pubblico', 'Niente, finché non premi pubblica.'],
-      ['Chi riceve un brief', 'Decide l’azienda che l’ha pubblicato.'],
-      ['La nostra commissione', 'Non è decisa. Lo saprai prima che si applichi.'],
+      ['Le aziende vedono', 'Solo i progetti di cui vai fiero.'],
+      ['La tua email', 'Resta privata. Le aziende ti scrivono su slashkern.'],
+      ['Pubblicare', 'Un tocco, quando sei pronto.'],
+      ['Per i creator', 'Iscriverti, creare e pubblicare è gratis.'],
     ],
-    notice: 'Per ora nessuno paga e nessuno viene pagato.',
+    notice: 'La tua pagina mostra cosa sai fare.',
   },
 
   fields: [
