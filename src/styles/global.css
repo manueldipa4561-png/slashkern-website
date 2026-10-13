@@ -252,6 +252,35 @@ h3 { font: 650 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap
   .steps-wrap { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 4rem; }
   .steps-wrap > h2 { position: sticky; top: 2rem; }
 }
+/* the steps title: one sentence per line; with scroll-driven animation each line fills from ice to ink, left to right,
+   as its own row passes (desktop, sticky title) or as the line itself scrolls in (phones). The blue phrase fills blue. */
+.steps__title > span { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) and (timeline-scope: --a) {
+    .steps__title > span {
+      --fill: var(--ink);
+      background: linear-gradient(90deg, var(--fill) 44%, var(--mark) 56%) 100% 0 / 220% 100% no-repeat;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: fill-line linear both; animation-timeline: view(); animation-range: entry 40% cover 45%;
+    }
+    .steps__title > span:has(em) { --fill: var(--accent); }
+    .steps__title em { color: transparent; }
+    @keyframes fill-line {
+      from { background-position: 100% 0; transform: translateX(-0.18em); }
+      to { background-position: 0 0; transform: none; }
+    }
+    @media (min-width: 56rem) {
+      .steps-wrap:has(.steps__title) { timeline-scope: --row-1, --row-2, --row-3; }
+      .steps-wrap:has(.steps__title) .step:nth-child(1) { view-timeline: --row-1; }
+      .steps-wrap:has(.steps__title) .step:nth-child(2) { view-timeline: --row-2; }
+      .steps-wrap:has(.steps__title) .step:nth-child(3) { view-timeline: --row-3; }
+      .steps__title > span { animation-range: entry 0% cover 55%; }
+      .steps__title > span:nth-child(1) { animation-timeline: --row-1; }
+      .steps__title > span:nth-child(2) { animation-timeline: --row-2; }
+      .steps__title > span:nth-child(3) { animation-timeline: --row-3; }
+    }
+  }
+}
 
 /* how getting paid will work */
 .pay { display: grid; gap: 2.5rem; }

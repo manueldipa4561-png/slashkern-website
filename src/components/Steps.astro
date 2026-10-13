@@ -2,10 +2,12 @@
 import Rich from './Rich.astro';
 interface Props { id?: string; title: string; steps: Array<{ n?: string; t: string; d: string }> }
 const { id, title, steps } = Astro.props;
+// one span per sentence, so each sentence can fill in step with its own row (styles: .steps__title)
+const lines = title.split(/(?<=\.\*?)\s+/);
 ---
 <section class="section" id={id} aria-labelledby={id ? `${id}-title` : undefined}>
   <div class="wrap steps-wrap">
-    <h2 id={id ? `${id}-title` : undefined}><Rich text={title} /></h2>
+    <h2 id={id ? `${id}-title` : undefined} class:list={[lines.length > 1 && 'steps__title']}>{lines.map((line) => <span><Rich text={line} /></span>)}</h2>
     <ol class="steps" data-count={steps.length}>
       {steps.map((s) => (
         <li class="step">
