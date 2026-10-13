@@ -8,16 +8,16 @@ export const it: Copy = {
   ogLocale: 'it_IT',
   paths: { creators: 'creators', companies: 'companies', privacy: 'privacy', terms: 'terms', quiz: 'quiz' },
   skip: 'Vai al contenuto',
-  slogan: 'Nessuna esperienza? Fattela.',
+  slogan: 'Da zero al prodotto.',
   example: 'Esempio',
   switchTo: { label: 'English', short: 'EN', aria: 'Read this site in English' },
   nav: { creators: 'Per i creator', companies: 'Per le aziende', cta: 'Richiedi accesso', aria: 'Principale', home: `${NAME}, home` },
 
   meta: {
     home: {
-      title: `${NAME}: nessuna esperienza? Fattela.`,
+      title: `${NAME} · Da zero al prodotto`,
       description:
-        'Fai un breve progetto con un assistente AI che ti fa una domanda alla volta. Tienilo sulla tua pagina e, quando la piattaforma apre, mostralo alle aziende.',
+        'Da zero al prodotto. Fai piccoli progetti con Slash, un’AI che ti aiuta, e tienili sulla tua pagina. Accesso anticipato gratis.',
     },
     creators: {
       title: `Per i creator: fai un progetto e tienilo · ${NAME}`,
@@ -36,10 +36,10 @@ export const it: Copy = {
 
   hero: {
     chip: 'Accesso anticipato',
-    before: 'Nessuna esperienza? ',
-    mark: 'Fattela.',
+    before: 'Da zero ',
+    mark: 'al prodotto.',
     after: '',
-    sub: 'Finalmente finisci qualcosa. Un assistente AI ti fa le domande, tu fai il progetto e lo tieni sulla tua pagina.',
+    sub: 'Fai un breve progetto con Slash, un’AI che ti aiuta, e tienilo sulla tua pagina.',
     ctaPrimary: 'Richiedi accesso',
     ctaSecondary: 'Come funziona',
   },
@@ -100,11 +100,25 @@ export const it: Copy = {
   },
 
   examples: {
-    title: 'Progetti da finire *in un pomeriggio*.',
-    lead: 'Otto esempi di cosa va su una pagina. Creator e brief sono inventati, e le foto e il video sono fatti con l’AI.',
+    title: 'Un primo progetto può essere *così*.',
+    lead: 'Otto esempi, uno per ogni tipo di progetto. Guarda il video, avvia il timer, ascolta il jingle. I clienti sono inventati e le immagini, il video e il jingle sono fatti con l’AI. Ogni esempio lo dice.',
     mine: 'Fai il tuo',
-    all: 'Tutti',
-    filter: 'Filtra per categoria',
+    tags: { ai: 'Fatto con l’AI', code: 'Funziona davvero', answer: 'La risposta è dell’AI' },
+    nojs: 'Questo esempio richiede JavaScript.',
+    gallery: {
+      video: { field: 'Video brevi', t: 'Bevande estive, 5 secondi', for: 'Cliente inventato: Bar Ficus', cap: 'Bevande estive', len: '0:05', alt: 'Video: un bicchiere alto di acqua ghiacciata con menta e una fetta d’arancia su un tavolino di un bar, con il sole della sera.' },
+      poster: { field: 'Poster e loghi', t: 'Locandina per una serata cinema', for: 'Cliente inventato: Cinema Orsa', alt: 'Una locandina blu con la scritta SERATA CINEMA e una luna gialla sopra i tetti della città. Venerdì, ore 21:00, in terrazza, Cinema Orsa.' },
+      timer: { field: 'Siti e piccoli strumenti', t: 'Un timer per studiare', for: 'Brief inventato: la settimana d’esame di Sofia', modes: ['Studio · 25 min', 'Pausa · 5 min'], group: 'Durata', start: 'Avvia', pause: 'Pausa', resume: 'Riprendi', reset: 'Azzera', done: 'Tempo scaduto. Fai una pausa.' },
+      listing: { field: 'Annunci di prodotti', t: 'Annuncio per una candela artigianale', for: 'Cliente inventato: Cera Cera', title: 'Candela cedro e fumo', points: ['Cera di soia colata a mano', 'Dura circa 40 ore', 'Prodotta in piccoli lotti'], alt: 'Una candela in un vasetto di vetro ambrato fumé con lo stoppino di legno, su uno sfondo lilla.' },
+      post: { field: 'Post e didascalie', t: 'Post per un negozio di piante', for: 'Cliente inventato: Sunny Plants', handle: 'sunnyplants', caption: 'Sabato: porta una pianta triste, torna a casa con una felice. Rinvasiamo tutto il giorno.', alt: 'Una pianta verde in un vaso di terracotta su uno sgabello di legno, davanti a un muro rosa.' },
+      jingle: { field: 'Musica e suoni', t: 'Jingle per una ciclofficina', for: 'Cliente inventato: Pedal Pals', play: 'Ascolta il jingle', pause: 'Metti in pausa il jingle', seek: 'Posizione nel jingle', hook: '“Pedal Pals, Pedal Pals!”', note: 'Cantato in inglese.' },
+      logo: { field: 'Poster e loghi', t: 'Logo per un forno', for: 'Cliente inventato: Forno Gufo', alt: 'Un logo: il muso di un gufo blu scuro fatto con una pagnotta, con due spighe di grano come sopracciglia, su sfondo giallo. Sotto: forno gufo.' },
+      prompt: {
+        field: 'Prompt per l’IA', t: 'Un prompt per il piano di studio', for: 'Brief inventato: la settimana d’esame di Sofia', promptLabel: 'Prompt', answerLabel: 'AI',
+        prompt: 'Fammi un piano di studio per questa settimana. Venerdì ho l’esame di matematica e mercoledì devo consegnare un tema di storia. Posso studiare 90 minuti al giorno. Una riga per giorno.',
+        answer: ['Lun: esercizi di matematica, 45 min, poi lettura di storia, 45 min.', 'Mar: scaletta del tema, 60 min, poi formule di matematica, 30 min.', 'Mer: finisci il tema, 60 min, e consegnalo.', 'Gio: una prova d’esame passata di matematica, 90 min.', 'Ven: ripasso di matematica, 30 min. Poi l’esame. Riposo.'],
+      },
+    },
     items: {
       video: { t: 'Bevande estive, 5 secondi', cat: 'Video brevi', lines: ['Bevande estive', '0:05'] },
       poster: { t: 'Locandina per una serata cinema', cat: 'Poster e loghi', lines: ['Serata', 'cinema', 'VEN · 21:00 · TERRAZZA'] },
@@ -112,7 +126,7 @@ export const it: Copy = {
       listing: { t: 'Annuncio per una candela artigianale', cat: 'Annunci di prodotti', lines: ['Candela cedro e fumo', 'Cera di soia colata a mano', 'Dura circa 40 ore', 'Prodotta in piccoli lotti'] },
       post: { t: 'Post per un negozio di piante', cat: 'Post e didascalie', lines: ['negoziopiante', 'Sabato: porta una pianta triste,', 'torna a casa con una felice.', 'Rinvasiamo tutto il giorno.'] },
       music: { t: 'Jingle per un negozio di bici', cat: 'Musica e suoni', lines: ['Jingle bici', '0:20'] },
-      logo: { t: 'Logo per una panetteria', cat: 'Poster e loghi', lines: ['rye', 'PANETTERIA'] },
+      logo: { t: 'Logo per un forno', cat: 'Poster e loghi', lines: ['gufo', 'FORNO'] },
       prompt: { t: 'Un prompt per il piano di studio', cat: 'Prompt per l’IA', lines: ['Scrivi un piano in tre righe', 'per la mia settimana di studio,', 'una riga al giorno.', 'Lun: matematica, 40 minuti', 'Mar: storia, 30 minuti', 'Mer: riposo, poi ripasso'] },
     },
     people: {
@@ -274,7 +288,7 @@ export const it: Copy = {
     shareButton: 'Condividi il tuo link',
     shareCopy: 'Copia il link',
     shareCopied: 'Link copiato',
-    shareMessage: `Mi sono appena iscritto alla lista di ${NAME}: nessuna esperienza? Fattela.`,
+    shareMessage: `Mi sono appena iscritto alla lista di ${NAME}: da zero al prodotto.`,
   },
 
   footer: {
@@ -284,7 +298,7 @@ export const it: Copy = {
     built: 'Fatto a Torino. Accesso anticipato.',
     share: 'Condividi il sito',
     shareCopied: 'Link copiato',
-    shareMessage: `${NAME}: nessuna esperienza? Fattela.`,
+    shareMessage: `${NAME}: da zero al prodotto.`,
   },
 
   creatorsPage: {

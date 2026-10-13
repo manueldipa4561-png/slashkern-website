@@ -2,18 +2,6 @@
 export type Kind = 'video' | 'poster' | 'logo' | 'post' | 'web' | 'listing' | 'music' | 'prompt';
 export type Who = 'Sanne' | 'Elin' | 'Mats' | 'Lotte' | 'Jonas';
 
-// Order = reading order of the home gallery (the page lays them out in columns).
-export const GALLERY: Array<{ kind: Kind; who: Who }> = [
-  { kind: 'video', who: 'Sanne' },
-  { kind: 'poster', who: 'Elin' },
-  { kind: 'web', who: 'Mats' },
-  { kind: 'listing', who: 'Lotte' },
-  { kind: 'post', who: 'Sanne' },
-  { kind: 'music', who: 'Jonas' },
-  { kind: 'logo', who: 'Elin' },
-  { kind: 'prompt', who: 'Mats' },
-];
-
 // Illustrated avatars, never photos. hair: style of the drawn hair.
 export type Look = { bg: string; skin: string; hair: string; shirt: string; style: 'bob' | 'long' | 'bun' | 'curly' | 'short' | 'buzz' };
 export const LOOKS: Record<Who, Look> = {

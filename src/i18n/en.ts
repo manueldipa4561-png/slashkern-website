@@ -7,16 +7,16 @@ export const en = {
   ogLocale: 'en_US',
   paths: { creators: 'creators', companies: 'companies', privacy: 'privacy', terms: 'terms', quiz: 'quiz' },
   skip: 'Skip to content',
-  slogan: 'No experience? Make some.',
+  slogan: 'From zero to product.',
   example: 'Example',
   switchTo: { label: 'Italiano', short: 'IT', aria: 'Leggi questo sito in italiano' },
   nav: { creators: 'For creators', companies: 'For companies', cta: 'Get early access', aria: 'Main', home: `${NAME} home` },
 
   meta: {
     home: {
-      title: `${NAME}: no experience? Make some.`,
+      title: `${NAME} · From zero to product`,
       description:
-        'Make a short project with an AI assistant that asks one question at a time. Keep it on your own page, and show it to companies when the platform opens.',
+        'From zero to product. Make short projects with Slash, an AI that helps you, and keep them on your own page. Free early access.',
     },
     creators: {
       title: `For creators: make a project and keep it · ${NAME}`,
@@ -35,10 +35,10 @@ export const en = {
 
   hero: {
     chip: 'Early access',
-    before: 'No experience? ',
-    mark: 'Make some.',
+    before: 'From zero ',
+    mark: 'to product.',
     after: '',
-    sub: 'Finally finish something. An AI assistant asks the questions, you make the project, and you keep it on your own page.',
+    sub: 'Make a short project with Slash, an AI that helps you, and keep it on your own page.',
     ctaPrimary: 'Get early access',
     ctaSecondary: 'How it works',
   },
@@ -99,11 +99,26 @@ export const en = {
   },
 
   examples: {
-    title: 'Projects you can finish *in an afternoon*.',
-    lead: 'Eight samples of what goes on a page. The creators and briefs are made up, and the photos and the video were made with AI.',
+    title: 'A first project can *look like this*.',
+    lead: 'Eight examples, one for each kind of project. Play the clip, start the timer, listen to the jingle. The clients are made up, and the pictures, the video and the jingle were made with AI. Each one says so.',
     mine: 'Make yours',
-    all: 'All',
-    filter: 'Filter by category',
+    tags: { ai: 'Made with AI', code: 'Runs for real', answer: 'AI wrote the answer' },
+    nojs: 'This example needs JavaScript.',
+    // Eight finished things, each real: a clip that plays, a poster, a timer that runs, a listing, a post, a jingle that plays, a logo, a prompt and its answer.
+    gallery: {
+      video: { field: 'Short videos', t: 'Summer drinks, 5 seconds', for: 'Made-up client: Bar Ficus', cap: 'Summer drinks', len: '0:05', alt: 'Video: a tall glass of iced water with mint and an orange slice on a café table in the evening sun.' },
+      poster: { field: 'Posters and logos', t: 'Poster for a film night', for: 'Made-up client: Cinema Orsa', alt: 'A blue poster that says FILM NIGHT, with a yellow moon over a skyline of rooftops. Friday, 21:00, rooftop, Cinema Orsa.' },
+      timer: { field: 'Websites and small tools', t: 'A study timer', for: 'Made-up brief: Sofia’s exam week', modes: ['Study · 25 min', 'Break · 5 min'], group: 'Length', start: 'Start', pause: 'Pause', resume: 'Resume', reset: 'Reset', done: 'Time is up. Take a break.' },
+      listing: { field: 'Product listings', t: 'Listing for a handmade candle', for: 'Made-up client: Cera Cera', title: 'Cedar & smoke candle', points: ['Hand-poured soy wax', 'Burns for about 40 hours', 'Made in small batches'], alt: 'A candle in a smoked amber glass jar with a wooden wick, on a lilac background.' },
+      post: { field: 'Posts and captions', t: 'Post for a plant shop', for: 'Made-up client: Sunny Plants', handle: 'sunnyplants', caption: 'Saturday: bring a sad plant, leave with a happy one. We repot all day.', alt: 'A leafy green plant in a terracotta pot on a wooden stool, in front of a pink wall.' },
+      jingle: { field: 'Music and sound', t: 'Jingle for a bike repair shop', for: 'Made-up client: Pedal Pals', play: 'Play the jingle', pause: 'Pause the jingle', seek: 'Position in the jingle', hook: '“Pedal Pals, Pedal Pals!”', note: '' },
+      logo: { field: 'Posters and logos', t: 'Logo for a bakery', for: 'Made-up client: Forno Gufo', alt: 'A logo: a navy owl face made from a loaf of bread, with two wheat ears as eyebrows, on yellow. Under it: forno gufo.' },
+      prompt: {
+        field: 'AI prompts', t: 'A prompt for a study plan', for: 'Made-up brief: Sofia’s exam week', promptLabel: 'Prompt', answerLabel: 'AI',
+        prompt: 'Make me a study plan for this week. I have a maths exam on Friday and a history essay due on Wednesday. I can study 90 minutes a day. One line per day.',
+        answer: ['Mon: maths exercises, 45 min, then history reading, 45 min.', 'Tue: outline the essay, 60 min, then maths formulas, 30 min.', 'Wed: finish the essay, 60 min, and hand it in.', 'Thu: one past maths paper, 90 min.', 'Fri: maths review, 30 min. Then the exam. Rest.'],
+      },
+    },
     items: {
       video: { t: 'Summer drinks, 5 seconds', cat: 'Short videos', lines: ['Summer drinks', '0:05'] },
       poster: { t: 'Poster for a film night', cat: 'Posters and logos', lines: ['Film', 'night', 'FRI · 21:00 · ROOFTOP'] },
@@ -111,7 +126,7 @@ export const en = {
       listing: { t: 'Listing for a handmade candle', cat: 'Product listings', lines: ['Cedar & smoke candle', 'Hand-poured soy wax', 'Burns for about 40 hours', 'Made in small batches'] },
       post: { t: 'Post for a plant shop', cat: 'Posts and captions', lines: ['plantshop', 'Saturday: bring a sad plant,', 'leave with a happy one.', 'We repot all day.'] },
       music: { t: 'Jingle for a bike repair shop', cat: 'Music and sound', lines: ['Bike shop jingle', '0:20'] },
-      logo: { t: 'Logo for a bakery', cat: 'Posters and logos', lines: ['rye', 'BAKERY'] },
+      logo: { t: 'Logo for a bakery', cat: 'Posters and logos', lines: ['gufo', 'BAKERY'] },
       prompt: { t: 'A prompt for a study plan', cat: 'AI prompts', lines: ['Write a three-line plan', 'for my study week,', 'one line per day.', 'Mon: maths, 40 minutes', 'Tue: history, 30 minutes', 'Wed: rest, then review'] },
     },
     people: {
@@ -273,7 +288,7 @@ export const en = {
     shareButton: 'Share your link',
     shareCopy: 'Copy link',
     shareCopied: 'Link copied',
-    shareMessage: `I just joined the ${NAME} list: no experience? Make some.`,
+    shareMessage: `I just joined the ${NAME} list: from zero to product.`,
   },
 
   footer: {
@@ -283,7 +298,7 @@ export const en = {
     built: 'Built in Turin, Italy. Early access.',
     share: 'Share this site',
     shareCopied: 'Link copied',
-    shareMessage: `${NAME}: no experience? Make some.`,
+    shareMessage: `${NAME}: from zero to product.`,
   },
 
   creatorsPage: {

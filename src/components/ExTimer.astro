@@ -1,0 +1,63 @@
+---
+// A study timer that really runs: pick a length, press start, it counts down and says when time is up. The clock reads the real time, so it stays right in a background tab.
+import type { Copy } from '../i18n/en';
+interface Props { t: Copy['examples']['gallery']['timer']; nojs: string }
+const { t, nojs } = Astro.props;
+const MINUTES = [25, 5]; // the two lengths, in the order of t.modes
+---
+<div class="ex__media timer" data-timer data-start={t.start} data-pause={t.pause} data-resume={t.resume} data-done={t.done}>
+  <div class="timer__ring">
+    <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="timer__track" cx="60" cy="60" r="52" /><circle class="timer__bar" cx="60" cy="60" r="52" data-bar /></svg>
+    <p class="timer__time" role="timer" data-time>25:00</p>
+  </div>
+  <div class="timer__modes" role="group" aria-label={t.group}>
+    {MINUTES.map((m, i) => <button type="button" class="timer__mode" aria-pressed={i === 0 ? 'true' : 'false'} data-min={m}>{t.modes[i]}</button>)}
+  </div>
+  <div class="timer__actions">
+    <button type="button" class="btn btn--primary btn--sm" data-go>{t.start}</button>
+    <button type="button" class="btn btn--ghost btn--sm" data-reset>{t.reset}</button>
+  </div>
+  <p class="timer__done" role="status" data-msg></p>
+  <noscript><p class="ex__nojs">{nojs}</p></noscript>
+</div>
+
+<script>
+  const RING = 2 * Math.PI * 52; // the ring's length: r = 52 in the svg above
+  document.querySelectorAll<HTMLElement>('[data-timer]').forEach((root) => {
+    const time = root.querySelector<HTMLElement>('[data-time]')!;
+    const bar = root.querySelector<SVGCircleElement>('[data-bar]')!;
+    const go = root.querySelector<HTMLButtonElement>('[data-go]')!;
+    const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    const modes = [...root.querySelectorAll<HTMLButtonElement>('[data-min]')];
+    const say = { start: root.dataset.start!, pause: root.dataset.pause!, resume: root.dataset.resume!, done: root.dataset.done! };
+    let total = Number(modes[0].dataset.min) * 60, left = total, endAt = 0, tick = 0;
+    bar.style.strokeDasharray = String(RING);
+    const paint = () => {
+      const s = Math.ceil(left);
+      time.textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+      bar.style.strokeDashoffset = String(RING * (1 - left / total));
+    };
+    const stop = () => { window.clearInterval(tick); tick = 0; };
+    const step = () => {
+      left = Math.max(0, (endAt - Date.now()) / 1000);
+      paint();
+      if (left === 0) { stop(); go.textContent = say.start; msg.textContent = say.done; }
+    };
+    const setLength = (min: number) => { stop(); total = min * 60; left = total; msg.textContent = ''; go.textContent = say.start; paint(); };
+    go.addEventListener('click', () => {
+      if (tick) { stop(); go.textContent = say.resume; return; }
+      if (left === 0) left = total;
+      msg.textContent = '';
+      endAt = Date.now() + left * 1000;
+      tick = window.setInterval(step, 200);
+      go.textContent = say.pause;
+      step();
+    });
+    root.querySelector<HTMLButtonElement>('[data-reset]')!.addEventListener('click', () => setLength(total / 60));
+    modes.forEach((b) => b.addEventListener('click', () => {
+      modes.forEach((m) => m.setAttribute('aria-pressed', String(m === b)));
+      setLength(Number(b.dataset.min));
+    }));
+    paint();
+  });
+</script>

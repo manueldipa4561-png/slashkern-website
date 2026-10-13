@@ -1,15 +1,25 @@
 ---
-// Home gallery: eight sample projects with illustrated creators, filterable by category. Everything here is sample content and says so.
-import Avatar from './Avatar.astro';
-import ProjectArt from './ProjectArt.astro';
+// Home gallery: eight finished things, each one real: a clip that plays, a poster, a timer that runs, a listing, a post, a jingle that plays, a logo, a prompt and its answer.
+// The clients are made up and every AI-made part says so (copy.examples.tags). Reading order = column order on a wide screen, and the columns balance themselves.
 import Rich from './Rich.astro';
-import { GALLERY } from '../examples';
+import ExTimer from './ExTimer.astro';
+import ExJingle from './ExJingle.astro';
+import '../styles/examples.css';
 import type { Copy } from '../i18n/en';
 interface Props { copy: Copy }
 const { copy } = Astro.props;
-const e = copy.examples;
-// the filter chips follow the order of the categories on the site, and only list categories that have a sample
-const cats = copy.fields.map((f) => f.name).filter((name) => GALLERY.some(({ kind }) => e.items[kind].cat === name));
+const e = copy.examples, g = e.gallery;
+const poster = copy.lang === 'it' ? '/examples/poster-serata-cinema.jpg' : '/examples/poster-film-night.jpg';
+const TILES = [
+  { kind: 'video', hue: 'sky', tag: 'ai' },
+  { kind: 'post', hue: 'pink', tag: 'ai' },
+  { kind: 'timer', hue: 'mint', tag: 'code' },
+  { kind: 'logo', hue: 'blue', tag: 'ai' },
+  { kind: 'listing', hue: 'lilac', tag: 'ai' },
+  { kind: 'poster', hue: 'sun', tag: 'ai' },
+  { kind: 'jingle', hue: 'coral', tag: 'ai' },
+  { kind: 'prompt', hue: 'navy', tag: 'answer' },
+] as const;
 ---
 <section class="section section--soft examples" aria-labelledby="examples-title">
   <div class="wrap">
@@ -17,46 +27,60 @@ const cats = copy.fields.map((f) => f.name).filter((name) => GALLERY.some(({ kin
       <h2 id="examples-title"><Rich text={e.title} /></h2>
       <p class="lead">{e.lead}</p>
     </div>
-    <div class="examples__filter" role="group" aria-label={e.filter} data-ex-filter>
-      <button type="button" class="fchip" aria-pressed="true" data-cat="">{e.all}</button>
-      {cats.map((c) => <button type="button" class="fchip" aria-pressed="false" data-cat={c}>{c}</button>)}
-    </div>
-    <ul class="gallery" data-ex-list>
-      {GALLERY.map(({ kind, who }) => {
-        const item = e.items[kind];
-        return (
-          <li class="ex" data-cat={item.cat}>
-            <div class="ex__art">
-              {kind === 'video'
-                ? <div class="vid"><video src="/examples/drink.mp4" poster="/examples/drink-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label={item.t}></video><ProjectArt kind="video" lines={item.lines} label={item.t} overlay /><button type="button" class="vbtn" data-toggle-video aria-label={copy.demo.pause} data-play={copy.demo.play} data-pause={copy.demo.pause}><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg></button></div>
-                : <ProjectArt kind={kind} lines={item.lines} label={item.t} />}
+    <ul class="gallery" role="list">
+      {TILES.map(({ kind, hue, tag }) => (
+        <li class={`ex ex--${hue}`}>
+          {kind === 'video' && (
+            <div class="ex__media vid">
+              <video src="/examples/drink.mp4" poster="/examples/drink-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label={g.video.alt}></video>
+              <span class="vid__len" aria-hidden="true">{g.video.len}</span>
+              <p class="vid__cap" aria-hidden="true">{g.video.cap}</p>
+              <button type="button" class="vbtn" data-toggle-video aria-label={copy.demo.pause} data-play={copy.demo.play} data-pause={copy.demo.pause}>
+                <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg>
+                <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+              </button>
             </div>
-            <div class="ex__body">
-              <span class="ex__cat">{item.cat}</span>
-              <h3>{item.t}</h3>
-              <div class="ex__who"><Avatar who={who} size="1.75rem" /><span>{who}</span><span class="chip chip--example">{copy.example}</span></div>
+          )}
+          {kind === 'timer' && <ExTimer t={g.timer} nojs={e.nojs} />}
+          {kind === 'poster' && <div class="ex__media"><img src={poster} width="880" height="1168" loading="lazy" decoding="async" alt={g.poster.alt} /></div>}
+          {kind === 'jingle' && <ExJingle t={g.jingle} nojs={e.nojs} />}
+          {kind === 'post' && (
+            <div class="ex__media post">
+              <p class="post__head"><span class="post__av" aria-hidden="true">sp</span>{g.post.handle}</p>
+              <img src="/examples/plant-pink.jpg" width="720" height="900" loading="lazy" decoding="async" alt={g.post.alt} />
+              <svg class="post__heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg>
+              <p class="post__cap">{g.post.caption}</p>
             </div>
-          </li>
-        );
-      })}
+          )}
+          {kind === 'logo' && <div class="ex__media"><img src="/examples/logo-forno-gufo.jpg" width="760" height="760" loading="lazy" decoding="async" alt={g.logo.alt} /></div>}
+          {kind === 'listing' && (
+            <div class="ex__media listing">
+              <img src="/examples/candle-lilac.jpg" width="800" height="1000" loading="lazy" decoding="async" alt={g.listing.alt} />
+              <div class="listing__body">
+                <p class="listing__t">{g.listing.title}</p>
+                <ul role="list">{g.listing.points.map((point) => <li>{point}</li>)}</ul>
+              </div>
+            </div>
+          )}
+          {kind === 'prompt' && (
+            <div class="ex__media pr">
+              <p class="pr__l">{g.prompt.promptLabel}</p>
+              <p class="pr__text">{g.prompt.prompt}</p>
+              <div class="pr__ans">
+                <span class="chip chip--tag">{g.prompt.answerLabel}</span>
+                <ol>{g.prompt.answer.map((line) => <li>{line}</li>)}</ol>
+              </div>
+            </div>
+          )}
+          <div class="ex__body">
+            <p class="ex__field">{g[kind].field}</p>
+            <h3>{g[kind].t}</h3>
+            <p class="ex__for">{g[kind].for}</p>
+            <p class="ex__tags"><span class="chip chip--example">{copy.example}</span><span class="chip chip--tag">{e.tags[tag]}</span></p>
+          </div>
+        </li>
+      ))}
     </ul>
     <p class="gallery__cta"><a class="btn btn--accent" href={`#${copy.final.id}`}>{e.mine}</a></p>
   </div>
 </section>
-
-<script>
-  // Category filter: one chip pressed at a time, "All" shows everything. Without the script everything shows.
-  const bar = document.querySelector<HTMLElement>('[data-ex-filter]');
-  const list = document.querySelector<HTMLElement>('[data-ex-list]');
-  if (bar && list) {
-    const chips = [...bar.querySelectorAll<HTMLButtonElement>('button')];
-    const items = [...list.querySelectorAll<HTMLElement>('li')];
-    bar.addEventListener('click', (ev) => {
-      const b = (ev.target as HTMLElement).closest<HTMLButtonElement>('button');
-      if (!b) return;
-      const cat = b.dataset.cat ?? '';
-      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === b)));
-      items.forEach((li) => { li.hidden = cat !== '' && li.dataset.cat !== cat; });
-    });
-  }
-</script>

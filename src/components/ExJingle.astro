@@ -1,0 +1,55 @@
+---
+// A jingle that really plays: the audio is the real 20 second file, and the bars are its real loudness over time (measured once, 48 steps, 0 to 100).
+import type { Copy } from '../i18n/en';
+interface Props { t: Copy['examples']['gallery']['jingle']; nojs: string }
+const { t, nojs } = Astro.props;
+const SECONDS = 20;
+const LEVELS = [0, 87, 84, 77, 59, 83, 89, 63, 47, 38, 35, 92, 90, 78, 72, 77, 73, 84, 51, 43, 67, 92, 54, 82, 70, 100, 84, 86, 73, 40, 70, 82, 87, 57, 86, 80, 73, 54, 40, 48, 27, 18, 13, 8, 4, 2, 1, 0];
+const bars = LEVELS.map((v, i) => { const h = 5 + (v / 100) * 38; return { x: i * 4, y: 24 - h / 2, h }; });
+---
+<div class="ex__media jingle" data-jingle data-play={t.play} data-pause={t.pause} data-dur={SECONDS}>
+  <audio preload="metadata" src="/examples/pedal-pals-jingle.mp3"></audio>
+  <button type="button" class="jingle__btn" aria-label={t.play} data-btn>
+    <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+    <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg>
+  </button>
+  <div class="jingle__wave">
+    <svg viewBox="0 0 192 48" aria-hidden="true">{bars.map((b) => <rect class="bar" x={b.x} y={b.y} width="2.6" height={b.h} rx="1.3" />)}</svg>
+    <input class="jingle__seek" type="range" min="0" max={SECONDS} step="1" value="0" aria-label={t.seek} data-seek />
+  </div>
+  <p class="jingle__time"><span data-now>0:00</span><span>0:{SECONDS}</span></p>
+  <p class="jingle__hook">{t.hook}</p>
+  {t.note && <p class="jingle__note">{t.note}</p>}
+  <noscript><p class="ex__nojs">{nojs}</p></noscript>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-jingle]').forEach((root) => {
+    const audio = root.querySelector<HTMLAudioElement>('audio')!;
+    const btn = root.querySelector<HTMLButtonElement>('[data-btn]')!;
+    const seek = root.querySelector<HTMLInputElement>('[data-seek]')!;
+    const now = root.querySelector<HTMLElement>('[data-now]')!;
+    const bars = [...root.querySelectorAll<SVGRectElement>('.bar')];
+    const dur = Number(root.dataset.dur);
+    const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    const paint = () => {
+      const t = audio.currentTime, played = Math.round((t / dur) * bars.length);
+      bars.forEach((b, i) => b.classList.toggle('on', i < played));
+      now.textContent = clock(t);
+      seek.value = String(Math.floor(t));
+      seek.setAttribute('aria-valuetext', `${clock(t)} / ${clock(dur)}`);
+    };
+    const sync = () => {
+      btn.dataset.playing = String(!audio.paused);
+      btn.setAttribute('aria-label', audio.paused ? root.dataset.play! : root.dataset.pause!);
+    };
+    btn.addEventListener('click', () => { if (audio.paused) audio.play().catch(() => {}); else audio.pause(); });
+    seek.addEventListener('input', () => { audio.currentTime = Number(seek.value); paint(); });
+    audio.addEventListener('play', sync);
+    audio.addEventListener('pause', sync);
+    audio.addEventListener('timeupdate', paint);
+    audio.addEventListener('ended', () => { audio.currentTime = 0; paint(); sync(); });
+    paint();
+    sync();
+  });
+</script>
