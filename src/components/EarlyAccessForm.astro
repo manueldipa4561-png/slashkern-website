@@ -1,7 +1,7 @@
 ---
 // Netlify Forms static form. Collects an email and a role, nothing else. The script only adds
 // friendly validation and an inline thank-you; without JS the form still posts natively.
-import { FORM_NAME } from '../site';
+import { FORM_NAME, LAST_UPDATED } from '../site';
 import { hrefFor } from '../i18n';
 import type { Copy } from '../i18n/en';
 interface Props { copy: Copy; role?: 'creator' | 'company' }
@@ -24,6 +24,8 @@ const action = `${hrefFor(copy.lang)}?sent=1`;
     data-err-send={f.errSend}
   >
     <input type="hidden" name="form-name" value={FORM_NAME} />
+    <input type="hidden" name="lang" value={copy.lang} />
+    <input type="hidden" name="policy" value={LAST_UPDATED.en} />
     <input type="hidden" name="ref" value="" />
     <input type="hidden" name="code" value="" />
     <p hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>

@@ -7,21 +7,21 @@ export const en = {
   ogLocale: 'en_US',
   paths: { creators: 'creators', companies: 'companies', privacy: 'privacy', terms: 'terms', quiz: 'quiz' },
   skip: 'Skip to content',
-  slogan: 'Make something companies can hire you for.',
+  slogan: 'No experience? Make some.',
   example: 'Example',
   switchTo: { label: 'Italiano', short: 'IT', aria: 'Leggi questo sito in italiano' },
   nav: { creators: 'For creators', companies: 'For companies', cta: 'Get early access', aria: 'Main', home: `${NAME} home` },
 
   meta: {
     home: {
-      title: `${NAME}: make something companies can hire you for`,
+      title: `${NAME}: no experience? Make some.`,
       description:
-        'Make a short project with an AI assistant that asks one question at a time. Keep it on your own page, and companies can find it. Early access.',
+        'Make a short project with an AI assistant that asks one question at a time. Keep it on your own page, and show it to companies when the platform opens. Early access.',
     },
     creators: {
       title: `For creators · ${NAME}`,
       description:
-        'Make a short project with an AI assistant that asks one question at a time, keep it on your own page and let companies find it. Free for creators. Early access.',
+        'Make a short project with an AI assistant that asks one question at a time, keep it on your own page and show it to companies when the platform opens. Free for creators. Early access.',
     },
     companies: {
       title: `For companies · ${NAME}`,
@@ -35,10 +35,10 @@ export const en = {
 
   hero: {
     chip: 'Early access',
-    before: 'Make something ',
-    mark: 'companies can hire you',
-    after: ' for.',
-    sub: 'No experience needed. An AI assistant asks the questions, you make the project, and companies can find it.',
+    before: 'No experience? ',
+    mark: 'Make some.',
+    after: '',
+    sub: 'Finally finish something. An AI assistant asks the questions, you make the project, and you keep it on your own page.',
     ctaPrimary: 'Get early access',
     ctaSecondary: 'How it works',
   },
@@ -51,7 +51,7 @@ export const en = {
       rows: [
         ['Category', 'Short videos'],
         ['Time', 'About 40 minutes'],
-        ['Level', 'No experience needed'],
+        ['Level', 'Start from zero'],
       ],
       body: 'One shot, one idea. The assistant asks, you decide.',
       foot: 'Free. Nothing is public until you publish it.',
@@ -124,7 +124,7 @@ export const en = {
 
   demo: {
     note: 'The opening screen of the app.',
-    alt: 'The opening screen of the app on a phone: Make something companies can hire you for.',
+    alt: 'The opening screen of the app on a phone.',
     play: 'Play video',
     pause: 'Pause video',
   },
@@ -191,7 +191,7 @@ export const en = {
     steps: [
       { n: '01', t: 'Make it with an AI assistant', d: 'Pick a short project. The assistant asks one question at a time, and drafts a first version only if you ask. You edit it, so it stays yours.' },
       { n: '02', t: 'Keep it on your page', d: 'Every finished project goes on your own page. It stays private until you press publish.' },
-      { n: '03', t: 'Get found by companies', d: 'Companies browse published projects and write to you through the platform. Your email stays private.' },
+      { n: '03', t: 'Get found by companies', d: 'When it opens, companies can browse published projects and write to you through the platform. Your email stays private.' },
     ],
   },
 
@@ -202,7 +202,7 @@ export const en = {
     rows: [
       ['What companies see', 'Only the projects you choose to publish on your page.'],
       ['What is public', 'You decide. Nothing goes public before you say so.'],
-      ['Who gets a project', 'A company chooses who gets a project, and pays them.'],
+      ['Who gets a project', 'The company that posted the brief decides.'],
       ['The platform’s cut', 'Not decided yet. We will tell you before it applies.'],
     ],
     notice: 'Nobody is paying yet. This is early access.',
@@ -220,7 +220,7 @@ export const en = {
 
   creatorsBlock: {
     title: 'Start small. *Finish* something.',
-    text: 'No experience needed. Pick a short project, make it with the assistant and keep it on your own page. Free for creators.',
+    text: 'Start from zero. Pick a short project, make it with the assistant and keep it on your own page. Free for creators.',
     link: 'More for creators',
   },
   companiesBlock: {
@@ -239,7 +239,7 @@ export const en = {
       { q: 'Is this a scam?', a: 'No. Creators are not charged anything, nothing is paid out yet, and you decide what to publish. If anyone asks you to pay to get a project, it is not us: write to us.' },
       { q: 'What can I make?', a: 'Seven kinds of projects: short videos, posters and logos, posts and captions, websites and small tools, product listings, music and sound, and AI prompts.' },
       { q: 'How do companies contact me?', a: `Through the platform. A company sends you a message on ${NAME} and you decide whether to reply. Your email stays private.` },
-      { q: 'Who can join, and where?', a: 'Anyone aged 18 or older. It is made for creators across Europe and starts in English. Companies will contact you about real projects, and the rules for younger people differ from country to country.' },
+      { q: 'Who can join, and where?', a: 'Anyone aged 18 or older. It is made for creators across Europe and starts in English. Companies on the platform may contact you, and the rules for younger people differ from country to country.' },
       { q: 'When does it open?', a: `We have no date yet. ${NAME} is in early access and still being built in Turin. Leave your email and we write once, when it opens.` },
     ],
   },
@@ -273,7 +273,7 @@ export const en = {
     shareButton: 'Share your link',
     shareCopy: 'Copy link',
     shareCopied: 'Link copied',
-    shareMessage: `I just joined the ${NAME} list: make something companies can hire you for.`,
+    shareMessage: `I just joined the ${NAME} list: no experience? Make some.`,
   },
 
   footer: {
@@ -283,14 +283,14 @@ export const en = {
     built: 'Built in Turin, Italy. Early access.',
     share: 'Share this site',
     shareCopied: 'Link copied',
-    shareMessage: `${NAME}: make something companies can hire you for.`,
+    shareMessage: `${NAME}: no experience? Make some.`,
   },
 
   creatorsPage: {
     before: 'Make a ',
     mark: 'real',
-    after: ' project.\nGet found.',
-    sub: 'Make a short project with an AI assistant, and keep it on your own page. No experience needed.',
+    after: ' project.\nKeep it.',
+    sub: 'Make a short project with an AI assistant, and keep it on your own page. Start from zero.',
     cta: 'Get early access',
     ctaSecondary: 'Meet the assistant',
     slashSays: 'Hi, I am Slash, your AI assistant. I ask the questions. I only draft if you ask.',
@@ -301,15 +301,15 @@ export const en = {
     dontTitle: 'The assistant does not',
     dontItems: ['Publish anything for you.', 'Decide for you.', 'Hide its help: drafts say Made with AI help.'],
     fieldsTitle: 'Seven things you can *make*.',
-    fieldsText: 'Short projects, no experience needed. Pick one.',
+    fieldsText: 'Short projects, start from zero. Pick one.',
     pageTitle: 'A page with *your name* on it.',
     pageText: 'Everything you finish goes on one page. Companies see only what you publish. This is an example page, not a real creator.',
     publishTitle: 'You choose what goes public.',
     publishSteps: [
       { t: 'Finish the project', d: 'Until it is finished, it stays private.' },
       { t: 'Publish it on your own page', d: 'Press publish when you are happy with the result.' },
-      { t: 'Companies find it', d: 'Companies browse published projects by category.' },
-      { t: `They contact you through ${NAME}`, d: 'The message arrives on the platform. Your email stays private and you decide whether to reply.' },
+      { t: 'Companies can find it', d: 'Companies browse published projects by category.' },
+      { t: `They can contact you through ${NAME}`, d: 'The message arrives on the platform. Your email stays private and you decide whether to reply.' },
     ],
     ctaTitle: 'Start as a creator.',
     ctaText: `Leave your email. We write once, when ${NAME} opens.`,
@@ -344,61 +344,81 @@ export const en = {
   },
 
   legal: {
-    noteLabel: 'Draft',
-    note: 'This page needs a lawyer’s review before launch.',
     updated: 'Last updated',
     back: 'Back to home',
     privacy: {
       title: 'Privacy',
-      intro: `This page covers this website only: the early-access page. The ${NAME} app will have its own privacy page when it opens.`,
-      summaryTitle: 'What we keep',
+      intro: `This page covers this website only: the early-access page. It says what personal data we handle, why, and what you can do about it. The ${NAME} app will have its own privacy page when it opens.`,
+      summaryTitle: 'In short',
       summary: [
-        ['What', 'The email address you type, and whether you join as a creator or a company.'],
-        ['Why', `To tell you when ${NAME} opens. We write once, when it opens. No ads.`],
-        ['Where', 'Stored by the form host (Netlify). We read the sign-ups there.'],
-        ['How long', `Until we have told you that ${NAME} is open, or until you ask us to delete it. If it has not opened after 12 months, we delete it.`],
-        ['Delete it', `Write to ${mail} and we delete it.`],
-        ['On this site', 'No cookies, no analytics, no tracking, no ads. No requests to other websites: fonts, images and videos come from this site.'],
-        ['Quiz and sharing', 'The quiz runs in your browser and sends nothing. If you join, the form adds a random code for your own share link, and the code of the friend whose link you used, if any.'],
+        ['Who', `${OWNER} (Italy) runs ${NAME} and is the data controller. Contact: ${mail}.`],
+        ['What', 'Your email, whether you join as a creator or a company, the ticked box and your share code (plus a friend’s code if you used their link). Netlify may also save technical data, such as your IP address.'],
+        ['Why', `To tell you when ${NAME} opens, and to invite people who bring friends earlier. No newsletter, no ads.`],
+        ['Where', 'Netlify (USA) hosts the site and stores the sign-ups for us. Akismet (USA) checks them for spam.'],
+        ['How long', `Until we tell you ${NAME} is open or you ask us to delete it, and never more than 12 months after you signed up.`],
+        ['Your rights', `Write to ${mail} to see, correct or delete your data, or to withdraw your consent.`],
+        ['Cookies', 'None, so no cookie banner. No analytics, no tracking, no ads. The quiz runs in your browser and sends nothing.'],
       ],
       sections: [
         {
+          h: 'Who is responsible',
+          p: [`The data controller is ${OWNER}, who builds and runs ${NAME} from Italy. For anything about your data, write to ${mail}.`],
+        },
+        {
           h: 'What we collect',
           p: [
-            'Only what you type in the early-access form: your email address and whether you join as a creator or a company. The form also records that you ticked the box to agree and to confirm that you are 18 or older. It also adds a random code for your own share link and, if you came from a friend’s link, that friend’s code. The codes are not linked to anything else. We collect nothing else.',
-            'Like every website host, the form host also processes technical data, such as your IP address, to deliver the page and filter spam.',
+            'When you sign up for early access, the form sends: your email address; whether you join as a creator or a company; that you ticked the box to agree and to confirm you are 18 or older; the language of the page; a random code for your own share link; and, if you opened a friend’s link, that friend’s code.',
+            'Netlify, which runs the form, may also save technical data with each sign-up, such as your IP address, your browser type and the page you sent it from.',
+            'When you open any page, Netlify’s servers also process technical data, such as your IP address, your browser and the page address (including a share code, if the link has one), to deliver the page and protect the site.',
+            'We collect nothing else. We do not ask for your name.',
           ],
         },
         {
           h: 'Why we use it, and the legal basis',
           p: [
-            `Only to tell you when ${NAME} opens. The legal basis is your consent (GDPR Art. 6(1)(a)), which you give by ticking the box. You can withdraw it at any time by writing to ${mail}. Withdrawing does not affect what we did before.`,
+            `Your sign-up: to tell you when ${NAME} opens and, if friends sign up through your link, to invite you earlier. Nothing else: no newsletter, no ads, and we never give your email to companies on ${NAME}. The legal basis is your consent (GDPR Art. 6(1)(a)), which you give by ticking the box.`,
+            'Technical data and spam checks: to deliver the site, keep it safe and keep fake sign-ups off the list. The legal basis is our legitimate interest in a working, safe website (GDPR Art. 6(1)(f)). We do not use this data to track or profile you.',
+            `Giving us your email is your choice. Without it, we cannot tell you when ${NAME} opens. We make no automated decisions about you: bringing friends only moves your invite earlier.`,
           ],
         },
         {
           h: 'Who gets it',
           p: [
-            'The form host (Netlify) stores the sign-ups for us and acts on our behalf. Netlify is a US company, so your data may be processed outside the EU. We do not sell your email or share it with anyone else.',
-            'If we later use a mail service to write to you, we will name it on this page first.',
+            'Netlify, Inc. (USA) hosts this site and stores the sign-ups for us. It acts on our behalf, as our processor, under its data processing agreement. Netlify checks every sign-up for spam with Akismet, a service of Automattic, Inc. (USA). See the <a href="https://www.netlify.com/privacy/" rel="noopener">Netlify</a> and <a href="https://automattic.com/privacy/" rel="noopener">Automattic</a> privacy pages.',
+            'We do not sell your data or give it to anyone else. If we later use a mail service to write to you, we will name it on this page first.',
           ],
+        },
+        {
+          h: 'Data outside the EU',
+          p: ['Netlify and Akismet are based in the USA, so your data is also processed there. Netlify, Inc. says it takes part in the EU-U.S. Data Privacy Framework, which the European Commission found to give adequate protection (decision of 10 July 2023), and that its data processing agreement includes the EU Standard Contractual Clauses. You can ask us for details of these safeguards.'],
         },
         {
           h: 'How long we keep it',
-          p: [`Until we have told you that ${NAME} is open, or until you ask us to delete it. If ${NAME} has not opened 12 months after you signed up, we delete your email.`],
-        },
-        {
-          h: 'Your rights',
           p: [
-            `You can ask to see, correct or delete your data, to limit how we use it, or to take a copy with you. Write to ${mail}. You can also complain to the Italian data protection authority (<a href="https://www.garanteprivacy.it" rel="noopener">Garante per la protezione dei dati personali</a>).`,
+            `Your sign-up: until we have told you that ${NAME} is open, or until you withdraw your consent or ask us to delete it, and never more than 12 months after you signed up. Then we delete it from Netlify, spam list included, and from any copy we keep.`,
+            'Technical data: Netlify keeps its server logs under its own retention rules. We do not download or keep them.',
           ],
         },
         {
-          h: 'Cookies and tracking',
-          p: ['This site sets no cookies. It has no analytics, no tracking pixels and no ads. It loads nothing from other websites: the fonts are served from this site.'],
+          h: 'Withdrawing your consent',
+          p: [`You can withdraw your consent at any time by writing to ${mail}. We then delete your sign-up (email, role and codes) and do not write to you. If friends signed up through your link, their sign-ups stay, but your code no longer leads to you. Withdrawing does not make what we did before unlawful.`],
         },
-        { h: 'Age', p: [`${NAME} is for people aged 18 and over. Please do not use the form if you are younger.`] },
-        { h: 'Changes', p: ['If this page changes, we update the date at the top.'] },
-        { h: `Who runs ${NAME}`, p: [`${NAME} is built and run by ${OWNER} (Italy), the data controller. Contact: ${mail}.`] },
+        {
+          h: 'Your rights',
+          p: [`Under the GDPR you can ask us to see your data and get a copy, correct it, delete it, limit how we use it, or send it to you in a common format to take elsewhere. You can also object to our use of technical data. Write to ${mail}: we answer within one month. If you think we handle your data wrongly, you can complain to the Italian data protection authority (<a href="https://www.garanteprivacy.it" rel="noopener">Garante per la protezione dei dati personali</a>) or to the authority in the EU country where you live or work.`],
+        },
+        {
+          h: 'Cookies',
+          p: [
+            'This site sets no cookies and uses no similar technology, such as local storage or tracking pixels. It has no analytics and no ads. Because there are no cookies, there is no cookie banner.',
+            'Fonts, images and videos are files on this site, so opening a page sends nothing to other companies. Only Netlify, which hosts the site, receives your request.',
+            'The quiz runs in your browser. Your answers are not saved or sent, and they are gone when you reload the page. A shared quiz link only shows which result you got (for example ?r=video). Share buttons open your phone’s share menu or copy the link. We do not see who you send it to; we only see sign-ups that come through your link.',
+            'The Instagram link and the Garante link take you to those websites, where their own rules apply.',
+            'If we ever add cookies or analytics, we will update this page first and ask for your consent where the law requires it.',
+          ],
+        },
+        { h: 'Age', p: [`${NAME} is for people aged 18 and over. Please do not use the form if you are younger. If we learn that someone under 18 signed up, we delete the sign-up.`] },
+        { h: 'Changes', p: ['If this page changes, we update the date at the top. We will not use your data for anything new without asking you first.'] },
       ],
     },
     terms: {
@@ -410,6 +430,7 @@ export const en = {
         { h: 'No guarantees', p: [`We give no guarantee about when ${NAME} opens, what it will include, or what you will get from it. We do not promise that anyone will contact, choose or pay you. This site is provided as it is.`] },
         { h: 'Examples', p: ['Screens and texts marked Example are samples. They are not real users, companies, projects or results.'] },
         { h: 'Your email', p: ['If you sign up, we use your email only as the Privacy page describes.'] },
+        { h: 'Sharing your link', p: ['People who bring friends get invited earlier. That is the only reward: no prizes and no payments, and we may change or stop it.'] },
         { h: 'Law', p: ['Italian law applies to these terms. This does not remove any rights you have as a consumer under the law of your country.'] },
         { h: 'Changes', p: ['If these terms change, we update the date at the top.'] },
         { h: 'Contact', p: [`Questions: ${mail}.`] },

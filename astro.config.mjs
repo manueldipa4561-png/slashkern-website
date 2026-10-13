@@ -6,7 +6,8 @@ export default defineConfig({
   site: 'https://slashkern.com',
   devToolbar: { enabled: false },
   trailingSlash: 'always',
-  build: { format: 'directory' },
+  build: { format: 'directory', inlineStylesheets: 'never' },
+  vite: { build: { assetsInlineLimit: 0 } }, // never inline scripts or CSS into the pages: keeps the CSP at script-src 'self'
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'en', locales: { en: 'en', it: 'it' } },

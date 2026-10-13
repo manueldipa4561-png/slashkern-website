@@ -12,7 +12,6 @@ const updated = LAST_UPDATED[copy.lang as 'en' | 'it'];
 <article class="wrap legal">
   <h1>{d.title}</h1>
   <p class="legal__meta">{copy.legal.updated}: {updated}</p>
-  <p class="draft-note"><span class="chip chip--ink">{copy.legal.noteLabel}</span><span>{copy.legal.note}</span></p>
   <p class="lead">{d.intro}</p>
   {summary && (
     <section class="summary" aria-labelledby="summary-title">

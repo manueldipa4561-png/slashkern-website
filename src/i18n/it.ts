@@ -8,21 +8,21 @@ export const it: Copy = {
   ogLocale: 'it_IT',
   paths: { creators: 'creators', companies: 'companies', privacy: 'privacy', terms: 'terms', quiz: 'quiz' },
   skip: 'Vai al contenuto',
-  slogan: 'Fai qualcosa per cui le aziende possano sceglierti.',
+  slogan: 'Nessuna esperienza? Fattela.',
   example: 'Esempio',
   switchTo: { label: 'English', short: 'EN', aria: 'Read this site in English' },
   nav: { creators: 'Per i creator', companies: 'Per le aziende', cta: 'Richiedi accesso', aria: 'Principale', home: `${NAME}, home` },
 
   meta: {
     home: {
-      title: `${NAME}: fai qualcosa per cui le aziende possano sceglierti`,
+      title: `${NAME}: nessuna esperienza? Fattela.`,
       description:
-        'Fai un breve progetto con un assistente AI che ti fa una domanda alla volta. Tienilo sulla tua pagina e le aziende possono trovarlo. Accesso anticipato.',
+        'Fai un breve progetto con un assistente AI che ti fa una domanda alla volta. Tienilo sulla tua pagina e, quando la piattaforma apre, mostralo alle aziende. Accesso anticipato.',
     },
     creators: {
       title: `Per i creator · ${NAME}`,
       description:
-        'Fai un breve progetto con un assistente AI che ti fa una domanda alla volta, tienilo sulla tua pagina e lascia che le aziende lo trovino. Gratis per i creator. Accesso anticipato.',
+        'Fai un breve progetto con un assistente AI che ti fa una domanda alla volta, tienilo sulla tua pagina e, quando la piattaforma apre, mostralo alle aziende. Gratis per i creator. Accesso anticipato.',
     },
     companies: {
       title: `Per le aziende · ${NAME}`,
@@ -36,10 +36,10 @@ export const it: Copy = {
 
   hero: {
     chip: 'Accesso anticipato',
-    before: 'Fai qualcosa per cui ',
-    mark: 'le aziende possano sceglierti',
-    after: '.',
-    sub: 'Nessuna esperienza richiesta. Un assistente AI ti fa le domande, tu fai il progetto e le aziende possono trovarlo.',
+    before: 'Nessuna esperienza? ',
+    mark: 'Fattela.',
+    after: '',
+    sub: 'Finalmente finisci qualcosa. Un assistente AI ti fa le domande, tu fai il progetto e lo tieni sulla tua pagina.',
     ctaPrimary: 'Richiedi accesso',
     ctaSecondary: 'Come funziona',
   },
@@ -52,7 +52,7 @@ export const it: Copy = {
       rows: [
         ['Categoria', 'Video brevi'],
         ['Tempo', 'Circa 40 minuti'],
-        ['Livello', 'Nessuna esperienza richiesta'],
+        ['Livello', 'Si parte da zero'],
       ],
       body: 'Un’inquadratura, un’idea. L’assistente chiede, decidi tu.',
       foot: 'Gratis. Niente è pubblico finché non lo pubblichi.',
@@ -125,7 +125,7 @@ export const it: Copy = {
 
   demo: {
     note: 'La schermata iniziale dell’app.',
-    alt: 'La schermata iniziale dell’app su un telefono: Fai qualcosa per cui le aziende possano sceglierti.',
+    alt: 'La schermata iniziale dell’app su un telefono.',
     play: 'Avvia il video',
     pause: 'Metti in pausa il video',
   },
@@ -192,7 +192,7 @@ export const it: Copy = {
     steps: [
       { n: '01', t: 'Fallo con un assistente AI', d: 'Scegli un progetto breve. L’assistente ti fa una domanda alla volta e prepara una prima versione solo se glielo chiedi. La modifichi tu, quindi resta tuo.' },
       { n: '02', t: 'Tienilo sulla tua pagina', d: 'Ogni progetto finito va sulla tua pagina. Resta privato finché non premi pubblica.' },
-      { n: '03', t: 'Fatti trovare dalle aziende', d: 'Le aziende sfogliano i progetti pubblicati e ti scrivono tramite la piattaforma. La tua email resta privata.' },
+      { n: '03', t: 'Fatti trovare dalle aziende', d: 'Quando apre, le aziende potranno sfogliare i progetti pubblicati e scriverti tramite la piattaforma. La tua email resta privata.' },
     ],
   },
 
@@ -203,7 +203,7 @@ export const it: Copy = {
     rows: [
       ['Cosa vedono le aziende', 'Solo i progetti che scegli di pubblicare sulla tua pagina.'],
       ['Cosa è pubblico', 'Decidi tu. Niente è pubblico senza il tuo ok.'],
-      ['Chi riceve un progetto', 'Un’azienda sceglie a chi affidarlo e lo paga.'],
+      ['Chi riceve un progetto', 'Decide l’azienda che ha pubblicato il brief.'],
       ['La commissione della piattaforma', 'Non è ancora decisa. Te lo diciamo prima che si applichi.'],
     ],
     notice: 'Per ora nessuno paga. Questo è l’accesso anticipato.',
@@ -221,7 +221,7 @@ export const it: Copy = {
 
   creatorsBlock: {
     title: 'Parti in piccolo. *Finisci* qualcosa.',
-    text: 'Nessuna esperienza richiesta. Scegli un progetto breve, fallo con l’assistente e tienilo sulla tua pagina. Gratis per i creator.',
+    text: 'Parti da zero. Scegli un progetto breve, fallo con l’assistente e tienilo sulla tua pagina. Gratis per i creator.',
     link: 'Tutto per i creator',
   },
   companiesBlock: {
@@ -240,7 +240,7 @@ export const it: Copy = {
       { q: 'È una truffa?', a: 'No. Ai creator non viene addebitato nulla, per ora nessuno viene pagato e decidi tu cosa pubblicare. Se qualcuno ti chiede di pagare per ricevere un progetto, non siamo noi: scrivici.' },
       { q: 'Cosa posso fare?', a: 'Sette tipi di progetto: video brevi, poster e loghi, post e didascalie, siti e piccoli strumenti, annunci di prodotti, musica e suoni, prompt per l’IA.' },
       { q: 'Come mi contattano le aziende?', a: `Tramite la piattaforma. Un’azienda ti scrive su ${NAME} e tu decidi se rispondere. La tua email resta privata.` },
-      { q: 'Chi può iscriversi, e dove?', a: 'Chiunque abbia 18 anni o più. È pensato per i creator di tutta Europa e parte in inglese. Le aziende ti contatteranno per progetti veri e le regole per i più giovani cambiano da paese a paese.' },
+      { q: 'Chi può iscriversi, e dove?', a: 'Chiunque abbia 18 anni o più. È pensato per i creator di tutta Europa e parte in inglese. Le aziende sulla piattaforma potranno contattarti e le regole per i più giovani cambiano da paese a paese.' },
       { q: 'Quando apre?', a: `Non abbiamo ancora una data. ${NAME} è in accesso anticipato e lo stiamo ancora costruendo a Torino. Lascia la tua email e ti scriviamo una volta, quando apre.` },
     ],
   },
@@ -274,7 +274,7 @@ export const it: Copy = {
     shareButton: 'Condividi il tuo link',
     shareCopy: 'Copia il link',
     shareCopied: 'Link copiato',
-    shareMessage: `Mi sono appena iscritto alla lista di ${NAME}: fai qualcosa per cui le aziende possano sceglierti.`,
+    shareMessage: `Mi sono appena iscritto alla lista di ${NAME}: nessuna esperienza? Fattela.`,
   },
 
   footer: {
@@ -284,14 +284,14 @@ export const it: Copy = {
     built: 'Fatto a Torino. Accesso anticipato.',
     share: 'Condividi il sito',
     shareCopied: 'Link copiato',
-    shareMessage: `${NAME}: fai qualcosa per cui le aziende possano sceglierti.`,
+    shareMessage: `${NAME}: nessuna esperienza? Fattela.`,
   },
 
   creatorsPage: {
     before: 'Fai un progetto ',
     mark: 'vero',
-    after: '.\nFatti trovare.',
-    sub: 'Fai un breve progetto con un assistente AI e tienilo sulla tua pagina. Nessuna esperienza richiesta.',
+    after: '.\nTienilo.',
+    sub: 'Fai un breve progetto con un assistente AI e tienilo sulla tua pagina. Parti da zero.',
     cta: 'Richiedi accesso',
     ctaSecondary: 'Conosci l’assistente',
     slashSays: 'Ciao, sono Slash, il tuo assistente AI. Faccio le domande. Preparo una bozza solo se me lo chiedi.',
@@ -302,15 +302,15 @@ export const it: Copy = {
     dontTitle: 'L’assistente non',
     dontItems: ['Pubblica qualcosa al posto tuo.', 'Decide al posto tuo.', 'Nasconde il suo aiuto: le bozze dicono “Fatto con l’aiuto dell’AI”.'],
     fieldsTitle: 'Sette cose che puoi *fare*.',
-    fieldsText: 'Progetti brevi, nessuna esperienza richiesta. Scegline uno.',
+    fieldsText: 'Progetti brevi, parti da zero. Scegline uno.',
     pageTitle: 'Una pagina con *il tuo nome*.',
     pageText: 'Tutto quello che finisci va su un’unica pagina. Le aziende vedono solo quello che pubblichi. Questa è una pagina di esempio, non un creator reale.',
     publishTitle: 'Decidi tu cosa diventa pubblico.',
     publishSteps: [
       { t: 'Finisci il progetto', d: 'Finché non è finito, resta privato.' },
       { t: 'Pubblicalo sulla tua pagina', d: 'Premi pubblica quando sei contento del risultato.' },
-      { t: 'Le aziende lo trovano', d: 'Le aziende sfogliano i progetti pubblicati per categoria.' },
-      { t: `Ti contattano tramite ${NAME}`, d: 'Il messaggio arriva sulla piattaforma. La tua email resta privata e decidi tu se rispondere.' },
+      { t: 'Le aziende possono trovarlo', d: 'Le aziende sfogliano i progetti pubblicati per categoria.' },
+      { t: `Possono contattarti tramite ${NAME}`, d: 'Il messaggio arriva sulla piattaforma. La tua email resta privata e decidi tu se rispondere.' },
     ],
     ctaTitle: 'Inizia come creator.',
     ctaText: `Lascia la tua email. Ti scriviamo una volta, quando ${NAME} apre.`,
@@ -345,61 +345,81 @@ export const it: Copy = {
   },
 
   legal: {
-    noteLabel: 'Bozza',
-    note: 'Questa pagina va rivista da un avvocato prima del lancio.',
     updated: 'Ultimo aggiornamento',
     back: 'Torna alla home',
     privacy: {
       title: 'Privacy',
-      intro: `Questa pagina riguarda solo questo sito, cioè la pagina dell’accesso anticipato. L’app ${NAME} avrà una pagina privacy tutta sua quando aprirà.`,
-      summaryTitle: 'Cosa conserviamo',
+      intro: `Questa pagina riguarda solo questo sito, cioè la pagina dell’accesso anticipato. Ti dice quali dati personali trattiamo, perché e cosa puoi fare. L’app ${NAME} avrà una pagina privacy tutta sua quando aprirà.`,
+      summaryTitle: 'In breve',
       summary: [
-        ['Cosa', 'L’indirizzo email che scrivi e se ti iscrivi come creator o come azienda.'],
-        ['Perché', `Per avvisarti quando ${NAME} apre. Ti scriviamo una volta, quando apre. Niente pubblicità.`],
-        ['Dove', 'Lo conserva chi ospita il modulo (Netlify). Le iscrizioni le leggiamo lì.'],
-        ['Per quanto', `Finché non ti abbiamo avvisato che ${NAME} è aperto, o finché non ci chiedi di cancellarla. Se dopo 12 mesi non è ancora aperto, la cancelliamo.`],
-        ['Cancellarla', `Scrivi a ${mail} e la cancelliamo.`],
-        ['Su questo sito', 'Niente cookie, niente analytics, niente tracciamento, niente pubblicità. Nessuna richiesta ad altri siti: font, immagini e video arrivano da questo sito.'],
-        ['Quiz e condivisione', 'Il quiz funziona nel tuo browser e non invia nulla. Se ti iscrivi, il modulo aggiunge un codice casuale per il tuo link da condividere e, se c’è, il codice dell’amico di cui hai usato il link.'],
+        ['Chi', `${NAME} è gestito da ${OWNER} (Italia), titolare del trattamento. Contatto: ${mail}.`],
+        ['Cosa', 'La tua email, se ti iscrivi come creator o come azienda, la casella spuntata e il tuo codice di condivisione (più quello di un amico, se hai usato il suo link). Netlify può salvare anche dati tecnici, come il tuo indirizzo IP.'],
+        ['Perché', `Per avvisarti quando ${NAME} apre e per invitare prima chi porta degli amici. Niente newsletter, niente pubblicità.`],
+        ['Dove', 'Netlify (USA) ospita il sito e conserva le iscrizioni per noi. Akismet (USA) le controlla contro lo spam.'],
+        ['Per quanto', `Finché non ti avvisiamo che ${NAME} è aperto o non ci chiedi di cancellarli, e mai oltre 12 mesi dalla tua iscrizione.`],
+        ['I tuoi diritti', `Scrivi a ${mail} per vedere, correggere o cancellare i tuoi dati, o per ritirare il consenso.`],
+        ['Cookie', 'Nessuno, quindi nessun banner. Niente analytics, niente tracciamento, niente pubblicità. Il quiz funziona nel tuo browser e non invia nulla.'],
       ],
       sections: [
         {
+          h: 'Chi è il titolare',
+          p: [`Il titolare del trattamento è ${OWNER}, che sviluppa e gestisce ${NAME} dall’Italia. Per qualsiasi cosa sui tuoi dati, scrivi a ${mail}.`],
+        },
+        {
           h: 'Cosa raccogliamo',
           p: [
-            'Solo quello che scrivi nel modulo dell’accesso anticipato: il tuo indirizzo email e se ti iscrivi come creator o come azienda. Il modulo registra anche che hai spuntato la casella per accettare e per confermare di avere 18 anni o più. Il modulo aggiunge anche un codice casuale per il tuo link da condividere e, se arrivi dal link di un amico, il codice di quell’amico. I codici non sono collegati ad altro. Non raccogliamo nient’altro.',
-            'Come ogni host di siti web, anche chi ospita il modulo tratta dati tecnici, come il tuo indirizzo IP, per consegnare la pagina e filtrare lo spam.',
+            'Quando ti iscrivi all’accesso anticipato, il modulo invia: il tuo indirizzo email; se ti iscrivi come creator o come azienda; il fatto che hai spuntato la casella per dare il consenso e confermare di avere 18 anni o più; la lingua della pagina; un codice casuale per il tuo link da condividere; e, se hai aperto il link di un amico, il codice di quell’amico.',
+            'Netlify, che gestisce il modulo, può salvare con ogni iscrizione anche dati tecnici, come il tuo indirizzo IP, il tipo di browser e la pagina da cui hai inviato il modulo.',
+            'Quando apri una pagina, i server di Netlify trattano anche dati tecnici, come il tuo indirizzo IP, il browser e l’indirizzo della pagina (compreso il codice di condivisione, se il link ne ha uno), per consegnarti la pagina e proteggere il sito.',
+            'Non raccogliamo nient’altro. Non ti chiediamo il nome.',
           ],
         },
         {
-          h: 'Perché la usiamo e su quale base',
+          h: 'Perché li usiamo e su quale base',
           p: [
-            `Solo per avvisarti quando ${NAME} apre. La base giuridica è il tuo consenso (GDPR art. 6.1.a), che dai spuntando la casella. Puoi ritirarlo in ogni momento scrivendo a ${mail}. Ritirarlo non cambia quello che abbiamo fatto prima.`,
+            `L’iscrizione: per avvisarti quando ${NAME} apre e, se degli amici si iscrivono con il tuo link, per invitarti prima. Nient’altro: niente newsletter, niente pubblicità, e non diamo mai la tua email alle aziende su ${NAME}. La base giuridica è il tuo consenso (art. 6.1.a del GDPR), che dai spuntando la casella.`,
+            'Dati tecnici e controllo antispam: per far funzionare il sito, tenerlo sicuro e tenere fuori dalla lista le iscrizioni false. La base giuridica è il nostro legittimo interesse ad avere un sito che funziona ed è sicuro (art. 6.1.f del GDPR). Non usiamo questi dati per seguirti o profilarti.',
+            `Darci la tua email è una tua scelta. Senza, non possiamo avvisarti quando ${NAME} apre. Non prendiamo decisioni automatiche su di te: portare degli amici serve solo a farti invitare prima.`,
           ],
         },
         {
-          h: 'Chi la riceve',
+          h: 'Chi riceve i dati',
           p: [
-            'Chi ospita il modulo (Netlify) conserva le iscrizioni per noi e agisce per nostro conto. Netlify è una società statunitense, quindi i tuoi dati possono essere trattati fuori dall’UE. Non vendiamo la tua email e non la diamo a nessun altro.',
-            'Se in futuro useremo un servizio di posta per scriverti, lo indicheremo prima su questa pagina.',
+            'Netlify, Inc. (USA) ospita questo sito e conserva le iscrizioni per noi. Agisce per nostro conto, come responsabile del trattamento, in base al suo accordo sul trattamento dei dati. Netlify controlla ogni iscrizione contro lo spam con Akismet, un servizio di Automattic, Inc. (USA). Vedi le pagine privacy di <a href="https://www.netlify.com/privacy/" rel="noopener">Netlify</a> e di <a href="https://automattic.com/privacy/" rel="noopener">Automattic</a>.',
+            'Non vendiamo i tuoi dati e non li diamo a nessun altro. Se in futuro useremo un servizio di posta per scriverti, lo indicheremo prima su questa pagina.',
           ],
         },
         {
-          h: 'Per quanto la conserviamo',
-          p: [`Finché non ti abbiamo avvisato che ${NAME} è aperto, o finché non ci chiedi di cancellarla. Se ${NAME} non è ancora aperto 12 mesi dopo la tua iscrizione, cancelliamo la tua email.`],
+          h: 'Dati fuori dall’UE',
+          p: ['Netlify e Akismet hanno sede negli USA, quindi i tuoi dati vengono trattati anche lì. Netlify, Inc. dichiara di aderire all’EU-U.S. Data Privacy Framework, che la Commissione europea ha riconosciuto adeguato (decisione del 10 luglio 2023), e che il suo accordo sul trattamento dei dati include le clausole contrattuali standard dell’UE. Puoi chiederci i dettagli di queste garanzie.'],
+        },
+        {
+          h: 'Per quanto li conserviamo',
+          p: [
+            `L’iscrizione: finché non ti abbiamo avvisato che ${NAME} è aperto, o finché non ritiri il consenso o ci chiedi di cancellarla, e mai oltre 12 mesi dalla tua iscrizione. Poi la cancelliamo da Netlify, lista dello spam compresa, e da ogni copia che conserviamo.`,
+            'Dati tecnici: Netlify conserva i log dei suoi server secondo le sue regole. Noi non li scarichiamo e non li conserviamo.',
+          ],
+        },
+        {
+          h: 'Ritirare il consenso',
+          p: [`Puoi ritirare il consenso in ogni momento scrivendo a ${mail}. Cancelliamo la tua iscrizione (email, ruolo e codici) e non ti scriviamo. Se degli amici si sono iscritti con il tuo link, le loro iscrizioni restano, ma il tuo codice non porta più a te. Ritirare il consenso non rende illecito quello che abbiamo fatto prima.`],
         },
         {
           h: 'I tuoi diritti',
-          p: [
-            `Puoi chiederci di vedere, correggere o cancellare i tuoi dati, di limitarne l’uso o di riceverne una copia. Scrivi a ${mail}. Puoi anche presentare reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" rel="noopener">garanteprivacy.it</a>).`,
-          ],
+          p: [`In base al GDPR puoi chiederci di vedere i tuoi dati e averne una copia, correggerli, cancellarli, limitarne l’uso o riceverli in un formato comune per portarli altrove. Puoi anche opporti all’uso dei dati tecnici. Scrivi a ${mail}: ti rispondiamo entro un mese. Se pensi che trattiamo i tuoi dati in modo scorretto, puoi presentare reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" rel="noopener">garanteprivacy.it</a>) o all’autorità del Paese UE in cui vivi o lavori.`],
         },
         {
-          h: 'Cookie e tracciamento',
-          p: ['Questo sito non imposta cookie. Non ha analytics, pixel di tracciamento né pubblicità. Non carica niente da altri siti: i font arrivano da questo sito.'],
+          h: 'Cookie',
+          p: [
+            'Questo sito non usa cookie né tecnologie simili, come il local storage o i pixel di tracciamento. Non ha analytics né pubblicità. Visto che non ci sono cookie, non c’è nessun banner.',
+            'Font, immagini e video sono file di questo sito: aprire una pagina non manda niente ad altre aziende. La tua richiesta arriva solo a Netlify, che ospita il sito.',
+            'Il quiz funziona nel tuo browser. Le risposte non vengono salvate né inviate, e spariscono quando ricarichi la pagina. Il link di un risultato condiviso dice solo quale risultato hai avuto (per esempio ?r=video). I pulsanti di condivisione aprono il menu di condivisione del telefono o copiano il link. Non vediamo a chi lo mandi: vediamo solo le iscrizioni arrivate dal tuo link.',
+            'I link a Instagram e al sito del Garante ti portano su quei siti, dove valgono le loro regole.',
+            'Se un giorno aggiungeremo cookie o analytics, aggiorneremo prima questa pagina e ti chiederemo il consenso dove la legge lo richiede.',
+          ],
         },
-        { h: 'Età', p: [`${NAME} è per persone dai 18 anni in su. Se hai meno di 18 anni, per favore non usare il modulo.`] },
-        { h: 'Modifiche', p: ['Se questa pagina cambia, aggiorniamo la data in alto.'] },
-        { h: `Chi gestisce ${NAME}`, p: [`${NAME} è sviluppato e gestito da ${OWNER} (Italia), titolare del trattamento. Contatto: ${mail}.`] },
+        { h: 'Età', p: [`${NAME} è per persone dai 18 anni in su. Se hai meno di 18 anni, per favore non usare il modulo. Se scopriamo che si è iscritto qualcuno con meno di 18 anni, cancelliamo l’iscrizione.`] },
+        { h: 'Modifiche', p: ['Se questa pagina cambia, aggiorniamo la data in alto. Non useremo i tuoi dati per niente di nuovo senza chiedertelo prima.'] },
       ],
     },
     terms: {
@@ -411,6 +431,7 @@ export const it: Copy = {
         { h: 'Nessuna garanzia', p: [`Non garantiamo quando ${NAME} aprirà, cosa conterrà o cosa otterrai. Non promettiamo che qualcuno ti contatti, ti scelga o ti paghi. Questo sito è offerto così com’è.`] },
         { h: 'Esempi', p: ['Le schermate e i testi segnati come Esempio sono campioni. Non sono utenti, aziende, progetti o risultati reali.'] },
         { h: 'La tua email', p: ['Se ti iscrivi, usiamo la tua email solo come descrive la pagina Privacy.'] },
+        { h: 'Condividere il tuo link', p: ['Chi porta degli amici viene invitato prima. È l’unico vantaggio: niente premi né pagamenti, e possiamo cambiarlo o fermarlo.'] },
         { h: 'Legge applicabile', p: ['A questi termini si applica la legge italiana. Questo non toglie i diritti che hai come consumatore secondo la legge del tuo Paese.'] },
         { h: 'Modifiche', p: ['Se questi termini cambiano, aggiorniamo la data in alto.'] },
         { h: 'Contatti', p: [`Domande: ${mail}.`] },

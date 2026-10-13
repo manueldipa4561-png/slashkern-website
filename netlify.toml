@@ -4,3 +4,23 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Security headers for every page. The site loads nothing from other websites, so the CSP is strict:
+# scripts and styles come from this site only (Astro is set not to inline them), style attributes are allowed
+# because the layout uses a few, and nothing may frame the site. Never add web-share or clipboard-write to
+# Permissions-Policy: the share buttons use both.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    Content-Security-Policy = "default-src 'none'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
+
+# Built files have a hash in their name: cache them for a year.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -57,7 +57,7 @@ const dark = false; // one light theme for the whole site
       <slot />
     </main>
     <Footer copy={copy} />
-    <script is:inline>
+    <script>
       // Slash looks toward the pointer (eyes only, a few pixels). Pointer devices only, never with reduced motion.
       (function () {
         if (!window.matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) return;
@@ -79,7 +79,7 @@ const dark = false; // one light theme for the whole site
         }, { passive: true });
       })();
     </script>
-    <script is:inline>
+    <script>
       // Share buttons: the phone's share sheet where there is one, otherwise copy the link.
       document.addEventListener('click', function (e) {
         var b = e.target.closest && e.target.closest('[data-share]');
@@ -105,7 +105,7 @@ const dark = false; // one light theme for the whole site
         }
       });
     </script>
-    <script is:inline>
+    <script>
       // Videos play only while visible. People who prefer less motion get a still poster and the play button.
       (function () {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

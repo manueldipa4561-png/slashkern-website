@@ -31,7 +31,7 @@ const data = {
     <div class="quiz__stage" data-stage></div>
   </div>
 </section>
-<script type="application/json" id="quiz-data" set:html={JSON.stringify(data)} />
+<script type="application/json" id="quiz-data" set:html={JSON.stringify(data).replace(/</g, '\\u003c')} />
 
 <script>
   type Answer = [string, string];
@@ -60,7 +60,7 @@ const data = {
 
     startBtn.hidden = false;
     const fromFriend = new URLSearchParams(location.search).get('r');
-    if (fromFriend && d.results[fromFriend]) {
+    if (fromFriend && Object.prototype.hasOwnProperty.call(d.results, fromFriend)) {
       friend.textContent = fmt(d.t.friend, { name: d.results[fromFriend].name });
       friend.hidden = false;
     }
