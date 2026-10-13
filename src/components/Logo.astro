@@ -12,5 +12,5 @@ const [body, eyes] = tone === 'white' ? ['#F5F2EA', '#0E1B3D'] : ['#0E1B3D', '#D
     <path d={geo.body} fill={body} />
     <path d={geo.eyes.neutral} fill={eyes} />
   </svg>
-  {!markOnly && <span class="logo__word" aria-hidden="true">{WORDMARK}</span>}
+  {!markOnly && <span class="logo__word" aria-hidden="true">{WORDMARK.slice(0, -2)}<span class="logo__rn">r</span>n</span>}
 </span>
