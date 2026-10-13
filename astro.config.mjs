@@ -11,6 +11,11 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'en', locales: { en: 'en', it: 'it' } },
+      namespaces: { news: false, image: false, video: false },
+      serialize: (item) => {
+        const en = item.links?.find((l) => l.lang === 'en');
+        return en ? { ...item, links: [...item.links, { url: en.url, lang: 'x-default' }] } : item;
+      },
     }),
   ],
 });

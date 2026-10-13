@@ -17,15 +17,15 @@ export const it: Copy = {
     home: {
       title: `${NAME}: nessuna esperienza? Fattela.`,
       description:
-        'Fai un breve progetto con un assistente AI che ti fa una domanda alla volta. Tienilo sulla tua pagina e, quando la piattaforma apre, mostralo alle aziende. Accesso anticipato.',
+        'Fai un breve progetto con un assistente AI che ti fa una domanda alla volta. Tienilo sulla tua pagina e, quando la piattaforma apre, mostralo alle aziende.',
     },
     creators: {
-      title: `Per i creator · ${NAME}`,
+      title: `Per i creator: fai un progetto e tienilo · ${NAME}`,
       description:
-        'Fai un breve progetto con un assistente AI che ti fa una domanda alla volta, tienilo sulla tua pagina e, quando la piattaforma apre, mostralo alle aziende. Gratis per i creator. Accesso anticipato.',
+        'Scegli un breve progetto, fallo con un assistente AI e tienilo sulla tua pagina. Le aziende lo vedranno quando la piattaforma apre. Gratis per i creator.',
     },
     companies: {
-      title: `Per le aziende · ${NAME}`,
+      title: `Per le aziende: trova creator dai loro progetti · ${NAME}`,
       description:
         'Pubblica un brief breve, guarda i progetti finiti dai creator e contattali tramite la piattaforma. Accesso anticipato.',
     },
@@ -124,8 +124,8 @@ export const it: Copy = {
   },
 
   demo: {
-    note: 'La schermata iniziale dell’app.',
-    alt: 'La schermata iniziale dell’app su un telefono.',
+    note: 'L’app, con contenuti di esempio.',
+    alt: 'L’app su un telefono: la scheda di un progetto breve e la strada verso la tua pagina.',
     play: 'Avvia il video',
     pause: 'Metti in pausa il video',
   },

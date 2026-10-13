@@ -4,19 +4,36 @@ import '@fontsource-variable/geist-mono/wght.css';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_URL, NAME } from '../site';
+import { SITE_URL, NAME, INSTAGRAM_URL } from '../site';
 import type { Copy } from '../i18n/en';
 import { hrefFor } from '../i18n';
 
-interface Props { copy: Copy; page: 'home' | 'creators' | 'companies' | 'quiz' | 'privacy' | 'terms'; }
-const { copy, page } = Astro.props;
+interface Props {
+  copy: Copy;
+  page: 'home' | 'creators' | 'companies' | 'quiz' | 'privacy' | 'terms';
+  noindex?: boolean; // the 404 page only: robots noindex, no canonical, no hreflang, no JSON-LD
+  title?: string; // the 404 page only: replaces the title of the page
+}
+const { copy, page, noindex = false, title } = Astro.props;
 const lang = copy.lang;
 const other = lang === 'it' ? 'en' : 'it';
-const meta = copy.meta[page];
+const meta = { ...copy.meta[page], ...(title ? { title } : {}) };
 const slug = page === 'home' ? undefined : copy.paths[page];
 const abs = (l: string) => SITE_URL + hrefFor(l, slug);
-const ogImage = `${SITE_URL}/og.png`;
+const ogImage = `${SITE_URL}/${lang === 'it' ? 'og-it' : 'og'}.png`; // each language has its own share image
+const ogAlt = `${NAME}: ${copy.slogan}`;
 const dark = false; // one light theme for the whole site
+
+// Organization + WebSite on the two home pages only: that is where search engines read the site name and logo.
+const homeUrl = SITE_URL + hrefFor(lang);
+const orgId = `${SITE_URL}/#organization`;
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': orgId, name: NAME, url: `${SITE_URL}/`, logo: { '@type': 'ImageObject', url: `${SITE_URL}/icon-512.png`, width: 512, height: 512 }, sameAs: [INSTAGRAM_URL] },
+    { '@type': 'WebSite', '@id': `${homeUrl}#website`, name: NAME, url: homeUrl, inLanguage: lang, publisher: { '@id': orgId } },
+  ],
+}).replace(/</g, '\\u003c');
 ---
 <!doctype html>
 <html lang={lang}>
@@ -25,12 +42,21 @@ const dark = false; // one light theme for the whole site
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
-    <link rel="canonical" href={abs(lang)} />
-    <link rel="alternate" hreflang="en" href={abs('en')} />
-    <link rel="alternate" hreflang="it" href={abs('it')} />
-    <link rel="alternate" hreflang="x-default" href={abs('en')} />
+    {noindex ? (
+      <meta name="robots" content="noindex" />
+    ) : (
+      <>
+        <link rel="canonical" href={abs(lang)} />
+        <link rel="alternate" hreflang="en" href={abs('en')} />
+        <link rel="alternate" hreflang="it" href={abs('it')} />
+        <link rel="alternate" hreflang="x-default" href={abs('en')} />
+      </>
+    )}
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content={NAME} />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content={dark ? '#0e1b3d' : '#ffffff'} />
     <meta property="og:type" content="website" />
@@ -43,12 +69,14 @@ const dark = false; // one light theme for the whole site
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${NAME}: ${copy.slogan}`} />
+    <meta property="og:image:alt" content={ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={meta.title} />
     <meta name="twitter:description" content={meta.description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogAlt} />
     <meta name="generator" content={Astro.generator} />
+    {page === 'home' && !noindex && <script type="application/ld+json" set:html={jsonLd} />}
   </head>
   <body>
     <a class="skip" href="#main">{copy.skip}</a>

@@ -20,7 +20,7 @@ const hasVisual = Astro.slots.has('default');
   <div class="wrap hero__grid">
     <div class="hero__copy">
       <span class="chip">{chip}</span>
-      <h1>{before}{mark.split(' ').map((word) => <span class="hl">{word}</span>)}{after.split('\n').flatMap((line, i) => (i ? [<br />, line] : [line]))}</h1>
+      <h1>{before}{mark.split(' ').map((word, i) => <>{i > 0 && ' '}<span class="hl">{word}</span></>)}{after.split('\n').flatMap((line, i) => (i ? [<br />, line] : [line]))}</h1>
       <p class="hero__sub">{sub}</p>
       <div class="cta-row">
         <a class="btn btn--primary" href={primary.href}>{primary.label}</a>

@@ -24,3 +24,10 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# The Netlify address sends everyone to the real domain (the pages name slashkern.com as their canonical).
+[[redirects]]
+  from = "https://slashkern-website.netlify.app/*"
+  to = "https://slashkern.com/:splat"
+  status = 301
+  force = true

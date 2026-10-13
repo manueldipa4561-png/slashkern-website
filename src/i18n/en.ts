@@ -16,15 +16,15 @@ export const en = {
     home: {
       title: `${NAME}: no experience? Make some.`,
       description:
-        'Make a short project with an AI assistant that asks one question at a time. Keep it on your own page, and show it to companies when the platform opens. Early access.',
+        'Make a short project with an AI assistant that asks one question at a time. Keep it on your own page, and show it to companies when the platform opens.',
     },
     creators: {
-      title: `For creators · ${NAME}`,
+      title: `For creators: make a project and keep it · ${NAME}`,
       description:
-        'Make a short project with an AI assistant that asks one question at a time, keep it on your own page and show it to companies when the platform opens. Free for creators. Early access.',
+        'Pick a short project, make it with an AI assistant and keep it on your own page. Companies can see it when the platform opens. Free for creators.',
     },
     companies: {
-      title: `For companies · ${NAME}`,
+      title: `For companies: find creators by what they made · ${NAME}`,
       description:
         'Post a short brief, see the projects creators have finished and contact them through the platform. Early access.',
     },
@@ -123,8 +123,8 @@ export const en = {
   },
 
   demo: {
-    note: 'The opening screen of the app.',
-    alt: 'The opening screen of the app on a phone.',
+    note: 'The app, with sample content.',
+    alt: 'The app on a phone: a card for a short project and the way to your page.',
     play: 'Play video',
     pause: 'Pause video',
   },

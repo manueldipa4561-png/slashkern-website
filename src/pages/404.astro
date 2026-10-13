@@ -1,0 +1,23 @@
+---
+// Netlify serves dist/404.html with a real HTTP 404 for every unknown address. One bilingual page: Netlify cannot pick a language per path.
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Slash from '../components/Slash.astro';
+import { en } from '../i18n/en';
+import { NAME } from '../site';
+---
+<Base copy={en} page="home" noindex title={`Page not found · ${NAME}`}>
+  <Hero chip="404" before="This page is " mark="not here" after="." sub="The link may be old or mistyped. Start again from the home page." primary={{ label: 'Back to home', href: '/' }}>
+    <Slash mood="asking" size="clamp(11rem, 24vw, 18rem)" class="hero__slash" float look grounded />
+  </Hero>
+
+  <section class="section section--soft" lang="it" aria-labelledby="nf-it-title">
+    <div class="wrap">
+      <h2 id="nf-it-title">Pagina non trovata</h2>
+      <p class="lead lead--tight">Il link potrebbe essere vecchio o sbagliato. Ricomincia dalla pagina iniziale.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="/it/">Torna alla home</a>
+      </div>
+    </div>
+  </section>
+</Base>
