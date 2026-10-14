@@ -66,7 +66,7 @@ a:hover { text-decoration-thickness: 0.14em; }
 /* type */
 h2 {
   font: 650 clamp(2.75rem, 1.3rem + 5.2vw, 5.25rem)/0.98 var(--font-ui);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em; /* large display type reads looser, so it gets tighter tracking than body text */
   text-wrap: balance;
 }
 h2 em { font-style: normal; color: var(--accent); }
@@ -261,8 +261,9 @@ h3 { font: 650 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap
       --fill: var(--ink);
       background: linear-gradient(90deg, var(--fill) 44%, var(--mark) 56%) 100% 0 / 220% 100% no-repeat;
       -webkit-background-clip: text; background-clip: text; color: transparent;
-      animation: fill-line linear both; animation-timeline: view(); animation-range: entry 40% cover 45%;
+      animation: fill-line linear both; animation-range: entry 40% cover 45%;
     }
+    html .steps__title > span { animation-timeline: view(); } /* own rule, see the reveal note */
     .steps__title > span:has(em) { --fill: var(--accent); }
     .steps__title em { color: transparent; }
     @keyframes fill-line {
@@ -502,7 +503,7 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
 
 /* motion: feedback on every control, a calm hero entry, and a scroll-driven reveal where the browser supports it */
 .btn, .arrow-link, .ans, .share-btn { transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, box-shadow 0.2s; }
-.btn:active, .ans:active { transform: scale(0.98); }
+.btn:active, .ans:active { transform: scale(0.97); transition-duration: 0.1s; } /* feedback on press, not on release */
 .btn--primary:hover, .btn--accent:hover, .btn--white:hover { transform: translateY(-1px); }
 .arrow-link::after { display: inline-block; transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
 .arrow-link:hover::after { transform: translateX(3px); }
@@ -514,7 +515,9 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
   .hero__visual { animation-delay: 0.14s; }
   @keyframes enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   @supports (animation-timeline: view()) {
-    .section-head, .catch, .ex, .step, .band, .panel, .pay__rows > div, .profile, .feature { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+    .section-head, .catch, .ex, .step, .band, .panel, .pay__rows > div, .profile, .feature { animation: reveal linear both; animation-range: entry 0% entry 35%; }
+    /* the timeline sits in its own rule: the CSS minifier folds a same-rule animation-timeline into the shorthand, which Chrome rejects */
+    html :is(.section-head, .catch, .ex, .step, .band, .panel, .pay__rows > div, .profile, .feature) { animation-timeline: view(); }
     @keyframes reveal { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
   }
 }
@@ -603,3 +606,17 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
   input:not([type='checkbox'], [type='radio'], [type='submit'], [type='button']), textarea { cursor: text; }
   .btn[disabled] { cursor: wait; }
 }
+
+/* Apple-style chrome (apple-design skill): from tablet width the nav floats as a frosted layer the page scrolls under,
+   and a soft edge appears only once content is underneath it. Phones keep the plain two-row nav, which scrolls away. */
+@media (min-width: 48rem) {
+  .nav { position: sticky; top: 0; z-index: 50; background: rgb(255 255 255 / 0.74); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); }
+  [id] { scroll-margin-top: 5.5rem; }
+  .steps-wrap > h2 { top: 6rem; }
+  @supports (animation-timeline: scroll()) {
+    .nav { animation: nav-edge linear both; animation-range: 0 4rem; }
+    html .nav { animation-timeline: scroll(); } /* own rule, see the reveal note */
+    @keyframes nav-edge { from { box-shadow: 0 1px 0 rgb(14 27 61 / 0); } to { box-shadow: 0 1px 0 rgb(14 27 61 / 0.07), 0 8px 24px -16px rgb(14 27 61 / 0.18); } }
+  }
+}
+@media (min-width: 48rem) and (prefers-reduced-transparency: reduce) { .nav { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; } }
