@@ -1,19 +1,19 @@
 ---
-// One route file builds all twelve pages (6 pages x en/it). Copy lives in src/i18n.
+// One route file builds every page (6 pages x 7 languages). Copy lives in src/i18n.
 import Base from '../layouts/Base.astro';
 import Home from '../components/Home.astro';
 import Creators from '../components/Creators.astro';
 import Companies from '../components/Companies.astro';
 import Legal from '../components/Legal.astro';
 import Quiz from '../components/Quiz.astro';
-import { copyFor } from '../i18n';
+import { copyFor, LANGS } from '../i18n';
 
 export function getStaticPaths() {
   // getStaticPaths is hoisted: keep every value it needs inside it.
   const pages = ['home', 'creators', 'companies', 'quiz', 'privacy', 'terms'] as const;
-  return ['en', 'it'].flatMap((lang) =>
+  return LANGS.flatMap((lang) =>
     pages.map((page) => {
-      const parts = [lang === 'it' ? 'it' : '', page === 'home' ? '' : copyFor(lang).paths[page]].filter(Boolean);
+      const parts = [lang === 'en' ? '' : lang, page === 'home' ? '' : copyFor(lang).paths[page]].filter(Boolean);
       return { params: { slug: parts.join('/') || undefined }, props: { lang, page } };
     }),
   );

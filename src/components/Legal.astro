@@ -7,7 +7,7 @@ const { copy, doc } = Astro.props;
 const d = copy.legal[doc];
 const summary = doc === 'privacy' ? copy.legal.privacy.summary : null;
 const summaryTitle = doc === 'privacy' ? copy.legal.privacy.summaryTitle : '';
-const updated = LAST_UPDATED[copy.lang as 'en' | 'it'];
+const updated = LAST_UPDATED[copy.lang as keyof typeof LAST_UPDATED] ?? LAST_UPDATED.en;
 ---
 <article class="wrap legal">
   <h1>{d.title}</h1>

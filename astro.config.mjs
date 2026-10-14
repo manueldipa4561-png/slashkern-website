@@ -10,7 +10,7 @@ export default defineConfig({
   vite: { build: { assetsInlineLimit: 0 } }, // never inline scripts or CSS into the pages: keeps the CSP at script-src 'self'
   integrations: [
     sitemap({
-      i18n: { defaultLocale: 'en', locales: { en: 'en', it: 'it' } },
+      i18n: { defaultLocale: 'en', locales: { en: 'en', it: 'it', es: 'es', de: 'de', fr: 'fr', nl: 'nl', sv: 'sv' } },
       namespaces: { news: false, image: false, video: false },
       serialize: (item) => {
         const en = item.links?.find((l) => l.lang === 'en');

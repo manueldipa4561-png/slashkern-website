@@ -9,7 +9,7 @@ export const en = {
   skip: 'Skip to content',
   slogan: 'From zero to product.',
   example: 'Example',
-  switchTo: { label: 'Italiano', short: 'IT', aria: 'Leggi questo sito in italiano' },
+  langMenu: 'Language', // the label of the language menu (the language names are fixed, in src/i18n/index.ts)
   nav: { creators: 'For creators', companies: 'For companies', cta: 'Join the waitlist', aria: 'Main', home: `${NAME} home` },
 
   meta: {

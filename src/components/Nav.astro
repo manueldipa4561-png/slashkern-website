@@ -1,12 +1,12 @@
 ---
 import Logo from './Logo.astro';
 import type { Copy } from '../i18n/en';
-import { hrefFor, copyFor } from '../i18n';
-interface Props { copy: Copy; page: string; other: string; dark: boolean }
-const { copy, page, other, dark } = Astro.props;
+import { hrefFor, copyFor, LANGS, LANG_NAMES, type Lang } from '../i18n';
+interface Props { copy: Copy; page: string; dark: boolean }
+const { copy, page, dark } = Astro.props;
 const lang = copy.lang;
 const cur = (p: string) => (page === p ? 'page' : undefined);
-const otherSlug = page === 'home' ? undefined : copyFor(other).paths[page as keyof Copy['paths']];
+const slugFor = (l: string) => (page === 'home' ? undefined : copyFor(l).paths[page as keyof Copy['paths']]); // the same page in another language
 const ctaHref = dark ? `#${copy.final.id}` : `${hrefFor(lang)}#${copy.final.id}`;
 ---
 <header class:list={['nav', dark && 'nav--dark']}>
@@ -15,9 +15,12 @@ const ctaHref = dark ? `#${copy.final.id}` : `${hrefFor(lang)}#${copy.final.id}`
     <nav class="nav__links" aria-label={copy.nav.aria}>
       <a href={hrefFor(lang, copy.paths.creators)} aria-current={cur('creators')}>{copy.nav.creators}</a>
       <a href={hrefFor(lang, copy.paths.companies)} aria-current={cur('companies')}>{copy.nav.companies}</a>
-      <a class="nav__lang" href={hrefFor(other, otherSlug)} hreflang={other} lang={other} aria-label={copy.switchTo.aria}>
-        <span class="short" aria-hidden="true">{copy.switchTo.short}</span><span class="long">{copy.switchTo.label}</span>
-      </a>
+      <details class="nav__lang" data-lang-menu>
+        <summary aria-label={`${copy.langMenu}: ${LANG_NAMES[lang as Lang]}`}><span class="short" aria-hidden="true">{lang.toUpperCase()}</span><span class="long" aria-hidden="true">{LANG_NAMES[lang as Lang]}</span></summary>
+        <ul class="nav__langs">
+          {LANGS.map((l) => <li><a href={hrefFor(l, slugFor(l))} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{LANG_NAMES[l]}</a></li>)}
+        </ul>
+      </details>
     </nav>
     <a class="btn btn--primary btn--sm btn--go nav__cta" href={ctaHref}>{copy.nav.cta}</a>
   </div>

@@ -6,7 +6,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_URL, NAME, INSTAGRAM_URL } from '../site';
 import type { Copy } from '../i18n/en';
-import { hrefFor } from '../i18n';
+import { hrefFor, copyFor, LANGS } from '../i18n';
 
 interface Props {
   copy: Copy;
@@ -16,11 +16,10 @@ interface Props {
 }
 const { copy, page, noindex = false, title } = Astro.props;
 const lang = copy.lang;
-const other = lang === 'it' ? 'en' : 'it';
 const meta = { ...copy.meta[page], ...(title ? { title } : {}) };
 const slug = page === 'home' ? undefined : copy.paths[page];
 const abs = (l: string) => SITE_URL + hrefFor(l, slug);
-const ogImage = `${SITE_URL}/${lang === 'it' ? 'og-it' : 'og'}.png`; // each language has its own share image
+const ogImage = `${SITE_URL}/${lang === 'it' ? 'og-it' : 'og'}.png`; // English and Italian have their own share image; the other languages use the English one
 const ogAlt = `${NAME}: ${copy.slogan}`;
 const dark = false; // one light theme for the whole site
 
@@ -47,8 +46,7 @@ const jsonLd = JSON.stringify({
     ) : (
       <>
         <link rel="canonical" href={abs(lang)} />
-        <link rel="alternate" hreflang="en" href={abs('en')} />
-        <link rel="alternate" hreflang="it" href={abs('it')} />
+        {LANGS.map((l) => <link rel="alternate" hreflang={l} href={abs(l)} />)}
         <link rel="alternate" hreflang="x-default" href={abs('en')} />
       </>
     )}
@@ -65,7 +63,7 @@ const jsonLd = JSON.stringify({
     <meta property="og:description" content={meta.description} />
     <meta property="og:url" content={abs(lang)} />
     <meta property="og:locale" content={copy.ogLocale} />
-    <meta property="og:locale:alternate" content={other === 'it' ? 'it_IT' : 'en_US'} />
+    {LANGS.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={copyFor(l).ogLocale} />)}
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -80,11 +78,21 @@ const jsonLd = JSON.stringify({
   </head>
   <body>
     <a class="skip" href="#main">{copy.skip}</a>
-    <Nav copy={copy} page={page} other={other} dark={dark} />
+    <Nav copy={copy} page={page} dark={dark} />
     <main id="main" tabindex="-1">
       <slot />
     </main>
     <Footer copy={copy} />
+    <script>
+      // The language menu: a tap outside or Escape closes it (it opens and closes on its own without script).
+      document.addEventListener('click', function (e) {
+        document.querySelectorAll('[data-lang-menu][open]').forEach(function (d) { if (!d.contains(e.target)) d.removeAttribute('open'); });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        document.querySelectorAll('[data-lang-menu][open]').forEach(function (d) { d.removeAttribute('open'); var s = d.querySelector('summary'); if (s) s.focus(); });
+      });
+    </script>
     <script>
       // Slash looks toward the pointer (eyes only, a few pixels). Pointer devices only, never with reduced motion.
       (function () {

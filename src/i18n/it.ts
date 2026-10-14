@@ -10,7 +10,7 @@ export const it: Copy = {
   skip: 'Vai al contenuto',
   slogan: 'Da zero al prodotto.',
   example: 'Esempio',
-  switchTo: { label: 'English', short: 'EN', aria: 'Read this site in English' },
+  langMenu: 'Lingua',
   nav: { creators: 'Per i creator', companies: 'Per le aziende', cta: 'Mettiti in lista', aria: 'Principale', home: `${NAME}, home` },
 
   meta: {
