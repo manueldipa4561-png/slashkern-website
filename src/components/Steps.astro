@@ -2,15 +2,17 @@
 import Rich from './Rich.astro';
 interface Props { id?: string; title: string; steps: Array<{ n?: string; t: string; d: string }> }
 const { id, title, steps } = Astro.props;
-// one span per sentence, so each sentence can fill in step with its own row (styles: .steps__title)
+// How it works: a centred title, then one rounded card per step with a big light number (styles: .steps)
+// one span per sentence, so a line only breaks between sentences ("Make it. Keep it." never splits)
 const lines = title.split(/(?<=\.\*?)\s+/);
 ---
 <section class="section" id={id} aria-labelledby={id ? `${id}-title` : undefined}>
-  <div class="wrap steps-wrap">
-    <h2 id={id ? `${id}-title` : undefined} class:list={[lines.length > 1 && 'steps__title']}>{lines.map((line) => <span><Rich text={line} /></span>)}</h2>
+  <div class="wrap">
+    <h2 class="steps__head" id={id ? `${id}-title` : undefined}>{lines.map((line, i) => <>{i > 0 && ' '}<span class="steps__s"><Rich text={line} /></span></>)}</h2>
     <ol class="steps" data-count={steps.length}>
-      {steps.map((s) => (
+      {steps.map((s, i) => (
         <li class="step">
+          <span class="step__n" aria-hidden="true">{s.n ?? String(i + 1).padStart(2, '0')}</span>
           <h3>{s.t}</h3>
           <p>{s.d}</p>
         </li>

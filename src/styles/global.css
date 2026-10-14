@@ -1,18 +1,13 @@
 /* slashkern site. Light only. Tokens first, then base, layout, components. Mobile first, sizes in rem.
-   One light theme, navy system: navy ink, one accent (ultramarine #2d4bff, white text on it), key words in headings take the accent as text colour (no marker box). */
-/* Bricolage Grotesque (SIL Open Font License 1.1, (c) 2022 The Bricolage Grotesque Project Authors), Latin only: the display face of the
-   "Make it. Keep it. Get found." title. The browser fetches it only on pages that show that title. */
-@font-face {
-  font-family: 'Bricolage Grotesque'; font-style: normal; font-display: swap; font-weight: 200 800; font-stretch: 75% 100%;
-  src: url('/fonts/bricolage-grotesque-latin.woff2') format('woff2-variations');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+   One light theme, navy system: navy ink, one accent (ultramarine #2d4bff, white text on it, buttons and the hero's key words).
+   Calm display type (after cluely.com and sideshift.app, in our colours): medium weight, the second half of a heading in a soft grey. */
 :root {
   color-scheme: light;
   --bg: #ffffff;
   --soft: #f3f6ff;
   --ink: #0e1b3d;
   --muted: #56607a;
+  --quiet: #7a849c; /* the grey half of a heading */
   --line: #e1e6f0;
   --line-strong: #8a93a8; /* 3:1 on white, for input and button outlines */
   --accent: #2d4bff; /* the one brand accent: fills with white text, never text on navy */
@@ -66,18 +61,19 @@ a:hover { text-decoration-thickness: 0.14em; }
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
 @media (min-width: 48rem) { :root { --gutter: 1.5rem; } }
 .section { padding-block: clamp(3.5rem, 2rem + 6vw, 8rem); }
-.section--soft { background: var(--soft); }
-.section-head { max-width: 46rem; margin-bottom: clamp(2rem, 1.25rem + 2.5vw, 3.5rem); }
+.section--soft { background: linear-gradient(180deg, transparent, var(--soft) 14%, var(--soft) 86%, transparent); } /* fades in and out: no hard band edges */
+.section-head { max-width: 46rem; margin: 0 auto clamp(2.5rem, 1.5rem + 3vw, 4.5rem); text-align: center; }
+.section-head .lead { margin-inline: auto; }
 [id] { scroll-margin-top: 1.5rem; }
 
 /* type */
 h2 {
-  font: 650 clamp(2.75rem, 1.3rem + 5.2vw, 5.25rem)/0.98 var(--font-ui);
+  font: 560 clamp(2.5rem, 1.3rem + 4.4vw, 4.5rem)/1.02 var(--font-ui);
   letter-spacing: -0.035em; /* large display type reads looser, so it gets tighter tracking than body text */
   text-wrap: balance;
 }
-h2 em { font-style: normal; color: var(--accent); }
-h3 { font: 650 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap: balance; }
+h2 em { font-style: normal; color: var(--quiet); } /* two-tone: the second half steps back (3.9:1, large text) */
+h3 { font: 600 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap: balance; }
 .lead { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.3125rem); line-height: 1.5; color: var(--muted); text-wrap: pretty; }
 .lead--tight { margin-top: 1.25rem; }
 .eyebrow { display: block; margin-bottom: 1.25rem; font: 500 0.8125rem/1.2 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
@@ -193,6 +189,19 @@ h3 { font: 650 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap
   .hero--xl { padding-bottom: 0; }
   .hero--xl .demo figcaption { margin-bottom: 1.5rem; }
 }
+/* home: one centred column (headline, line, button), the phone below it, a soft sky behind: light at the top, a glow under the phone */
+.hero--xl { padding-top: clamp(2.5rem, 1.5rem + 5vw, 6rem); }
+.hero--xl::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(55% 38% at 50% 68%, rgb(45 75 255 / 0.15), transparent 70%), linear-gradient(180deg, #eaf0ff 0%, #f6f8ff 38%, #fff 72%);
+  -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent); /* no edge where the hero ends */
+}
+.hero--xl .hero__grid { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+.hero--xl .hero__copy { justify-items: center; }
+.hero--xl h1 { max-width: 15ch; font-size: clamp(2.875rem, 1.2rem + 5.4vw, 5rem); font-weight: 600; line-height: 1.02; letter-spacing: -0.05em; }
+.hero--xl .hero__sub { margin-inline: auto; }
+.hero--xl .cta-row { justify-content: center; }
+.hero--xl .hero__visual { width: 100%; }
 
 /* product cards (HTML/CSS mocks) */
 .cards { display: grid; gap: 1rem; text-align: left; }
@@ -253,8 +262,9 @@ h3 { font: 650 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap
 @media (min-width: 40rem) { .cards--single { grid-template-columns: 1fr; } }
 
 /* the catch: one big sentence, one calm paragraph */
-.catch h2 { max-width: 17ch; font-size: clamp(2.5rem, 1rem + 4.6vw, 4.5rem); }
-.catch .lead { max-width: 34rem; margin-top: 1.5rem; }
+.catch { text-align: center; }
+.catch h2 { max-width: 17ch; margin-inline: auto; }
+.catch .lead { max-width: 34rem; margin: 1.5rem auto 0; }
 
 /* a silent video of the app in a phone frame */
 .demo { margin: 0; display: grid; gap: 1rem; justify-items: center; }
@@ -268,48 +278,21 @@ h3 { font: 650 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap
 .vbtn[data-paused='true'] .i-play { display: inline; }
 .vbtn:focus-visible { outline-color: var(--ink); outline-offset: 3px; box-shadow: 0 0 0 3px #fff; }
 
-/* how it works: headline left, rows right */
-.steps-wrap { display: grid; gap: clamp(1.5rem, 1rem + 2vw, 3rem); align-items: start; }
-.steps { display: grid; }
-.step { padding-block: 1.5rem; border-top: 1px solid var(--line-strong); }
-.step:last-child { border-bottom: 1px solid var(--line-strong); }
-.step h3 { font: 650 clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem)/1.1 var(--font-ui); letter-spacing: -0.035em; }
+/* how it works: a centred title, then one rounded card per step with a big light number; the first card is blue */
+.steps__head { max-width: 26ch; margin: 0 auto clamp(2.5rem, 1.5rem + 3vw, 4.5rem); text-align: center; }
+.steps { display: grid; gap: 1rem; padding: 0; list-style: none; }
+.step {
+  display: flex; flex-direction: column; min-height: 17rem; padding: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  border-radius: 1.75rem; background: linear-gradient(165deg, #eef2ff, #f8faff 70%); box-shadow: inset 0 0 0 1px rgb(14 27 61 / 0.05);
+}
+.step:first-child { background: linear-gradient(160deg, #3552ff, #2d4bff 55%, #2440e6); color: #fff; box-shadow: 0 24px 48px -28px rgb(45 75 255 / 0.7); }
+.step__n { font: 300 clamp(3rem, 2.2rem + 2.4vw, 4.25rem)/1 var(--font-ui); letter-spacing: -0.05em; color: var(--quiet); }
+.step:first-child .step__n { color: rgb(255 255 255 / 0.78); }
+.step h3 { margin-top: 2.5rem; font: 600 clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem)/1.12 var(--font-ui); letter-spacing: -0.03em; }
 .step p { max-width: 30rem; margin-top: 0.625rem; color: var(--muted); }
-@media (min-width: 56rem) {
-  .steps-wrap { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 4rem; }
-  .steps-wrap > h2 { position: sticky; top: 2rem; }
-}
-/* the steps title: one sentence per line; with scroll-driven animation each line fills from ice to ink, left to right,
-   as its own row passes (desktop, sticky title) or as the line itself scrolls in (phones). The blue phrase fills blue. */
-.steps__title > span { display: block; }
-.steps__title { font-family: 'Bricolage Grotesque', var(--font-ui); font-weight: 800; font-stretch: 88%; font-optical-sizing: auto; letter-spacing: -0.035em; line-height: 0.96; }
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) and (timeline-scope: --a) {
-    .steps__title > span {
-      --fill: var(--ink);
-      background: linear-gradient(90deg, var(--fill) 44%, var(--mark) 56%) 100% 0 / 220% 100% no-repeat;
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      animation: fill-line linear both; animation-range: entry 40% cover 45%;
-    }
-    html .steps__title > span { animation-timeline: view(); } /* own rule, see the reveal note */
-    .steps__title > span:has(em) { --fill: var(--accent); }
-    .steps__title em { color: transparent; }
-    @keyframes fill-line {
-      from { background-position: 100% 0; transform: translateX(-0.18em); }
-      to { background-position: 0 0; transform: none; }
-    }
-    @media (min-width: 56rem) {
-      .steps-wrap:has(.steps__title) { timeline-scope: --row-1, --row-2, --row-3; }
-      .steps-wrap:has(.steps__title) .step:nth-child(1) { view-timeline: --row-1; }
-      .steps-wrap:has(.steps__title) .step:nth-child(2) { view-timeline: --row-2; }
-      .steps-wrap:has(.steps__title) .step:nth-child(3) { view-timeline: --row-3; }
-      .steps__title > span { animation-range: entry 0% cover 55%; }
-      .steps__title > span:nth-child(1) { animation-timeline: --row-1; }
-      .steps__title > span:nth-child(2) { animation-timeline: --row-2; }
-      .steps__title > span:nth-child(3) { animation-timeline: --row-3; }
-    }
-  }
-}
+.step:first-child p { color: rgb(255 255 255 / 0.9); }
+.steps__s { display: inline-block; } /* a sentence stays on one line */
+@media (min-width: 48rem) { .steps { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); } }
 
 /* how getting paid will work */
 .pay { display: grid; gap: 2.5rem; }
@@ -323,8 +306,8 @@ h3 { font: 650 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap
 /* creators and companies blocks */
 .split { display: grid; gap: 1rem; }
 @media (min-width: 56rem) { .split { grid-template-columns: repeat(2, 1fr); } }
-.panel { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(1.5rem, 1rem + 2vw, 2.75rem); background: var(--soft); border-radius: var(--radius); }
-.panel h2 { font-size: clamp(2.5rem, 1.6rem + 3vw, 4rem); }
+.panel { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(1.5rem, 1rem + 2vw, 2.75rem); background: linear-gradient(165deg, #eef2ff, #f8faff 70%); border-radius: 1.75rem; box-shadow: inset 0 0 0 1px rgb(14 27 61 / 0.05); }
+.panel h2 { font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3.25rem); }
 .panel .lead { margin-top: 1.25rem; }
 .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
 .ticks { display: grid; gap: 0.625rem; margin-top: 1.5rem; font-weight: 600; }
@@ -470,7 +453,8 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
 
 /* share + quiz */
 .section--tight { padding-block: clamp(1.5rem, 1rem + 2vw, 3rem); }
-.band { padding: clamp(1.5rem, 1rem + 2.5vw, 2.75rem); background: var(--accent); color: #fff; border-radius: var(--radius); }
+.band { padding: clamp(1.75rem, 1rem + 3vw, 3.5rem); background: linear-gradient(140deg, #3552ff, #2d4bff 50%, #2440e6); color: #fff; border-radius: 1.75rem; box-shadow: 0 30px 60px -36px rgb(45 75 255 / 0.8); }
+.band h2 em { color: rgb(255 255 255 / 0.75); }
 .band h2 { font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem); }
 .band__row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; margin-top: 0.75rem; } /* the quiz button sits right after the sentence */
 .band p { font-weight: 600; }
@@ -641,7 +625,6 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
 @media (min-width: 48rem) {
   .nav { position: sticky; top: 0; z-index: 50; background: rgb(255 255 255 / 0.74); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); }
   [id] { scroll-margin-top: 5.5rem; }
-  .steps-wrap > h2 { top: 6rem; }
   @supports (animation-timeline: scroll()) {
     .nav { animation: nav-edge linear both; animation-range: 0 4rem; }
     html .nav { animation-timeline: scroll(); } /* own rule, see the reveal note */
