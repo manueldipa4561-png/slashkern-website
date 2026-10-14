@@ -138,7 +138,6 @@ export const sv: Copy = {
   },
 
   demo: {
-    note: 'Appen när den öppnas.',
     alt: 'Appen slashkern öppnas: Slash, pekaren med ögon, tittar sig omkring och landar bredvid namnet.',
     play: 'Spela upp videon',
     pause: 'Pausa videon',

@@ -138,7 +138,6 @@ export const de: Copy = {
   },
 
   demo: {
-    note: 'Die App beim Öffnen.',
     alt: 'Die slashkern-App öffnet sich: Slash, der Zeiger mit Augen, sieht sich um und bleibt neben dem Namen stehen.',
     play: 'Video abspielen',
     pause: 'Video pausieren',

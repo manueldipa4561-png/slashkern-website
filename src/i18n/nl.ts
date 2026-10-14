@@ -138,7 +138,6 @@ export const nl: Copy = {
   },
 
   demo: {
-    note: 'De app zoals hij opent.',
     alt: 'De slashkern-app gaat open: Slash, de cursor met ogen, kijkt rond en blijft naast de naam staan.',
     play: 'Video afspelen',
     pause: 'Video pauzeren',

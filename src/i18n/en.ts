@@ -138,7 +138,6 @@ export const en = {
   },
 
   demo: {
-    note: 'The app as it opens.',
     alt: 'The slashkern app opening: Slash, the pointer with eyes, looks around and settles beside the name.',
     play: 'Play video',
     pause: 'Pause video',

@@ -209,11 +209,9 @@ details.nav__lang { position: relative; display: block; min-height: 0; min-width
 @media (min-width: 56rem) {
   .hero__grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
   .hero--lg .hero__grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.6fr); }
-  .hero--xl { padding-bottom: 0; }
-  .hero--xl .demo figcaption { margin-bottom: 1.5rem; }
 }
 /* home: one centred column (headline, line, button), the phone below it, a soft sky behind: light at the top, a glow under the phone */
-.hero--xl { padding-top: clamp(2.5rem, 1.5rem + 5vw, 6rem); }
+.hero--xl { padding-top: clamp(2.5rem, 1.5rem + 5vw, 6rem); padding-bottom: 5.5rem; } /* room under the phone (its shadow reaches about 4rem), so the hero's edge never cuts the shadow in a straight line */
 .hero--xl::before {
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(55% 38% at 50% 68%, rgb(45 75 255 / 0.15), transparent 70%), linear-gradient(180deg, #eaf0ff 0%, #f6f8ff 38%, #fff 72%);
@@ -293,7 +291,6 @@ details.nav__lang { position: relative; display: block; min-height: 0; min-width
 .demo { margin: 0; display: grid; gap: 1rem; justify-items: center; }
 .phone { position: relative; width: min(100%, 18rem); padding: 0.5rem; background: var(--ink); border-radius: 2.5rem; box-shadow: 0 30px 60px -24px rgb(14 27 61 / 0.45), 0 2px 6px rgb(14 27 61 / 0.12); }
 .phone video { display: block; width: 100%; aspect-ratio: 540 / 1168; object-fit: cover; border-radius: 2rem; background: #fff; }
-.demo figcaption { max-width: 18rem; font-size: 0.875rem; line-height: 1.4; color: var(--muted); text-align: center; }
 .vbtn { position: absolute; right: 1rem; bottom: 1rem; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0; border: 0; border-radius: 50%; background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgb(14 27 61 / 0.25); }
 .vbtn svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 .vbtn .i-play { display: none; fill: currentColor; stroke-width: 1; }
