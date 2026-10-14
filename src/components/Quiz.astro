@@ -8,12 +8,23 @@ import geo from '../slash.json';
 interface Props { copy: Copy }
 const { copy } = Astro.props;
 const q = copy.quiz;
+// each result wears the colour of its card in the Examples section: tint = card ground, strong = Slash's eyes and the chips
+const HUES = {
+  video: { tint: '#d2ebff', strong: '#5bb8ff' },
+  poster: { tint: '#fff0c2', strong: '#ffc933' },
+  posts: { tint: '#ffd9ec', strong: '#ff8ac4' },
+  web: { tint: '#c6f3e4', strong: '#2fd3a3' },
+  listing: { tint: '#e4dcff', strong: '#a58bff' },
+  music: { tint: '#ffdcd4', strong: '#ff6a55' },
+  prompt: { tint: '#dce6ff', strong: '#2d4bff' },
+};
 const data = {
   quizPath: hrefFor(copy.lang, copy.paths.quiz),
   joinHref: `${hrefFor(copy.lang)}#${copy.final.id}`,
   brand: NAME,
-  mark: { viewBox: geo.viewBox, body: geo.body, eyes: geo.eyes.neutral },
-  t: { progress: q.progress, friend: q.friend, youAre: q.youAre, cardTop: q.cardTop, fun: q.fun, share: q.share, saved: q.saved, copy: q.copy, copied: q.copied, again: q.again, join: q.join, shareText: q.shareText },
+  mark: { viewBox: geo.viewBox, body: geo.body, eyes: geo.eyes.happy },
+  hues: HUES,
+  t: { progress: q.progress, friend: q.friend, youAre: q.youAre, cardTop: q.cardTop, fun: q.fun, share: q.share, saved: q.saved, copy: q.copy, copied: q.copied, again: q.again, join: q.join, shareText: q.shareText, firstLabel: q.firstLabel, also: q.also },
   questions: q.questions,
   results: q.results,
 };
@@ -41,6 +52,7 @@ const data = {
     questions: Array<{ q: string; a: Answer[] }>;
     results: Record<string, { name: string; line: string; first: string }>;
     mark: { viewBox: string; body: string; eyes: string };
+    hues: Record<string, { tint: string; strong: string }>;
   };
   const raw = document.getElementById('quiz-data');
   const stage = document.querySelector<HTMLElement>('[data-stage]');
@@ -66,12 +78,12 @@ const data = {
     }
 
     const scores: Record<string, number> = {};
-    const firstSeen: Record<string, number> = {};
+    const lastSeen: Record<string, number> = {};
     let step = 0;
 
     const start = () => {
       step = 0;
-      for (const k of keys) { scores[k] = 0; delete firstSeen[k]; }
+      for (const k of keys) { scores[k] = 0; delete lastSeen[k]; }
       intro.hidden = true;
       renderQuestion();
     };
@@ -89,7 +101,7 @@ const data = {
         b.type = 'button';
         b.addEventListener('click', () => {
           scores[key] = (scores[key] ?? 0) + 1;
-          if (!(key in firstSeen)) firstSeen[key] = step;
+          lastSeen[key] = step;
           step += 1;
           if (step < d.questions.length) renderQuestion();
           else renderResult();
@@ -104,19 +116,45 @@ const data = {
       box.scrollIntoView({ block: 'nearest' });
     }
 
-    const winner = () => [...keys].sort((a, b) => (scores[b] - scores[a]) || ((firstSeen[a] ?? 9) - (firstSeen[b] ?? 9)))[0];
+    // most picks wins; a tie goes to the latest pick (the last question asks what you would make this weekend)
+    const ranked = () => [...keys].sort((a, b) => (scores[b] - scores[a]) || ((lastSeen[b] ?? -1) - (lastSeen[a] ?? -1)));
+
+    const SVG = 'http://www.w3.org/2000/svg';
+    function slashSvg(cls: string) {
+      const svg = document.createElementNS(SVG, 'svg');
+      svg.setAttribute('viewBox', d.mark.viewBox);
+      svg.setAttribute('class', cls);
+      svg.setAttribute('aria-hidden', 'true');
+      for (const [dd, c] of [[d.mark.body, 'rcard__body'], [d.mark.eyes, 'rcard__eyes']]) {
+        const path = document.createElementNS(SVG, 'path');
+        path.setAttribute('d', dd); path.setAttribute('class', c); svg.append(path);
+      }
+      return svg;
+    }
 
     function renderResult() {
-      const key = winner();
+      const order = ranked();
+      const key = order[0];
       const r = d.results[key];
+      const hue = d.hues[key];
+      const mix = order.slice(1).filter((k) => scores[k] > 0).map((k) => d.results[k].name);
       const link = `${location.origin}${d.quizPath}?r=${key}`;
       const text = fmt(d.t.shareText, { name: r.name });
-      const png = makeBlob(r.name, r.line, r.first); // render now so the share click can answer at once (iOS needs it)
+      const png = makeBlob(r, hue, mix); // render now so the share click can answer at once (iOS needs it)
       stage!.replaceChildren();
       const card = el('div', 'rcard');
-      const name = el('h2', 'rcard__name');
-      r.name.split(' ').forEach((w) => name.append(el('span', 'hl', w), ' '));
-      card.append(el('p', 'rcard__top', d.t.cardTop), el('p', 'rcard__you', d.t.youAre), name, el('p', 'rcard__line', r.line), el('p', 'rcard__first', r.first));
+      card.style.setProperty('--tint', hue.tint);
+      card.style.setProperty('--strong', hue.strong);
+      const first = el('div', 'rcard__first');
+      first.append(el('p', 'rcard__label', d.t.firstLabel), el('p', 'rcard__project', r.first));
+      card.append(slashSvg('rcard__slash'), el('p', 'rcard__top', d.t.cardTop), el('p', 'rcard__you', d.t.youAre), el('h2', 'rcard__name', r.name), el('p', 'rcard__line', r.line), first);
+      if (mix.length) {
+        const also = el('div', 'rcard__mix');
+        const chips = el('ul', 'rcard__chips');
+        mix.forEach((n) => chips.append(el('li', '', n)));
+        also.append(el('p', 'rcard__label', d.t.also), chips);
+        card.append(also);
+      }
       const actions = el('div', 'quiz__actions');
       const shareBtn = el('button', 'btn btn--primary', d.t.share);
       shareBtn.type = 'button';
@@ -158,23 +196,23 @@ const data = {
       });
     }
 
-    // The share image: 1080 x 1350, drawn with the site's own fonts.
-    async function makeBlob(name: string, line: string, first: string): Promise<Blob | null> {
+    // The share image: 1080 x 1350, the same card as on the page, drawn with the site's own fonts.
+    async function makeBlob(r: { name: string; line: string; first: string }, hue: { tint: string; strong: string }, mix: string[]): Promise<Blob | null> {
       try {
         await Promise.all([
-          document.fonts.load('700 120px "Geist Variable"'),
-          document.fonts.load('600 40px "Geist Variable"'),
+          document.fonts.load('650 120px "Geist Variable"'),
+          document.fonts.load('500 40px "Geist Variable"'),
           document.fonts.load('500 28px "Geist Mono Variable"'),
         ]);
-        const W = 1080, H = 1350, M = 80;
+        const W = 1080, H = 1350, M = 84, INK = '#0E1B3D';
         const c = document.createElement('canvas');
         c.width = W; c.height = H;
         const g = c.getContext('2d')!;
-        g.fillStyle = '#0E1B3D'; g.fillRect(0, 0, W, H);
-        // the mark, reversed for the navy ground: cream pointer, navy eyes
-        const [vx, vy, , vh] = d.mark.viewBox.split(' ').map(Number), ms = 110 / vh;
-        g.save(); g.translate(M, M - 10); g.scale(ms, ms); g.translate(-vx, -vy);
-        g.fillStyle = '#F5F2EA'; g.fill(new Path2D(d.mark.body)); g.fillStyle = '#0E1B3D'; g.fill(new Path2D(d.mark.eyes)); g.restore();
+        g.fillStyle = hue.tint; g.fillRect(0, 0, W, H);
+        // Slash, large, top right: navy pointer with the result's colour in its eyes
+        const [vx, vy, , vh] = d.mark.viewBox.split(' ').map(Number), ms = 330 / vh;
+        g.save(); g.translate(W - 330, 60); g.rotate(-0.12); g.scale(ms, ms); g.translate(-vx, -vy);
+        g.fillStyle = INK; g.fill(new Path2D(d.mark.body)); g.fillStyle = hue.strong; g.fill(new Path2D(d.mark.eyes)); g.restore();
 
         const wrap = (text: string, font: string, maxW: number) => {
           g.font = font;
@@ -183,35 +221,47 @@ const data = {
           if (cur) lines.push(cur);
           return lines;
         };
-        g.fillStyle = 'rgba(255,255,255,0.7)'; g.font = '500 30px "Geist Mono Variable", monospace';
-        g.fillText(d.t.cardTop.toUpperCase(), M, 300);
-        g.fillStyle = '#FFFFFF'; g.font = '650 70px "Geist Variable", sans-serif';
-        g.fillText(d.t.youAre, M, 400);
+        g.fillStyle = INK;
+        g.globalAlpha = 0.72; g.font = '500 28px "Geist Mono Variable", monospace';
+        for (const [i, ln] of wrap(d.t.cardTop.toUpperCase(), g.font, 560).entries()) g.fillText(ln, M, 130 + i * 40);
+        g.globalAlpha = 1; g.font = '600 64px "Geist Variable", sans-serif';
+        g.fillText(d.t.youAre, M, 440);
 
-        let fs = 190; let lines = wrap(name, `650 ${fs}px "Geist Variable", sans-serif`, W - 2 * M);
-        while (lines.length > 3 && fs > 110) { fs -= 20; lines = wrap(name, `650 ${fs}px "Geist Variable", sans-serif`, W - 2 * M); }
-        let y = 400 + fs * 1.02;
+        let fs = 168; let lines = wrap(r.name, `650 ${fs}px "Geist Variable", sans-serif`, W - 2 * M);
+        while (lines.length > 2 && fs > 104) { fs -= 16; lines = wrap(r.name, `650 ${fs}px "Geist Variable", sans-serif`, W - 2 * M); }
+        let y = 440 + fs * 1.0;
         g.font = `650 ${fs}px "Geist Variable", sans-serif`;
-        for (const ln of lines) {
-          let x = M;
-          for (const w of ln.split(' ')) {
-            const wd = g.measureText(w).width, pad = fs * 0.09;
-            g.fillStyle = '#DCE6FF'; g.fillRect(x, y - fs * 0.78, wd + 2 * pad, fs * 0.98);
-            g.fillStyle = '#0E1B3D'; g.fillText(w, x + pad, y);
-            x += wd + 2 * pad + fs * 0.12;
+        for (const [i, ln] of lines.entries()) { if (i) y += fs * 0.98; g.fillText(ln, M - 6, y); }
+        const lineFont = '500 46px "Geist Variable", sans-serif';
+        y += 96;
+        for (const ln of wrap(r.line, lineFont, W - 2 * M)) { g.font = lineFont; g.fillText(ln, M, y); y += 58; }
+
+        // the first project, on a white panel like a project card in the app
+        const projFont = '650 48px "Geist Variable", sans-serif';
+        const proj = wrap(r.first, projFont, W - 2 * M - 96);
+        // bottom up: footer, then the mix chips, then the panel; the panel never rises into the line above it
+        const chipsY = H - 230, ph = 120 + proj.length * 58, py = Math.max(y, (mix.length ? chipsY - 28 : H - 170) - ph);
+        g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(M, py, W - 2 * M, ph, 36); g.fill();
+        g.fillStyle = INK; g.globalAlpha = 0.7; g.font = '500 26px "Geist Mono Variable", monospace';
+        g.fillText(d.t.firstLabel.toUpperCase(), M + 48, py + 64);
+        g.globalAlpha = 1;
+        proj.forEach((ln, i) => { g.font = projFont; g.fillText(ln, M + 48, py + 122 + i * 58); });
+
+        if (mix.length) {
+          g.font = '600 30px "Geist Variable", sans-serif';
+          let x = M; const cy = chipsY;
+          for (const n of mix.slice(0, 3)) {
+            const w = g.measureText(n).width + 44;
+            if (x + w > W - M) break;
+            g.fillStyle = 'rgba(14,27,61,0.08)'; g.beginPath(); g.roundRect(x, cy, w, 56, 28); g.fill();
+            g.fillStyle = INK; g.fillText(n, x + 22, cy + 38); x += w + 12;
           }
-          y += fs * 1.04;
         }
-        g.fillStyle = '#FFFFFF';
-        const lineFont = '500 52px "Geist Variable", sans-serif';
-        let ly = y + 40;
-        for (const ln of wrap(line, lineFont, W - 2 * M)) { g.font = lineFont; g.fillText(ln, M, ly); ly += 66; }
-        g.fillStyle = '#DCE6FF'; g.font = '600 40px "Geist Variable", sans-serif';
-        g.fillText(first, M, Math.min(ly + 40, H - 210));
-        g.fillStyle = '#FFFFFF'; g.font = '800 58px "Geist Variable", sans-serif';
-        g.fillText(d.brand, M, H - 80);
-        g.fillStyle = 'rgba(255,255,255,0.6)'; g.font = '500 28px "Geist Mono Variable", monospace'; g.textAlign = 'right';
-        g.fillText(location.host, W - M, H - 86);
+        g.fillStyle = INK; g.font = '800 54px "Geist Variable", sans-serif';
+        g.fillText(d.brand, M, H - 74);
+        g.globalAlpha = 0.7; g.font = '500 28px "Geist Mono Variable", monospace'; g.textAlign = 'right';
+        g.fillText(location.host, W - M, H - 82);
+        g.globalAlpha = 1;
         return await new Promise<Blob | null>((res) => c.toBlob(res, 'image/png'));
       } catch { return null; }
     }
