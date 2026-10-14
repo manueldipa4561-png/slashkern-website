@@ -267,7 +267,7 @@ export const de: Copy = {
       { q: 'Ist das Betrug?', a: 'Nein. Creator zahlen nie, bisher bekommt noch niemand Geld ausgezahlt, und du entscheidest, was öffentlich wird. Wenn dich jemand bittet, für ein Projekt zu zahlen, sind wir das nicht. Sag uns Bescheid.' },
       { q: 'Was kann ich machen?', a: 'Sieben Arten von Projekten: Kurzvideos, Poster und Logos, Posts und Bildunterschriften, Websites und kleine Tools, Produktanzeigen, Musik und Sound und KI-Prompts.' },
       { q: 'Wie melden sich Unternehmen bei mir?', a: `Über ${NAME}. Du liest die Nachricht und entscheidest, ob du antwortest. Deine E-Mail bleibt privat.` },
-      { q: 'Wer kann mitmachen, und wo?', a: 'Alle ab 18 Jahren, in ganz Europa. Die App gibt es in sechs Sprachen.' },
+      { q: 'Wer kann mitmachen, und wo?', a: 'Alle ab 18 Jahren, in ganz Europa. Die App gibt es in sieben Sprachen.' },
       { q: 'Wann geht es los?', a: `Noch kein Datum. Wir bauen noch daran. Hinterlass deine E-Mail, dann schreiben wir dir einmal, wenn es losgeht.` },
     ],
   },

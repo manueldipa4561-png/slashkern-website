@@ -268,7 +268,7 @@ export const es: Copy = {
       { q: '¿Es una estafa?', a: 'No. Los creadores nunca pagan, por ahora no se paga a nadie y tú decides qué se hace público. Si alguien te pide dinero por un proyecto, no somos nosotros. Cuéntanoslo.' },
       { q: '¿Qué puedo hacer?', a: 'Siete tipos de proyecto: videos cortos, pósters y logos, posts y textos, webs y herramientas pequeñas, anuncios de productos, música y sonido, y prompts para IA.' },
       { q: '¿Cómo me contactan las empresas?', a: `A través de ${NAME}. Lees el mensaje y decides si respondes. Tu email sigue siendo privado.` },
-      { q: '¿Quién puede unirse, y dónde?', a: 'Cualquier persona de 18 años o más, en toda Europa. La app viene en seis idiomas.' },
+      { q: '¿Quién puede unirse, y dónde?', a: 'Cualquier persona de 18 años o más, en toda Europa. La app viene en siete idiomas.' },
       { q: '¿Cuándo abre?', a: `Todavía no hay fecha. Aún lo estamos construyendo. Deja tu email y te escribimos una sola vez, cuando abra.` },
     ],
   },

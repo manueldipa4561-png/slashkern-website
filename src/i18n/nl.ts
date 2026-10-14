@@ -268,7 +268,7 @@ export const nl: Copy = {
       { q: 'Is dit oplichting?', a: 'Nee. Creators betalen nooit, er wordt nog niemand uitbetaald en jij bepaalt wat openbaar wordt. Vraagt iemand je te betalen voor een project, dan zijn wij het niet. Laat het ons weten.' },
       { q: 'Wat kan ik maken?', a: 'Zeven soorten projecten: korte video’s, posters en logo’s, posts en captions, websites en kleine tools, productadvertenties, muziek en geluid, en AI-prompts.' },
       { q: 'Hoe nemen bedrijven contact met me op?', a: `Via ${NAME}. Jij leest het bericht en beslist of je antwoordt. Je e-mailadres blijft privé.` },
-      { q: 'Wie kan meedoen, en waar?', a: 'Iedereen van 18 jaar of ouder, in heel Europa. De app is er in zes talen.' },
+      { q: 'Wie kan meedoen, en waar?', a: 'Iedereen van 18 jaar of ouder, in heel Europa. De app is er in zeven talen.' },
       { q: 'Wanneer gaat het open?', a: 'Nog geen datum. We zijn het nog aan het bouwen. Laat je e-mailadres achter en we mailen je één keer, zodra het opengaat.' },
     ],
   },

@@ -7,7 +7,7 @@ import { sv } from './sv';
 import { es } from './es';
 import type { Copy } from './en';
 
-// The app's six languages plus Spanish. English lives at the root, the others under /<code>/ (the slugs stay English in every language).
+// The app's seven languages. English lives at the root, the others under /<code>/ (the slugs stay English in every language).
 export const LANGS = ['en', 'it', 'es', 'de', 'fr', 'nl', 'sv'] as const;
 export type Lang = (typeof LANGS)[number];
 // Each language named in itself, for the language menu.

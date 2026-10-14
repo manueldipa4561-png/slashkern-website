@@ -267,7 +267,7 @@ export const it: Copy = {
       { q: 'È una truffa?', a: 'No. I creator non pagano mai, per ora nessuno viene pagato e decidi tu cosa diventa pubblico. Se qualcuno ti chiede soldi per un progetto, non siamo noi: scrivici.' },
       { q: 'Cosa posso fare?', a: 'Sette tipi di progetto: video brevi, poster e loghi, post e didascalie, siti e piccoli strumenti, annunci di prodotti, musica e suoni, prompt per l’AI.' },
       { q: 'Come mi contattano le aziende?', a: `Tramite ${NAME}. Leggi il messaggio e decidi tu se rispondere. La tua email resta privata.` },
-      { q: 'Chi può iscriversi, e dove?', a: 'Chiunque abbia 18 anni o più, in tutta Europa. L’app è in sei lingue.' },
+      { q: 'Chi può iscriversi, e dove?', a: 'Chiunque abbia 18 anni o più, in tutta Europa. L’app è in sette lingue.' },
       { q: 'Quando apre?', a: `Non c’è ancora una data. Lo stiamo ancora costruendo. Lascia la tua email e ti scriviamo una sola volta, quando apre.` },
     ],
   },

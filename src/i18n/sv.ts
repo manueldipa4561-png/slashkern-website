@@ -267,7 +267,7 @@ export const sv: Copy = {
       { q: 'Är det här en bluff?', a: 'Nej. Creators betalar aldrig, inga pengar betalas ut än och du bestämmer vad som blir offentligt. Om någon ber dig betala för ett projekt är det inte vi. Säg till oss.' },
       { q: 'Vad kan jag göra?', a: 'Sju sorters projekt: korta videor, affischer och loggor, inlägg och bildtexter, webbsidor och små verktyg, produktannonser, musik och ljud, och AI-promptar.' },
       { q: 'Hur kontaktar företag mig?', a: `Via ${NAME}. Du läser meddelandet och bestämmer om du vill svara. Din e-postadress förblir privat.` },
-      { q: 'Vem kan vara med, och var?', a: 'Alla som är 18 år eller äldre, i hela Europa. Appen finns på sex språk.' },
+      { q: 'Vem kan vara med, och var?', a: 'Alla som är 18 år eller äldre, i hela Europa. Appen finns på sju språk.' },
       { q: 'När öppnar det?', a: `Inget datum än. Vi bygger fortfarande. Lämna din e-postadress så skriver vi en gång, när det öppnar.` },
     ],
   },

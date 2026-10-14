@@ -268,7 +268,7 @@ export const en = {
       { q: 'Is this a scam?', a: 'No. Creators never pay, nobody is paid out yet, and you decide what goes public. If someone asks you to pay for a project, it is not us. Tell us.' },
       { q: 'What can I make?', a: 'Seven kinds of projects: short videos, posters and logos, posts and captions, websites and small tools, product listings, music and sound, and AI prompts.' },
       { q: 'How do companies contact me?', a: `Through ${NAME}. You read the message and decide whether to reply. Your email stays private.` },
-      { q: 'Who can join, and where?', a: 'Anyone aged 18 or over, across Europe. The app comes in six languages.' },
+      { q: 'Who can join, and where?', a: 'Anyone aged 18 or over, across Europe. The app comes in seven languages.' },
       { q: 'When does it open?', a: `No date yet. We are still building it. Leave your email and we write once, when it opens.` },
     ],
   },

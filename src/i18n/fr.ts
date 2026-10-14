@@ -268,7 +268,7 @@ export const fr: Copy = {
       { q: 'C’est une arnaque ?', a: 'Non. Les creators ne paient jamais, personne n’est encore payé, et c’est toi qui décides de ce qui devient public. Si quelqu’un te demande de payer pour un projet, ce n’est pas nous. Dis-le-nous.' },
       { q: 'Qu’est-ce que je peux faire ?', a: 'Sept types de projets : vidéos courtes, affiches et logos, posts et légendes, sites web et petits outils, annonces de produits, musique et son, et prompts IA.' },
       { q: 'Comment les entreprises me contactent ?', a: `Via ${NAME}. Tu lis le message et tu décides si tu réponds. Ton e-mail reste privé.` },
-      { q: 'Qui peut s’inscrire, et où ?', a: 'Toute personne de 18 ans ou plus, partout en Europe. L’app existe en six langues.' },
+      { q: 'Qui peut s’inscrire, et où ?', a: 'Toute personne de 18 ans ou plus, partout en Europe. L’app existe en sept langues.' },
       { q: 'C’est pour quand ?', a: 'Pas encore de date. On est encore en train de la construire. Laisse ton e-mail et on t’écrit une seule fois, à l’ouverture.' },
     ],
   },
