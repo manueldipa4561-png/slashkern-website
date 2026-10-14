@@ -27,6 +27,7 @@ const data = {
   t: { progress: q.progress, friend: q.friend, youAre: q.youAre, cardTop: q.cardTop, fun: q.fun, share: q.share, saved: q.saved, copy: q.copy, copied: q.copied, again: q.again, join: q.join, shareText: q.shareText, firstLabel: q.firstLabel, also: q.also },
   questions: q.questions,
   results: q.results,
+  projects: q.projects,
 };
 ---
 <section class="section quiz" aria-labelledby="quiz-title">
@@ -45,12 +46,13 @@ const data = {
 <script type="application/json" id="quiz-data" set:html={JSON.stringify(data).replace(/</g, '\\u003c')} />
 
 <script>
-  type Answer = [string, string];
+  type Answer = [string, string, number]; // text, type, index of the app project it stands for
   type Data = {
     quizPath: string; joinHref: string; brand: string;
     t: Record<string, string>;
     questions: Array<{ q: string; a: Answer[] }>;
-    results: Record<string, { name: string; line: string; first: string }>;
+    results: Record<string, { name: string; line: string }>;
+    projects: Record<string, string[]>;
     mark: { viewBox: string; body: string; eyes: string };
     hues: Record<string, { tint: string; strong: string }>;
   };
@@ -79,11 +81,12 @@ const data = {
 
     const scores: Record<string, number> = {};
     const lastSeen: Record<string, number> = {};
+    const picked: Record<string, number> = {}; // per type, the app project of the latest answer of that type
     let step = 0;
 
     const start = () => {
       step = 0;
-      for (const k of keys) { scores[k] = 0; delete lastSeen[k]; }
+      for (const k of keys) { scores[k] = 0; delete lastSeen[k]; delete picked[k]; }
       intro.hidden = true;
       renderQuestion();
     };
@@ -96,12 +99,13 @@ const data = {
       const heading = el('h2', 'quiz__q', item.q);
       heading.tabIndex = -1;
       const list = el('div', 'quiz__answers');
-      item.a.forEach(([text, key]) => {
+      item.a.forEach(([text, key, project]) => {
         const b = el('button', 'ans', text);
         b.type = 'button';
         b.addEventListener('click', () => {
           scores[key] = (scores[key] ?? 0) + 1;
           lastSeen[key] = step;
+          picked[key] = project;
           step += 1;
           if (step < d.questions.length) renderQuestion();
           else renderResult();
@@ -137,16 +141,17 @@ const data = {
       const key = order[0];
       const r = d.results[key];
       const hue = d.hues[key];
+      const project = d.projects[key][picked[key]] ?? d.projects[key][0];
       const mix = order.slice(1).filter((k) => scores[k] > 0).map((k) => d.results[k].name);
       const link = `${location.origin}${d.quizPath}?r=${key}`;
       const text = fmt(d.t.shareText, { name: r.name });
-      const png = makeBlob(r, hue, mix); // render now so the share click can answer at once (iOS needs it)
+      const png = makeBlob(r, project, hue, mix); // render now so the share click can answer at once (iOS needs it)
       stage!.replaceChildren();
       const card = el('div', 'rcard');
       card.style.setProperty('--tint', hue.tint);
       card.style.setProperty('--strong', hue.strong);
       const first = el('div', 'rcard__first');
-      first.append(el('p', 'rcard__label', d.t.firstLabel), el('p', 'rcard__project', r.first));
+      first.append(el('p', 'rcard__label', d.t.firstLabel), el('p', 'rcard__project', project));
       card.append(slashSvg('rcard__slash'), el('p', 'rcard__top', d.t.cardTop), el('p', 'rcard__you', d.t.youAre), el('h2', 'rcard__name', r.name), el('p', 'rcard__line', r.line), first);
       if (mix.length) {
         const also = el('div', 'rcard__mix');
@@ -197,7 +202,7 @@ const data = {
     }
 
     // The share image: 1080 x 1350, the same card as on the page, drawn with the site's own fonts.
-    async function makeBlob(r: { name: string; line: string; first: string }, hue: { tint: string; strong: string }, mix: string[]): Promise<Blob | null> {
+    async function makeBlob(r: { name: string; line: string }, project: string, hue: { tint: string; strong: string }, mix: string[]): Promise<Blob | null> {
       try {
         await Promise.all([
           document.fonts.load('650 120px "Geist Variable"'),
@@ -238,7 +243,7 @@ const data = {
 
         // the first project, on a white panel like a project card in the app
         const projFont = '650 48px "Geist Variable", sans-serif';
-        const proj = wrap(r.first, projFont, W - 2 * M - 96);
+        const proj = wrap(project, projFont, W - 2 * M - 96);
         // bottom up: footer, then the mix chips, then the panel; the panel never rises into the line above it
         const chipsY = H - 230, ph = 120 + proj.length * 58, py = Math.max(y, (mix.length ? chipsY - 28 : H - 170) - ph);
         g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(M, py, W - 2 * M, ph, 36); g.fill();
