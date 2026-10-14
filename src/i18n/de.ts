@@ -200,12 +200,12 @@ export const de: Copy = {
 
   spot: {
     title: 'Deine Idee, *Szene für Szene.*',
-    text: 'Schreib eine Zeile. Slash macht daraus Einstellungen und eine Bildunterschrift. Dann setzt du es um: Dreh es mit dem Handy oder nimm ein KI-Videotool.',
-    steps: ['Such dir ein kurzes Videoprojekt aus.', 'Lies das Briefing.', 'Schreib deine Idee in einer Zeile auf.', 'Hol dir die Einstellungen und die Bildunterschrift.'],
+    text: 'Wähl den Hook und drei Shots, schreib den Text im Bild. Die App macht daraus eine Storyboard-Seite. Dann machst du es selbst: mit dem Handy filmen oder ein KI-Videotool nutzen.',
+    steps: ['Such dir ein Kurzvideo-Projekt aus.', 'Wähl den Hook und drei Shots.', 'Schreib den Text im Bild und die Bildunterschrift.', 'Hol dir dein Storyboard.'],
     app: 'In der App',
     out: 'Was du machen kannst',
     ai: 'Mit KI-Hilfe erstellt',
-    labelApp: 'Video: wie in der App aus einer Idee Einstellungen und eine Bildunterschrift werden',
+    labelApp: 'Video: ein Storyboard mit vier Bildern entsteht Schritt für Schritt in der App',
     labelOut: 'Video: ein fertiger 15-Sekunden-Werbespot für ein erfundenes Getränk, gemacht mit KI-Tools',
     note: 'Das Getränk Saltz8salt ist erfunden. Der Teil in der App ist vom echten Prototyp aufgenommen. Der Werbespot wurde mit KI-Tools gemacht und ist entsprechend gekennzeichnet.',
   },

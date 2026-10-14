@@ -201,12 +201,12 @@ export const fr: Copy = {
 
   spot: {
     title: 'Ton idée, *plan par plan.*',
-    text: 'Écris une ligne. Slash la transforme en plans et en légende. Ensuite, c’est toi qui la fais : filme-la avec ton téléphone ou utilise un outil vidéo IA.',
-    steps: ['Choisis un projet de vidéo courte.', 'Lis le brief.', 'Écris ton idée en une ligne.', 'Reçois les plans et la légende.'],
+    text: 'Choisis l’accroche et trois plans, écris le texte à l’écran. L’app en fait une page de storyboard. Ensuite, c’est toi qui le fais : tu le filmes avec ton téléphone, ou tu utilises un outil vidéo IA.',
+    steps: ['Choisis un projet de vidéo courte.', 'Choisis l’accroche et trois plans.', 'Écris le texte à l’écran et la légende.', 'Reçois ton storyboard.'],
     app: 'Dans l’app',
     out: 'Ce que tu peux faire',
     ai: 'Créé avec l’aide de l’IA',
-    labelApp: 'Vidéo : une idée transformée en plans et en légende dans l’app',
+    labelApp: 'Vidéo : un storyboard de quatre vignettes construit pas à pas dans l’app',
     labelOut: 'Vidéo : une pub terminée de 15 secondes pour une boisson inventée, faite avec des outils IA',
     note: 'La boisson, Saltz8salt, est inventée. La partie dans l’app est enregistrée depuis le vrai prototype. La pub a été faite avec des outils IA et elle est signalée comme telle.',
   },

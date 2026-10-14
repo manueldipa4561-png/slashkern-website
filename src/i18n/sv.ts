@@ -200,12 +200,12 @@ export const sv: Copy = {
 
   spot: {
     title: 'Din idé, *scen för scen.*',
-    text: 'Skriv en rad. Slash gör om den till scener och en bildtext. Sedan gör du den: filma med mobilen eller använd ett AI-videoverktyg.',
-    steps: ['Välj ett kort videoprojekt.', 'Läs briefen.', 'Skriv din idé på en rad.', 'Få scener och en bildtext.'],
+    text: 'Välj hooken och tre scener, skriv texten i bild. Appen gör en storyboardsida av dem. Sedan gör du det själv: filma med mobilen eller använd ett AI-videoverktyg.',
+    steps: ['Välj ett projekt med korta videor.', 'Välj hooken och tre scener.', 'Skriv texten i bild och bildtexten.', 'Få din storyboard.'],
     app: 'I appen',
     out: 'Det du kan göra',
     ai: 'Gjord med hjälp av AI',
-    labelApp: 'Video: en idé blir till scener och en bildtext i appen',
+    labelApp: 'Video: en storyboard med fyra bilder byggs steg för steg i appen',
     labelOut: 'Video: en färdig reklamfilm på 15 sekunder för en påhittad dryck, gjord med AI-verktyg',
     note: 'Drycken Saltz8salt är påhittad. Delen från appen är inspelad från den riktiga prototypen. Reklamfilmen är gjord med AI-verktyg och är märkt som sådan.',
   },

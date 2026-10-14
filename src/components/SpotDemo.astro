@@ -1,5 +1,5 @@
 ---
-// One story, in order and on a loop: the app run plays (pick a project, read the brief, type the idea, get the shots), then the finished example spot plays, then it starts over.
+// One story, in order and on a loop: the app run plays (one take of the real app: pick a project, the hook and shots, the words and caption, the finished storyboard), then the finished example spot plays, then it starts over.
 // The page script below runs the sequence; nothing plays while the section is off screen or when the visitor asked for less motion.
 import Rich from './Rich.astro';
 import Slash from './Slash.astro';
@@ -8,7 +8,7 @@ interface Props { copy: Copy }
 const { copy } = Astro.props;
 const s = copy.spot;
 const d = copy.demo;
-const CHAPTERS = '0,2,4,7.9'; // seconds into the app run where steps 1 to 4 start (run recorded at 1.15x)
+const CHAPTERS = '0,2.15,7.26,15.26'; // seconds into the app run where steps 1 to 4 start (one continuous take of the real app, 18.7 s: pick the project, hook and shots, words and caption, the finished page)
 ---
 <section class="section spot" aria-labelledby="spot-title">
   <div class="wrap spot__grid">
@@ -21,7 +21,7 @@ const CHAPTERS = '0,2,4,7.9'; // seconds into the app run where steps 1 to 4 sta
     <div class="spot__stage" data-spot data-chapters={CHAPTERS}>
       <figure class="spot__fig">
         <div class="phone phone--sm">
-          <video data-role="app" src="/demo/spot-app.mp4" poster="/demo/spot-app-poster.jpg" muted playsinline preload="metadata" aria-label={s.labelApp}></video>
+          <video data-role="app" src="/demo/spot-storyboard.mp4" poster="/demo/spot-storyboard-poster.jpg" muted playsinline preload="metadata" aria-label={s.labelApp}></video>
         </div>
         <figcaption>{s.app}</figcaption>
       </figure>

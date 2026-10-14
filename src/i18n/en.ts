@@ -201,12 +201,12 @@ export const en = {
 
   spot: {
     title: 'Your idea, *shot by shot.*',
-    text: 'Type one line. Slash turns it into shots and a caption. Then you make it: film it on your phone, or use an AI video tool.',
-    steps: ['Pick a short video project.', 'Read the brief.', 'Type your idea in one line.', 'Get the shots and the caption.'],
+    text: 'Pick your hook and three shots, write the words on screen. The app turns them into a storyboard page. Then you make it: film it on your phone, or use an AI video tool.',
+    steps: ['Pick a short video project.', 'Pick the hook and three shots.', 'Write the words on screen and the caption.', 'Get your storyboard.'],
     app: 'In the app',
     out: 'What you can make',
     ai: 'Made with AI help',
-    labelApp: 'Video: turning one idea into shots and a caption in the app',
+    labelApp: 'Video: building a four-frame storyboard, step by step, in the app',
     labelOut: 'Video: a finished 15-second commercial for a made-up drink, made with AI tools',
     note: 'The drink, Saltz8salt, is made up. The app part is recorded from the real prototype. The commercial was made with AI tools and is tagged as such.',
   },

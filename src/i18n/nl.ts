@@ -201,12 +201,12 @@ export const nl: Copy = {
 
   spot: {
     title: 'Jouw idee, *shot voor shot.*',
-    text: 'Typ één regel. Slash maakt er shots en een caption van. Dan maak je het zelf: film het met je telefoon, of gebruik een AI-videotool.',
-    steps: ['Kies een kort videoproject.', 'Lees de briefing.', 'Typ je idee in één regel.', 'Krijg de shots en de caption.'],
+    text: 'Kies de hook en drie shots, schrijf de tekst in beeld. De app maakt er een storyboardpagina van. Daarna maak jij het: filmen met je telefoon, of een AI-videotool gebruiken.',
+    steps: ['Kies een project voor korte video’s.', 'Kies de hook en drie shots.', 'Schrijf de tekst in beeld en de caption.', 'Krijg je storyboard.'],
     app: 'In de app',
     out: 'Wat je kunt maken',
     ai: 'Gemaakt met hulp van AI',
-    labelApp: 'Video: één idee omgezet in shots en een caption in de app',
+    labelApp: 'Video: stap voor stap een storyboard van vier beelden maken in de app',
     labelOut: 'Video: een afgemaakte reclamespot van 15 seconden voor een verzonnen drankje, gemaakt met AI-tools',
     note: 'Het drankje, Saltz8salt, is verzonnen. Het deel in de app is opgenomen uit het echte prototype. De reclamespot is gemaakt met AI-tools en is als zodanig gemarkeerd.',
   },

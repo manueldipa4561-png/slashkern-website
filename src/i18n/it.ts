@@ -200,12 +200,12 @@ export const it: Copy = {
 
   spot: {
     title: 'La tua idea, *scena per scena.*',
-    text: 'Scrivi una riga. Slash la trasforma in inquadrature e didascalia. Poi lo fai tu: giralo col telefono o usa uno strumento video AI.',
-    steps: ['Scegli un progetto video breve.', 'Leggi il brief.', 'Scrivi la tua idea in una riga.', 'Ricevi inquadrature e didascalia.'],
+    text: 'Scegli il gancio e tre inquadrature, scrivi il testo a schermo. L’app li trasforma in una pagina di storyboard. Poi lo realizzi tu: lo giri con il telefono, o usi uno strumento video AI.',
+    steps: ['Scegli un progetto di video brevi.', 'Scegli il gancio e tre inquadrature.', 'Scrivi il testo a schermo e la didascalia.', 'Ricevi il tuo storyboard.'],
     app: 'Nell’app',
     out: 'Cosa puoi fare',
     ai: 'Fatto con l’aiuto dell’AI',
-    labelApp: 'Video: un’idea trasformata in inquadrature e didascalia nell’app',
+    labelApp: 'Video: uno storyboard di quattro vignette costruito passo dopo passo nell’app',
     labelOut: 'Video: uno spot finito di 15 secondi per una bibita inventata, fatto con strumenti AI',
     note: 'La bibita, Saltz8salt, è inventata. La parte nell’app è una registrazione del prototipo vero. Lo spot è fatto con strumenti AI ed è segnalato come tale.',
   },
