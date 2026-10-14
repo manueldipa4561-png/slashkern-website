@@ -259,7 +259,8 @@ export const en = {
   },
 
   faq: {
-    title: 'Questions',
+    title: 'Questions, *answered.*',
+    more: 'Another question? Write to us:',
     items: [
       { q: 'Is it free for creators?', a: 'Yes. You never pay, not even to publish.' },
       { q: 'I am starting from zero. Can I join?', a: 'Yes, that is who it is for. A practice project takes about 40 minutes, and Slash helps at every step.' },

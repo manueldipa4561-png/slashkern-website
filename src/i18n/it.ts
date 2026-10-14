@@ -258,7 +258,8 @@ export const it: Copy = {
   },
 
   faq: {
-    title: 'Domande',
+    title: 'Domande e *risposte.*',
+    more: 'Hai un’altra domanda? Scrivici:',
     items: [
       { q: 'È gratis per i creator?', a: 'Sì. Non paghi mai, nemmeno per pubblicare.' },
       { q: 'Parto da zero. Posso iscrivermi?', a: 'Sì, è pensato per te. Un progetto di prova richiede circa 40 minuti e Slash ti aiuta passo dopo passo.' },

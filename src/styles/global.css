@@ -316,19 +316,36 @@ h3 { font: 600 1.375rem/1.15 var(--font-ui); letter-spacing: -0.025em; text-wrap
 .panel .arrow-link { margin-top: auto; padding-top: 1.25rem; }
 .panel .ticks + .arrow-link, .panel .chips + .arrow-link { margin-top: 1.25rem; }
 
-/* faq */
-.faq-wrap { display: grid; gap: 2rem; }
-@media (min-width: 56rem) { .faq-wrap { grid-template-columns: 1fr 1.6fr; gap: 4rem; } }
-.faq { border-top: 2px solid var(--ink); }
-.faq details { border-bottom: 1px solid var(--line); }
+/* faq: a centred title, one column of soft rounded cards; the open card turns white and lifts, the + turns into a ×, the answer opens smoothly */
+.faq-wrap { max-width: 48rem; }
+.faq-wrap > h2 { margin-bottom: clamp(2rem, 1.25rem + 2.5vw, 3.5rem); text-align: center; }
+.faq { display: grid; gap: 0.625rem; }
+.faq details {
+  border-radius: 1.25rem; background: linear-gradient(165deg, #eef2ff, #f6f8ff 80%); box-shadow: inset 0 0 0 1px rgb(14 27 61 / 0.05);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.faq details[open] { background: #fff; box-shadow: inset 0 0 0 1px rgb(14 27 61 / 0.07), 0 18px 40px -24px rgb(14 27 61 / 0.35); }
 .faq summary {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  min-height: 3.75rem; padding-block: 0.875rem; font-size: 1.1875rem; font-weight: 600; letter-spacing: -0.015em; list-style: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4rem; padding: 1rem 1.25rem 1rem 1.5rem;
+  border-radius: inherit; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); font-weight: 600; letter-spacing: -0.015em; list-style: none;
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: '+'; flex: none; width: 2.25rem; height: 2.25rem; display: grid; place-items: center; border-radius: 50%; background: var(--soft); font-size: 1.375rem; line-height: 1; }
-.faq details[open] summary::after { content: '–'; background: var(--ink); color: #fff; }
-.faq details p { max-width: 38rem; padding: 0 3rem 1.5rem 0; color: var(--muted); }
+.faq summary::after {
+  content: '+'; flex: none; width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 50%;
+  background: #fff; box-shadow: inset 0 0 0 1px rgb(14 27 61 / 0.1); font-size: 1.25rem; font-weight: 500; line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, color 0.2s;
+}
+.faq details[open] summary::after { transform: rotate(45deg); background: var(--ink); color: #fff; box-shadow: none; }
+.faq summary:focus-visible { outline: none; }
+.faq details:has(summary:focus-visible) { box-shadow: 0 0 0 3px var(--accent); } /* a soft blue ring round the whole card, not a black box */
+.faq details p { max-width: 40rem; padding: 0 1.5rem 1.375rem; color: var(--muted); }
+.faq__more { margin-top: 1.75rem; text-align: center; color: var(--muted); }
+.faq__more a { color: var(--ink); font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) {
+  .faq { interpolate-size: allow-keywords; } /* the answer opens to its own height (browsers without it just open) */
+  .faq details::details-content { block-size: 0; overflow: clip; transition: block-size 0.4s cubic-bezier(0.16, 1, 0.3, 1), content-visibility 0.4s allow-discrete; }
+  .faq details[open]::details-content { block-size: auto; }
+}
 
 /* final cta + form */
 .cta-box {
