@@ -106,11 +106,11 @@ export const it: Copy = {
     tags: { ai: 'Fatto con l’AI', code: 'Funziona davvero', answer: 'La risposta è dell’AI' },
     nojs: 'Questo esempio richiede JavaScript.',
     gallery: {
-      video: { field: 'Video brevi', t: 'Bevande estive, 5 secondi', for: 'Cliente inventato: Bar Ficus', cap: 'Bevande estive', len: '0:05', alt: 'Video: un bicchiere alto di acqua ghiacciata con menta e una fetta d’arancia sul tavolino di un bar, nella luce della sera.' },
+      video: { field: 'Video brevi', t: 'Spot per una bibita, 15 secondi', for: 'Cliente inventato: Saltz8salt', len: '0:15', alt: 'Video: uno spot di 15 secondi per una bibita frizzante al lime e sale. Cristalli di sale cadono sul ghiaccio, uno spicchio di lime si tuffa nel bicchiere, la bibita viene versata e la bottiglia resta ferma nella luce dorata, davanti a un lago. L’ultima schermata dice Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Poster e loghi', t: 'Locandina per una serata cinema', for: 'Cliente inventato: Cinema Orsa', alt: 'Una locandina blu con la scritta SERATA CINEMA e una luna gialla sopra i tetti della città. Venerdì, alle 21:00, in terrazza, Cinema Orsa.' },
       timer: { field: 'Siti e piccoli strumenti', t: 'Un timer per studiare', for: 'Brief inventato: la settimana d’esame di Sofia', modes: ['Studio · 25 min', 'Pausa · 5 min'], group: 'Durata', start: 'Avvia', pause: 'Pausa', resume: 'Riprendi', reset: 'Azzera', done: 'Tempo scaduto. Fai una pausa.' },
-      listing: { field: 'Annunci di prodotti', t: 'Annuncio per una candela artigianale', for: 'Cliente inventato: Cera Cera', title: 'Candela cedro e fumo', points: ['Cera di soia colata a mano', 'Dura circa 40 ore', 'Prodotta in piccoli lotti'], alt: 'Una candela in un vasetto di vetro ambrato fumé con lo stoppino di legno, su uno sfondo lilla.' },
-      post: { field: 'Post e didascalie', t: 'Post per un negozio di piante', for: 'Cliente inventato: Sunny Plants', handle: 'sunnyplants', caption: 'Sabato: porta una pianta triste, torna a casa con una felice. Rinvasiamo tutto il giorno.', alt: 'Una pianta verde in un vaso di terracotta su uno sgabello di legno, davanti a un muro rosa.' },
+      listing: { field: 'Annunci di prodotti', t: 'Annuncio per una candela artigianale', for: 'Cliente inventato: Cera Cera', title: 'Candela cedro e fumo', points: ['Cera di soia colata a mano', 'Dura circa 40 ore', 'Prodotta in piccoli lotti'], alt: 'Una candela accesa in un vasetto di vetro ambrato fumé con lo stoppino di legno e un’etichetta di carta con scritto Cera Cera, cedar & smoke, su un comodino coperto di lino accanto a un libro e a una tazza.' },
+      post: { field: 'Post e didascalie', t: 'Post per un negozio di piante', for: 'Cliente inventato: Sunny Plants', handle: 'sunnyplants', caption: 'Sabato: porta una pianta triste, torna a casa con una felice. Rinvasiamo tutto il giorno.', alt: 'Due piante di pothos su un tavolo di legno in un negozio di piante: una afflosciata e ingiallita in un vaso di plastica incrinato, accanto a una rigogliosa appena rinvasata in terracotta.' },
       jingle: { field: 'Musica e suoni', t: 'Jingle per una ciclofficina', for: 'Cliente inventato: Pedal Pals', play: 'Ascolta il jingle', pause: 'Metti in pausa il jingle', seek: 'Posizione nel jingle', hook: '“Pedal Pals, Pedal Pals!”', note: 'Cantato in inglese.' },
       logo: { field: 'Poster e loghi', t: 'Logo per un forno', for: 'Cliente inventato: Forno Gufo', alt: 'Un logo: la faccia di un gufo blu scuro fatta con una pagnotta, con due spighe di grano come sopracciglia, su sfondo giallo. Sotto: forno gufo.' },
       prompt: {
@@ -120,7 +120,7 @@ export const it: Copy = {
       },
     },
     items: {
-      video: { t: 'Bevande estive, 5 secondi', cat: 'Video brevi', lines: ['Bevande estive', '0:05'] },
+      video: { t: 'Spot per una bibita, 15 secondi', cat: 'Video brevi', lines: ['Saltz8salt', '0:15'] },
       poster: { t: 'Locandina per una serata cinema', cat: 'Poster e loghi', lines: ['Serata', 'cinema', 'VEN · 21:00 · TERRAZZA'] },
       web: { t: 'Un timer per studiare', cat: 'Siti e piccoli strumenti', lines: ['Timer studio', 'Avvia'] },
       listing: { t: 'Annuncio per una candela artigianale', cat: 'Annunci di prodotti', lines: ['Candela cedro e fumo', 'Cera di soia colata a mano', 'Dura circa 40 ore', 'Prodotta in piccoli lotti'] },

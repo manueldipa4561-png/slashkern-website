@@ -106,11 +106,11 @@ export const sv: Copy = {
     tags: { ai: 'Gjord med AI', code: 'Fungerar på riktigt', answer: 'AI skrev svaret' },
     nojs: 'Det här exemplet kräver JavaScript.',
     gallery: {
-      video: { field: 'Korta videor', t: 'Sommardrycker, 5 sekunder', for: 'Påhittad kund: Bar Ficus', cap: 'Sommardrycker', len: '0:05', alt: 'Video: ett högt glas isvatten med mynta och en apelsinskiva på ett kafébord i kvällssolen.' },
+      video: { field: 'Korta videor', t: 'En reklamfilm för en dryck, 15 sekunder', for: 'Påhittad kund: Saltz8salt', len: '0:15', alt: 'Video: en reklamfilm på 15 sekunder för en bubblande dryck med salt och lime. Saltkristaller faller på is, en limeklyfta plaskar ner i glaset, drycken hälls upp och flaskan står stilla i det gyllene ljuset vid en sjö. Sista bilden visar Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Affischer och loggor', t: 'Affisch till en filmkväll', for: 'Påhittad kund: Cinema Orsa', alt: 'En blå affisch med texten FILM NIGHT och en gul måne över en siluett av hustak. Fredag, 21:00, på taket, Cinema Orsa.' },
       timer: { field: 'Webbsidor och små verktyg', t: 'En studietimer', for: 'Påhittad brief: Sofias provvecka', modes: ['Plugga · 25 min', 'Rast · 5 min'], group: 'Längd', start: 'Starta', pause: 'Pausa', resume: 'Fortsätt', reset: 'Nollställ', done: 'Tiden är slut. Ta en rast.' },
-      listing: { field: 'Produktannonser', t: 'Annons för ett handgjort ljus', for: 'Påhittad kund: Cera Cera', title: 'Ljus med ceder och rök', points: ['Handgjutet sojavax', 'Brinner i ungefär 40 timmar', 'Tillverkat i små partier'], alt: 'Ett ljus i en burk av rökfärgat bärnstensglas med träveke, mot en lila bakgrund.' },
-      post: { field: 'Inlägg och bildtexter', t: 'Inlägg för en växtbutik', for: 'Påhittad kund: Sunny Plants', handle: 'sunnyplants', caption: 'Lördag: ta med en ledsen växt, gå hem med en glad. Vi planterar om hela dagen.', alt: 'En grön, lummig växt i en terrakottakruka på en träpall, framför en rosa vägg.' },
+      listing: { field: 'Produktannonser', t: 'Annons för ett handgjort ljus', for: 'Påhittad kund: Cera Cera', title: 'Ljus med ceder och rök', points: ['Handgjutet sojavax', 'Brinner i ungefär 40 timmar', 'Tillverkat i små partier'], alt: 'Ett tänt ljus i en burk av rökfärgat bärnstensglas med träveke och en pappersetikett med texten Cera Cera, cedar & smoke, på ett nattduksbord täckt med linne bredvid en bok och en mugg.' },
+      post: { field: 'Inlägg och bildtexter', t: 'Inlägg för en växtbutik', for: 'Påhittad kund: Sunny Plants', handle: 'sunnyplants', caption: 'Lördag: ta med en ledsen växt, gå hem med en glad. Vi planterar om hela dagen.', alt: 'Två pothos på ett träbord i en växtbutik: en hängande, gulnande i en spräckt plastkruka bredvid en lummig som precis planterats om i terrakotta.' },
       jingle: { field: 'Musik och ljud', t: 'Jingel för en cykelverkstad', for: 'Påhittad kund: Pedal Pals', play: 'Spela jingeln', pause: 'Pausa jingeln', seek: 'Position i jingeln', hook: '“Pedal Pals, Pedal Pals!”', note: 'Sjungs på engelska.' },
       logo: { field: 'Affischer och loggor', t: 'Logga till ett bageri', for: 'Påhittad kund: Forno Gufo', alt: 'En logga: ett marinblått ugglehuvud format av ett bröd, med två vetestrån som ögonbryn, på gul bakgrund. Under: forno gufo.' },
       prompt: {
@@ -120,7 +120,7 @@ export const sv: Copy = {
       },
     },
     items: {
-      video: { t: 'Sommardrycker, 5 sekunder', cat: 'Korta videor', lines: ['Sommardrycker', '0:05'] },
+      video: { t: 'En reklamfilm för en dryck, 15 sekunder', cat: 'Korta videor', lines: ['Saltz8salt', '0:15'] },
       poster: { t: 'Affisch till en filmkväll', cat: 'Affischer och loggor', lines: ['Film', 'kväll', 'FRE · 21:00 · PÅ TAKET'] },
       web: { t: 'En studietimer', cat: 'Webbsidor och små verktyg', lines: ['Studietimer', 'Starta'] },
       listing: { t: 'Annons för ett handgjort ljus', cat: 'Produktannonser', lines: ['Ljus med ceder och rök', 'Handgjutet sojavax', 'Brinner i ungefär 40 timmar', 'Tillverkat i små partier'] },

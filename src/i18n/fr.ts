@@ -106,11 +106,11 @@ export const fr: Copy = {
     tags: { ai: 'Créé avec l’IA', code: 'Ça marche pour de vrai', answer: 'La réponse vient de l’IA' },
     nojs: 'Cet exemple a besoin de JavaScript.',
     gallery: {
-      video: { field: 'Vidéos courtes', t: 'Boissons d’été, 5 secondes', for: 'Client inventé : Bar Ficus', cap: 'Boissons d’été', len: '0:05', alt: 'Vidéo : un grand verre d’eau glacée avec de la menthe et une tranche d’orange sur une table de café, sous le soleil du soir.' },
+      video: { field: 'Vidéos courtes', t: 'Une pub pour une boisson, 15 secondes', for: 'Client inventé : Saltz8salt', len: '0:15', alt: 'Vidéo : une pub de 15 secondes pour une boisson pétillante au citron vert et au sel. Des cristaux de sel tombent sur la glace, un quartier de citron vert éclabousse le verre, la boisson est servie et la bouteille reste immobile dans la lumière dorée, au bord d’un lac. Le dernier écran affiche Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Affiches et logos', t: 'Affiche pour une soirée ciné', for: 'Client inventé : Cinema Orsa', alt: 'Une affiche bleue qui dit SOIRÉE CINÉ, avec une lune jaune au-dessus d’une ligne de toits. Vendredi, 21 h, en terrasse, Cinema Orsa.' },
       timer: { field: 'Sites web et petits outils', t: 'Un minuteur pour réviser', for: 'Brief inventé : la semaine d’exams de Sofia', modes: ['Révision · 25 min', 'Pause · 5 min'], group: 'Durée', start: 'Commencer', pause: 'Pause', resume: 'Reprendre', reset: 'Remettre à zéro', done: 'Le temps est écoulé. Fais une pause.' },
-      listing: { field: 'Annonces de produits', t: 'Annonce pour une bougie artisanale', for: 'Client inventé : Cera Cera', title: 'Bougie cèdre et fumée', points: ['Cire de soja coulée à la main', 'Brûle environ 40 heures', 'Fabriquée en petites séries'], alt: 'Une bougie dans un pot en verre ambré fumé avec une mèche en bois, sur un fond lilas.' },
-      post: { field: 'Posts et légendes', t: 'Post pour une boutique de plantes', for: 'Client inventé : Sunny Plants', handle: 'sunnyplants', caption: 'Samedi : amène une plante triste, repars avec une plante ravie. On rempote toute la journée.', alt: 'Une plante verte et feuillue dans un pot en terre cuite, posé sur un tabouret en bois devant un mur rose.' },
+      listing: { field: 'Annonces de produits', t: 'Annonce pour une bougie artisanale', for: 'Client inventé : Cera Cera', title: 'Bougie cèdre et fumée', points: ['Cire de soja coulée à la main', 'Brûle environ 40 heures', 'Fabriquée en petites séries'], alt: 'Une bougie allumée dans un pot en verre ambré fumé avec une mèche en bois et une étiquette en papier qui dit Cera Cera, cedar & smoke, sur une table de chevet recouverte de lin, à côté d’un livre et d’une tasse.' },
+      post: { field: 'Posts et légendes', t: 'Post pour une boutique de plantes', for: 'Client inventé : Sunny Plants', handle: 'sunnyplants', caption: 'Samedi : amène une plante triste, repars avec une plante ravie. On rempote toute la journée.', alt: 'Deux pothos sur un établi dans une boutique de plantes : un pothos flétri et jaunissant dans un pot en plastique fendu, à côté d’un pothos luxuriant tout juste rempoté en terre cuite.' },
       jingle: { field: 'Musique et son', t: 'Jingle pour un atelier vélo', for: 'Client inventé : Pedal Pals', play: 'Écouter le jingle', pause: 'Mettre le jingle en pause', seek: 'Position dans le jingle', hook: '« Pedal Pals, Pedal Pals! »', note: 'Chanté en anglais.' },
       logo: { field: 'Affiches et logos', t: 'Logo pour une boulangerie', for: 'Client inventé : Forno Gufo', alt: 'Un logo : un visage de hibou bleu marine fait d’un pain, avec deux épis de blé en guise de sourcils, sur fond jaune. En dessous : forno gufo.' },
       prompt: {
@@ -120,7 +120,7 @@ export const fr: Copy = {
       },
     },
     items: {
-      video: { t: 'Boissons d’été, 5 secondes', cat: 'Vidéos courtes', lines: ['Boissons d’été', '0:05'] },
+      video: { t: 'Une pub pour une boisson, 15 secondes', cat: 'Vidéos courtes', lines: ['Saltz8salt', '0:15'] },
       poster: { t: 'Affiche pour une soirée ciné', cat: 'Affiches et logos', lines: ['Soirée', 'ciné', 'VEN · 21 H · TERRASSE'] },
       web: { t: 'Un minuteur pour réviser', cat: 'Sites web et petits outils', lines: ['Minuteur de révision', 'Commencer'] },
       listing: { t: 'Annonce pour une bougie artisanale', cat: 'Annonces de produits', lines: ['Bougie cèdre et fumée', 'Cire de soja coulée à la main', 'Brûle environ 40 heures', 'Fabriquée en petites séries'] },

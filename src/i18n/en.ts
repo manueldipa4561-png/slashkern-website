@@ -106,11 +106,11 @@ export const en = {
     nojs: 'This example needs JavaScript.',
     // Eight finished things, each real: a clip that plays, a poster, a timer that runs, a listing, a post, a jingle that plays, a logo, a prompt and its answer.
     gallery: {
-      video: { field: 'Short videos', t: 'Summer drinks, 5 seconds', for: 'Made-up client: Bar Ficus', cap: 'Summer drinks', len: '0:05', alt: 'Video: a tall glass of iced water with mint and an orange slice on a café table in the evening sun.' },
+      video: { field: 'Short videos', t: 'A drinks commercial, 15 seconds', for: 'Made-up client: Saltz8salt', len: '0:15', alt: 'Video: a 15-second commercial for a fizzy salted-lime drink. Salt crystals fall onto ice, a lime wedge splashes into the glass, the drink is poured, and the bottle stands in golden light by a lake. The last screen reads Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Posters and logos', t: 'Poster for a film night', for: 'Made-up client: Cinema Orsa', alt: 'A blue poster that says FILM NIGHT, with a yellow moon over a skyline of rooftops. Friday, 21:00, rooftop, Cinema Orsa.' },
       timer: { field: 'Websites and small tools', t: 'A study timer', for: 'Made-up brief: Sofia’s exam week', modes: ['Study · 25 min', 'Break · 5 min'], group: 'Length', start: 'Start', pause: 'Pause', resume: 'Resume', reset: 'Reset', done: 'Time is up. Take a break.' },
-      listing: { field: 'Product listings', t: 'Listing for a handmade candle', for: 'Made-up client: Cera Cera', title: 'Cedar & smoke candle', points: ['Hand-poured soy wax', 'Burns for about 40 hours', 'Made in small batches'], alt: 'A candle in a smoked amber glass jar with a wooden wick, on a lilac background.' },
-      post: { field: 'Posts and captions', t: 'Post for a plant shop', for: 'Made-up client: Sunny Plants', handle: 'sunnyplants', caption: 'Saturday: bring a sad plant, leave with a happy one. We repot all day.', alt: 'A leafy green plant in a terracotta pot on a wooden stool, in front of a pink wall.' },
+      listing: { field: 'Product listings', t: 'Listing for a handmade candle', for: 'Made-up client: Cera Cera', title: 'Cedar & smoke candle', points: ['Hand-poured soy wax', 'Burns for about 40 hours', 'Made in small batches'], alt: 'A lit candle in a smoked amber glass jar with a wooden wick and a paper label that says Cera Cera, cedar & smoke, on a linen bedside table next to a book and a mug.' },
+      post: { field: 'Posts and captions', t: 'Post for a plant shop', for: 'Made-up client: Sunny Plants', handle: 'sunnyplants', caption: 'Saturday: bring a sad plant, leave with a happy one. We repot all day.', alt: 'Two pothos plants on a workbench in a plant shop: a drooping, yellowing one in a cracked plastic pot next to a lush one freshly repotted in terracotta.' },
       jingle: { field: 'Music and sound', t: 'Jingle for a bike repair shop', for: 'Made-up client: Pedal Pals', play: 'Play the jingle', pause: 'Pause the jingle', seek: 'Position in the jingle', hook: '“Pedal Pals, Pedal Pals!”', note: '' },
       logo: { field: 'Posters and logos', t: 'Logo for a bakery', for: 'Made-up client: Forno Gufo', alt: 'A logo: a navy owl face made from a loaf of bread, with two wheat ears as eyebrows, on yellow. Under it: forno gufo.' },
       prompt: {
@@ -120,7 +120,7 @@ export const en = {
       },
     },
     items: {
-      video: { t: 'Summer drinks, 5 seconds', cat: 'Short videos', lines: ['Summer drinks', '0:05'] },
+      video: { t: 'A drinks commercial, 15 seconds', cat: 'Short videos', lines: ['Saltz8salt', '0:15'] },
       poster: { t: 'Poster for a film night', cat: 'Posters and logos', lines: ['Film', 'night', 'FRI · 21:00 · ROOFTOP'] },
       web: { t: 'A study timer', cat: 'Websites and small tools', lines: ['Study timer', 'Start'] },
       listing: { t: 'Listing for a handmade candle', cat: 'Product listings', lines: ['Cedar & smoke candle', 'Hand-poured soy wax', 'Burns for about 40 hours', 'Made in small batches'] },

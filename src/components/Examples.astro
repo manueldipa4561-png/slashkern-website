@@ -32,9 +32,8 @@ const TILES = [
         <li class={`ex ex--${hue}`}>
           {kind === 'video' && (
             <div class="ex__media vid">
-              <video src="/examples/drink.mp4" poster="/examples/drink-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label={g.video.alt}></video>
+              <video src="/examples/saltz8salt.mp4" poster="/examples/saltz8salt-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label={g.video.alt}></video>
               <span class="vid__len" aria-hidden="true">{g.video.len}</span>
-              <p class="vid__cap" aria-hidden="true">{g.video.cap}</p>
               <button type="button" class="vbtn" data-toggle-video aria-label={copy.demo.pause} data-play={copy.demo.play} data-pause={copy.demo.pause}>
                 <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg>
                 <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
@@ -47,7 +46,7 @@ const TILES = [
           {kind === 'post' && (
             <div class="ex__media post">
               <p class="post__head"><span class="post__av" aria-hidden="true">sp</span>{g.post.handle}</p>
-              <img src="/examples/plant-pink.jpg" width="720" height="900" loading="lazy" decoding="async" alt={g.post.alt} />
+              <img src="/examples/plant-repot.jpg" width="720" height="900" loading="lazy" decoding="async" alt={g.post.alt} />
               <svg class="post__heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg>
               <p class="post__cap">{g.post.caption}</p>
             </div>
@@ -55,7 +54,7 @@ const TILES = [
           {kind === 'logo' && <div class="ex__media"><img src="/examples/logo-forno-gufo.jpg" width="760" height="760" loading="lazy" decoding="async" alt={g.logo.alt} /></div>}
           {kind === 'listing' && (
             <div class="ex__media listing">
-              <img src="/examples/candle-lilac.jpg" width="800" height="1000" loading="lazy" decoding="async" alt={g.listing.alt} />
+              <img src="/examples/candle-cera.jpg" width="800" height="1000" loading="lazy" decoding="async" alt={g.listing.alt} />
               <div class="listing__body">
                 <p class="listing__t">{g.listing.title}</p>
                 <ul role="list">{g.listing.points.map((point) => <li>{point}</li>)}</ul>

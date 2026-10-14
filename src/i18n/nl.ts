@@ -106,11 +106,11 @@ export const nl: Copy = {
     tags: { ai: 'Gemaakt met AI', code: 'Werkt echt', answer: 'AI schreef het antwoord' },
     nojs: 'Dit voorbeeld heeft JavaScript nodig.',
     gallery: {
-      video: { field: 'Korte video’s', t: 'Zomerdrankjes, 5 seconden', for: 'Verzonnen klant: Bar Ficus', cap: 'Zomerdrankjes', len: '0:05', alt: 'Video: een hoog glas ijswater met munt en een schijfje sinaasappel op een cafétafeltje in de avondzon.' },
+      video: { field: 'Korte video’s', t: 'Een reclamespot voor een drankje, 15 seconden', for: 'Verzonnen klant: Saltz8salt', len: '0:15', alt: 'Video: een reclamespot van 15 seconden voor een bruisend drankje met zout en limoen. Zoutkristallen vallen op ijs, een stukje limoen spat in het glas, het drankje wordt ingeschonken en de fles staat stil in het gouden licht aan een meer. Het laatste scherm toont Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Posters en logo’s', t: 'Poster voor een filmavond', for: 'Verzonnen klant: Cinema Orsa', alt: 'Een blauwe poster met de tekst FILMAVOND en een gele maan boven een skyline van daken. Vrijdag, 21:00, op het dak, Cinema Orsa.' },
       timer: { field: 'Websites en kleine tools', t: 'Een studietimer', for: 'Verzonnen briefing: Sofia’s examenweek', modes: ['Studeren · 25 min', 'Pauze · 5 min'], group: 'Lengte', start: 'Starten', pause: 'Pauze', resume: 'Hervatten', reset: 'Resetten', done: 'De tijd is om. Neem een pauze.' },
-      listing: { field: 'Productadvertenties', t: 'Advertentie voor een handgemaakte kaars', for: 'Verzonnen klant: Cera Cera', title: 'Kaars ceder & rook', points: ['Met de hand gegoten sojawas', 'Brandt zo’n 40 uur', 'Gemaakt in kleine oplages'], alt: 'Een kaars in een gerookt barnsteenkleurig glazen potje met een houten lont, op een lila achtergrond.' },
-      post: { field: 'Posts en captions', t: 'Post voor een plantenwinkel', for: 'Verzonnen klant: Sunny Plants', handle: 'sunnyplants', caption: 'Zaterdag: neem een zielige plant mee, ga naar huis met een vrolijke. We verpotten de hele dag.', alt: 'Een bladrijke groene plant in een terracotta pot op een houten krukje, voor een roze muur.' },
+      listing: { field: 'Productadvertenties', t: 'Advertentie voor een handgemaakte kaars', for: 'Verzonnen klant: Cera Cera', title: 'Kaars ceder & rook', points: ['Met de hand gegoten sojawas', 'Brandt zo’n 40 uur', 'Gemaakt in kleine oplages'], alt: 'Een brandende kaars in een gerookt barnsteenkleurig glazen potje met een houten lont en een papieren etiket met Cera Cera, cedar & smoke, op een nachtkastje met linnen kleed naast een boek en een mok.' },
+      post: { field: 'Posts en captions', t: 'Post voor een plantenwinkel', for: 'Verzonnen klant: Sunny Plants', handle: 'sunnyplants', caption: 'Zaterdag: neem een zielige plant mee, ga naar huis met een vrolijke. We verpotten de hele dag.', alt: 'Twee pothos-planten op een houten tafel in een plantenwinkel: een slappe, gelig wordende in een gebarsten plastic pot naast een weelderige die net is verpot in terracotta.' },
       jingle: { field: 'Muziek en geluid', t: 'Jingle voor een fietsenmaker', for: 'Verzonnen klant: Pedal Pals', play: 'Speel de jingle af', pause: 'Pauzeer de jingle', seek: 'Positie in de jingle', hook: '“Pedal Pals, Pedal Pals!”', note: 'Gezongen in het Engels.' },
       logo: { field: 'Posters en logo’s', t: 'Logo voor een bakkerij', for: 'Verzonnen klant: Forno Gufo', alt: 'Een logo: een marineblauw uilengezicht gemaakt van een brood, met twee korenaren als wenkbrauwen, op geel. Eronder: forno gufo.' },
       prompt: {
@@ -120,7 +120,7 @@ export const nl: Copy = {
       },
     },
     items: {
-      video: { t: 'Zomerdrankjes, 5 seconden', cat: 'Korte video’s', lines: ['Zomerdrankjes', '0:05'] },
+      video: { t: 'Een reclamespot voor een drankje, 15 seconden', cat: 'Korte video’s', lines: ['Saltz8salt', '0:15'] },
       poster: { t: 'Poster voor een filmavond', cat: 'Posters en logo’s', lines: ['Film', 'avond', 'VR · 21:00 · DAK'] },
       web: { t: 'Een studietimer', cat: 'Websites en kleine tools', lines: ['Studietimer', 'Starten'] },
       listing: { t: 'Advertentie voor een handgemaakte kaars', cat: 'Productadvertenties', lines: ['Kaars ceder & rook', 'Met de hand gegoten sojawas', 'Brandt zo’n 40 uur', 'Gemaakt in kleine oplages'] },
