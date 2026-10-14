@@ -108,14 +108,14 @@ export const fr: Copy = {
     gallery: {
       video: { field: 'Vidéos courtes', t: 'Une pub pour une boisson, 15 secondes', for: 'Client inventé : Saltz8salt', len: '0:15', alt: 'Vidéo : une pub de 15 secondes pour une boisson pétillante au citron vert et au sel. Des cristaux de sel tombent sur la glace, un quartier de citron vert éclabousse le verre, la boisson est servie et la bouteille reste immobile dans la lumière dorée, au bord d’un lac. Le dernier écran affiche Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Affiches et logos', t: 'Affiche pour une soirée ciné', for: 'Client inventé : Cinema Orsa', alt: 'Une affiche bleue qui dit SOIRÉE CINÉ, avec une lune jaune au-dessus d’une ligne de toits. Vendredi, 21 h, en terrasse, Cinema Orsa.' },
-      timer: { field: 'Sites web et petits outils', t: 'Un minuteur pour réviser', for: 'Brief inventé : la semaine d’exams de Sofia', modes: ['Révision · 25 min', 'Pause · 5 min'], group: 'Durée', start: 'Commencer', pause: 'Pause', resume: 'Reprendre', reset: 'Remettre à zéro', done: 'Le temps est écoulé. Fais une pause.' },
+      timer: { field: 'Sites web et petits outils', t: 'Un minuteur pour réviser', for: 'Brief inventé : la semaine d’exams de Sofia', modes: ['Révision · 25 min', 'Pause · 5 min'], group: 'Durée', start: 'Commencer', pause: 'Pause', resume: 'Reprendre', reset: 'Remettre à zéro', done: 'Le temps est écoulé. Fais une pause.', try: 'Essaie : touche Commencer. Il tourne pour de vrai.', test: 'Essai de 10 s' },
       listing: { field: 'Annonces de produits', t: 'Annonce pour une bougie artisanale', for: 'Client inventé : Cera Cera', title: 'Bougie cèdre et fumée', points: ['Cire de soja coulée à la main', 'Brûle environ 40 heures', 'Fabriquée en petites séries'], alt: 'Une bougie allumée dans un pot en verre ambré fumé avec une mèche en bois et une étiquette en papier qui dit Cera Cera, cedar & smoke, sur une table de chevet recouverte de lin, à côté d’un livre et d’une tasse.' },
       post: { field: 'Posts et légendes', t: 'Post pour une boutique de plantes', for: 'Client inventé : Sunny Plants', handle: 'sunnyplants', caption: 'Samedi : amène une plante triste, repars avec une plante ravie. On rempote toute la journée.', alt: 'Deux pothos sur un établi dans une boutique de plantes : un pothos flétri et jaunissant dans un pot en plastique fendu, à côté d’un pothos luxuriant tout juste rempoté en terre cuite.' },
       jingle: { field: 'Musique et son', t: 'Jingle pour un atelier vélo', for: 'Client inventé : Pedal Pals', play: 'Écouter le jingle', pause: 'Mettre le jingle en pause', seek: 'Position dans le jingle', hook: '« Pedal Pals, Pedal Pals! »', note: 'Chanté en anglais.' },
       logo: { field: 'Affiches et logos', t: 'Logo pour une boulangerie', for: 'Client inventé : Forno Gufo', alt: 'Un logo : un visage de hibou bleu marine fait d’un pain, avec deux épis de blé en guise de sourcils, sur fond jaune. En dessous : forno gufo.' },
       prompt: {
-        field: 'Prompts IA', t: 'Un prompt pour un plan de révision', for: 'Brief inventé : la semaine d’exams de Sofia', promptLabel: 'Prompt', answerLabel: 'IA',
-        prompt: 'Fais-moi un plan de révision pour cette semaine. J’ai un exam de maths vendredi et un devoir d’histoire à rendre mercredi. Je peux réviser 90 minutes par jour. Une ligne par jour.',
+        field: 'Prompts IA', t: 'Un prompt pour un plan de révision', for: 'Brief inventé : la semaine d’exams de Sofia', promptLabel: 'Prompt', answerLabel: 'IA', kinds: ['Tâche', 'Contexte', 'Limite', 'Format'], weakLabel: 'Vague', strongLabel: 'Clair', switchLabel: 'Comparer deux prompts', copy: 'Copier le prompt', copied: 'Copié', same: 'La même IA, la même question. Seul le prompt change.',
+        parts: ['Fais-moi un plan de révision pour cette semaine.', 'J’ai un exam de maths vendredi et un devoir d’histoire à rendre mercredi.', 'Je peux réviser 90 minutes par jour.', 'Une ligne par jour.'], weak: 'Aide-moi à réviser.', weakAnswer: 'Bien sûr ! Révise un peu chaque jour, fais des pauses, dors bien et garde le moral. Bonne chance !',
         answer: ['Lun : exercices de maths, 45 min, puis lecture d’histoire, 45 min.', 'Mar : plan du devoir, 60 min, puis formules de maths, 30 min.', 'Mer : finis le devoir, 60 min, et rends-le.', 'Jeu : une annale de maths, 90 min.', 'Ven : révision de maths, 30 min. Puis l’exam. Repos.'],
       },
     },
@@ -205,11 +205,10 @@ export const fr: Copy = {
     steps: ['Choisis un projet de vidéo courte.', 'Lis le brief.', 'Écris ton idée en une ligne.', 'Reçois les plans et la légende.'],
     app: 'Dans l’app',
     out: 'Ce que tu peux faire',
-    caps: ['J’ai demandé à une IA de décrire cette bouteille en un mot.', 'Un mot :', 'FROIDE.'],
     ai: 'Créé avec l’aide de l’IA',
     labelApp: 'Vidéo : une idée transformée en plans et en légende dans l’app',
-    labelOut: 'Vidéo : un court exemple terminé, fait avec un outil vidéo IA',
-    note: 'Un projet d’exemple avec une bouteille inventée, accéléré. La partie dans l’app est enregistrée depuis le vrai prototype. Cette vidéo a été faite avec un outil vidéo IA.',
+    labelOut: 'Vidéo : une pub terminée de 15 secondes pour une boisson inventée, faite avec des outils IA',
+    note: 'La boisson, Saltz8salt, est inventée. La partie dans l’app est enregistrée depuis le vrai prototype. La pub a été faite avec des outils IA et elle est signalée comme telle.',
   },
 
   how: {

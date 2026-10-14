@@ -108,14 +108,14 @@ export const sv: Copy = {
     gallery: {
       video: { field: 'Korta videor', t: 'En reklamfilm för en dryck, 15 sekunder', for: 'Påhittad kund: Saltz8salt', len: '0:15', alt: 'Video: en reklamfilm på 15 sekunder för en bubblande dryck med salt och lime. Saltkristaller faller på is, en limeklyfta plaskar ner i glaset, drycken hälls upp och flaskan står stilla i det gyllene ljuset vid en sjö. Sista bilden visar Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Affischer och loggor', t: 'Affisch till en filmkväll', for: 'Påhittad kund: Cinema Orsa', alt: 'En blå affisch med texten FILM NIGHT och en gul måne över en siluett av hustak. Fredag, 21:00, på taket, Cinema Orsa.' },
-      timer: { field: 'Webbsidor och små verktyg', t: 'En studietimer', for: 'Påhittad brief: Sofias provvecka', modes: ['Plugga · 25 min', 'Rast · 5 min'], group: 'Längd', start: 'Starta', pause: 'Pausa', resume: 'Fortsätt', reset: 'Nollställ', done: 'Tiden är slut. Ta en rast.' },
+      timer: { field: 'Webbsidor och små verktyg', t: 'En studietimer', for: 'Påhittad brief: Sofias provvecka', modes: ['Plugga · 25 min', 'Rast · 5 min'], group: 'Längd', start: 'Starta', pause: 'Pausa', resume: 'Fortsätt', reset: 'Nollställ', done: 'Tiden är slut. Ta en rast.', try: 'Testa: tryck på Starta. Den går på riktigt.', test: 'Testkörning · 10 s' },
       listing: { field: 'Produktannonser', t: 'Annons för ett handgjort ljus', for: 'Påhittad kund: Cera Cera', title: 'Ljus med ceder och rök', points: ['Handgjutet sojavax', 'Brinner i ungefär 40 timmar', 'Tillverkat i små partier'], alt: 'Ett tänt ljus i en burk av rökfärgat bärnstensglas med träveke och en pappersetikett med texten Cera Cera, cedar & smoke, på ett nattduksbord täckt med linne bredvid en bok och en mugg.' },
       post: { field: 'Inlägg och bildtexter', t: 'Inlägg för en växtbutik', for: 'Påhittad kund: Sunny Plants', handle: 'sunnyplants', caption: 'Lördag: ta med en ledsen växt, gå hem med en glad. Vi planterar om hela dagen.', alt: 'Två pothos på ett träbord i en växtbutik: en hängande, gulnande i en spräckt plastkruka bredvid en lummig som precis planterats om i terrakotta.' },
       jingle: { field: 'Musik och ljud', t: 'Jingel för en cykelverkstad', for: 'Påhittad kund: Pedal Pals', play: 'Spela jingeln', pause: 'Pausa jingeln', seek: 'Position i jingeln', hook: '“Pedal Pals, Pedal Pals!”', note: 'Sjungs på engelska.' },
       logo: { field: 'Affischer och loggor', t: 'Logga till ett bageri', for: 'Påhittad kund: Forno Gufo', alt: 'En logga: ett marinblått ugglehuvud format av ett bröd, med två vetestrån som ögonbryn, på gul bakgrund. Under: forno gufo.' },
       prompt: {
-        field: 'AI-promptar', t: 'En prompt för en studieplan', for: 'Påhittad brief: Sofias provvecka', promptLabel: 'Prompt', answerLabel: 'AI',
-        prompt: 'Gör en studieplan åt mig för den här veckan. Jag har matteprov på fredag och en historieuppsats som ska in på onsdag. Jag kan plugga 90 minuter om dagen. En rad per dag.',
+        field: 'AI-promptar', t: 'En prompt för en studieplan', for: 'Påhittad brief: Sofias provvecka', promptLabel: 'Prompt', answerLabel: 'AI', kinds: ['Uppgift', 'Sammanhang', 'Gräns', 'Format'], weakLabel: 'Vagt', strongLabel: 'Tydligt', switchLabel: 'Jämför två promptar', copy: 'Kopiera prompten', copied: 'Kopierat', same: 'Samma AI, samma fråga. Bara prompten är annorlunda.',
+        parts: ['Gör en studieplan åt mig för den här veckan.', 'Jag har matteprov på fredag och en historieuppsats som ska in på onsdag.', 'Jag kan plugga 90 minuter om dagen.', 'En rad per dag.'], weak: 'Hjälp mig plugga.', weakAnswer: 'Klart! Plugga lite varje dag, ta pauser, sov bra och håll modet uppe. Lycka till!',
         answer: ['Mån: matteövningar, 45 min, sedan historialäsning, 45 min.', 'Tis: skissa upp uppsatsen, 60 min, sedan matteformler, 30 min.', 'Ons: skriv klart uppsatsen, 60 min, och lämna in den.', 'Tors: ett gammalt matteprov, 90 min.', 'Fre: repetera matte, 30 min. Sedan provet. Vila.'],
       },
     },
@@ -204,11 +204,10 @@ export const sv: Copy = {
     steps: ['Välj ett kort videoprojekt.', 'Läs briefen.', 'Skriv din idé på en rad.', 'Få scener och en bildtext.'],
     app: 'I appen',
     out: 'Det du kan göra',
-    caps: ['Jag bad en AI beskriva den här flaskan med ett ord.', 'Ett ord:', 'KALL.'],
     ai: 'Gjord med hjälp av AI',
     labelApp: 'Video: en idé blir till scener och en bildtext i appen',
-    labelOut: 'Video: ett färdigt kort exempel, gjort med ett AI-videoverktyg',
-    note: 'Ett exempelprojekt med en påhittad flaska, i snabbspolning. Delen från appen är inspelad från den riktiga prototypen. Den här videon är gjord med ett AI-videoverktyg.',
+    labelOut: 'Video: en färdig reklamfilm på 15 sekunder för en påhittad dryck, gjord med AI-verktyg',
+    note: 'Drycken Saltz8salt är påhittad. Delen från appen är inspelad från den riktiga prototypen. Reklamfilmen är gjord med AI-verktyg och är märkt som sådan.',
   },
 
   how: {

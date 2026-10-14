@@ -108,14 +108,14 @@ export const it: Copy = {
     gallery: {
       video: { field: 'Video brevi', t: 'Spot per una bibita, 15 secondi', for: 'Cliente inventato: Saltz8salt', len: '0:15', alt: 'Video: uno spot di 15 secondi per una bibita frizzante al lime e sale. Cristalli di sale cadono sul ghiaccio, uno spicchio di lime si tuffa nel bicchiere, la bibita viene versata e la bottiglia resta ferma nella luce dorata, davanti a un lago. L’ultima schermata dice Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Poster e loghi', t: 'Locandina per una serata cinema', for: 'Cliente inventato: Cinema Orsa', alt: 'Una locandina blu con la scritta SERATA CINEMA e una luna gialla sopra i tetti della città. Venerdì, alle 21:00, in terrazza, Cinema Orsa.' },
-      timer: { field: 'Siti e piccoli strumenti', t: 'Un timer per studiare', for: 'Brief inventato: la settimana d’esame di Sofia', modes: ['Studio · 25 min', 'Pausa · 5 min'], group: 'Durata', start: 'Avvia', pause: 'Pausa', resume: 'Riprendi', reset: 'Azzera', done: 'Tempo scaduto. Fai una pausa.' },
+      timer: { field: 'Siti e piccoli strumenti', t: 'Un timer per studiare', for: 'Brief inventato: la settimana d’esame di Sofia', modes: ['Studio · 25 min', 'Pausa · 5 min'], group: 'Durata', start: 'Avvia', pause: 'Pausa', resume: 'Riprendi', reset: 'Azzera', done: 'Tempo scaduto. Fai una pausa.', try: 'Provalo: tocca Avvia. Funziona davvero.', test: 'Prova da 10 s' },
       listing: { field: 'Annunci di prodotti', t: 'Annuncio per una candela artigianale', for: 'Cliente inventato: Cera Cera', title: 'Candela cedro e fumo', points: ['Cera di soia colata a mano', 'Dura circa 40 ore', 'Prodotta in piccoli lotti'], alt: 'Una candela accesa in un vasetto di vetro ambrato fumé con lo stoppino di legno e un’etichetta di carta con scritto Cera Cera, cedar & smoke, su un comodino coperto di lino accanto a un libro e a una tazza.' },
       post: { field: 'Post e didascalie', t: 'Post per un negozio di piante', for: 'Cliente inventato: Sunny Plants', handle: 'sunnyplants', caption: 'Sabato: porta una pianta triste, torna a casa con una felice. Rinvasiamo tutto il giorno.', alt: 'Due piante di pothos su un tavolo di legno in un negozio di piante: una afflosciata e ingiallita in un vaso di plastica incrinato, accanto a una rigogliosa appena rinvasata in terracotta.' },
       jingle: { field: 'Musica e suoni', t: 'Jingle per una ciclofficina', for: 'Cliente inventato: Pedal Pals', play: 'Ascolta il jingle', pause: 'Metti in pausa il jingle', seek: 'Posizione nel jingle', hook: '“Pedal Pals, Pedal Pals!”', note: 'Cantato in inglese.' },
       logo: { field: 'Poster e loghi', t: 'Logo per un forno', for: 'Cliente inventato: Forno Gufo', alt: 'Un logo: la faccia di un gufo blu scuro fatta con una pagnotta, con due spighe di grano come sopracciglia, su sfondo giallo. Sotto: forno gufo.' },
       prompt: {
-        field: 'Prompt per l’AI', t: 'Un prompt per il piano di studio', for: 'Brief inventato: la settimana d’esame di Sofia', promptLabel: 'Prompt', answerLabel: 'AI',
-        prompt: 'Fammi un piano di studio per questa settimana. Venerdì ho l’esame di matematica e mercoledì devo consegnare un tema di storia. Posso studiare 90 minuti al giorno. Una riga al giorno.',
+        field: 'Prompt per l’AI', t: 'Un prompt per il piano di studio', for: 'Brief inventato: la settimana d’esame di Sofia', promptLabel: 'Prompt', answerLabel: 'AI', kinds: ['Compito', 'Contesto', 'Limite', 'Formato'], weakLabel: 'Vago', strongLabel: 'Chiaro', switchLabel: 'Confronta due prompt', copy: 'Copia il prompt', copied: 'Copiato', same: 'Stessa AI, stessa domanda. Cambia solo il prompt.',
+        parts: ['Fammi un piano di studio per questa settimana.', 'Venerdì ho l’esame di matematica e mercoledì devo consegnare un tema di storia.', 'Posso studiare 90 minuti al giorno.', 'Una riga al giorno.'], weak: 'Aiutami a studiare.', weakAnswer: 'Certo! Studia un po’ ogni giorno, fai delle pause, dormi bene e non scoraggiarti. In bocca al lupo!',
         answer: ['Lun: esercizi di matematica, 45 min, poi lettura di storia, 45 min.', 'Mar: scaletta del tema, 60 min, poi formule di matematica, 30 min.', 'Mer: finisci il tema, 60 min, e consegnalo.', 'Gio: una vecchia prova d’esame di matematica, 90 min.', 'Ven: ripasso di matematica, 30 min. Poi l’esame. Riposo.'],
       },
     },
@@ -204,11 +204,10 @@ export const it: Copy = {
     steps: ['Scegli un progetto video breve.', 'Leggi il brief.', 'Scrivi la tua idea in una riga.', 'Ricevi inquadrature e didascalia.'],
     app: 'Nell’app',
     out: 'Cosa puoi fare',
-    caps: ['Ho chiesto a un’AI di descrivere questa borraccia in una parola.', 'Una parola:', 'FREDDA.'],
     ai: 'Fatto con l’aiuto dell’AI',
     labelApp: 'Video: un’idea trasformata in inquadrature e didascalia nell’app',
-    labelOut: 'Video: un breve esempio finito, fatto con uno strumento video AI',
-    note: 'Un progetto di esempio con una borraccia inventata, accelerato. La parte nell’app è una registrazione del prototipo vero. Questo video è fatto con uno strumento video AI.',
+    labelOut: 'Video: uno spot finito di 15 secondi per una bibita inventata, fatto con strumenti AI',
+    note: 'La bibita, Saltz8salt, è inventata. La parte nell’app è una registrazione del prototipo vero. Lo spot è fatto con strumenti AI ed è segnalato come tale.',
   },
 
   how: {

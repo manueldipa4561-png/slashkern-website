@@ -1,63 +1,114 @@
 ---
-// A study timer that really runs: pick a length, press start, it counts down and says when time is up. The clock reads the real time, so it stays right in a background tab.
+// A study timer that really runs, built as a small dark "focus" panel: a glowing ring with a head that moves, a length switch that slides, a big Start, four dots for finished sessions,
+// and a hint that points at Start until the first tap (plus a 10-second test run, so a visitor can see the ending without waiting 25 minutes).
+// The clock reads the real time, so it stays right in a background tab.
+import Slash from './Slash.astro';
 import type { Copy } from '../i18n/en';
 interface Props { t: Copy['examples']['gallery']['timer']; nojs: string }
 const { t, nojs } = Astro.props;
 const MINUTES = [25, 5]; // the two lengths, in the order of t.modes
+const TEST_SECONDS = 10;
+const SPARKS = Array.from({ length: 12 }, (_, i) => i * 30);
 ---
-<div class="ex__media timer" data-timer data-start={t.start} data-pause={t.pause} data-resume={t.resume} data-done={t.done}>
+<div class="ex__media timer" data-timer data-state="idle" data-start={t.start} data-pause={t.pause} data-resume={t.resume} data-done={t.done} data-test-label={t.test} data-test-secs={TEST_SECONDS}>
+  <div class="timer__top">
+    <p class="timer__status" data-status>{t.modes[0]}</p>
+    <ol class="timer__dots" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+  </div>
   <div class="timer__ring">
-    <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="timer__track" cx="60" cy="60" r="52" /><circle class="timer__bar" cx="60" cy="60" r="52" data-bar /></svg>
+    <svg viewBox="0 0 120 120" aria-hidden="true">
+      <defs><linearGradient id="timer-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8ff7d0" /><stop offset="1" stop-color="#4fd3ff" /></linearGradient></defs>
+      <circle class="timer__ticks" cx="60" cy="60" r="57" />
+      <circle class="timer__track" cx="60" cy="60" r="50" />
+      <circle class="timer__bar" cx="60" cy="60" r="50" data-bar />
+      <g class="timer__head" data-head><circle cx="110" cy="60" r="5" /></g>
+    </svg>
     <p class="timer__time" role="timer" data-time>25:00</p>
+    <div class="timer__spark" aria-hidden="true">{SPARKS.map((a) => <i style={`--a:${a}deg`}></i>)}</div>
   </div>
   <div class="timer__modes" role="group" aria-label={t.group}>
     {MINUTES.map((m, i) => <button type="button" class="timer__mode" aria-pressed={i === 0 ? 'true' : 'false'} data-min={m}>{t.modes[i]}</button>)}
   </div>
   <div class="timer__actions">
-    <button type="button" class="btn btn--primary btn--sm" data-go>{t.start}</button>
-    <button type="button" class="btn btn--ghost btn--sm" data-reset>{t.reset}</button>
+    <button type="button" class="timer__go" data-go>
+      <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+      <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg>
+      <span data-label>{t.start}</span>
+    </button>
+    <button type="button" class="timer__reset" data-reset aria-label={t.reset} title={t.reset}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 4.5v4.6h4.6" /></svg>
+    </button>
   </div>
+  <p class="timer__hint" data-hint><Slash size="1.5rem" float /><span>{t.try}</span></p>
+  <button type="button" class="timer__test" data-test>{t.test}</button>
   <p class="timer__done" role="status" data-msg></p>
   <noscript><p class="ex__nojs">{nojs}</p></noscript>
 </div>
 
 <script>
-  const RING = 2 * Math.PI * 52; // the ring's length: r = 52 in the svg above
+  const RING = 2 * Math.PI * 50; // the ring's length: r = 50 in the svg above
+  const SESSIONS = 4; // the dots
   document.querySelectorAll<HTMLElement>('[data-timer]').forEach((root) => {
     const time = root.querySelector<HTMLElement>('[data-time]')!;
     const bar = root.querySelector<SVGCircleElement>('[data-bar]')!;
+    const head = root.querySelector<SVGGElement>('[data-head]')!;
     const go = root.querySelector<HTMLButtonElement>('[data-go]')!;
+    const goLabel = root.querySelector<HTMLElement>('[data-label]')!;
     const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    const status = root.querySelector<HTMLElement>('[data-status]')!;
+    const dots = [...root.querySelectorAll<HTMLElement>('.timer__dots li')];
     const modes = [...root.querySelectorAll<HTMLButtonElement>('[data-min]')];
-    const say = { start: root.dataset.start!, pause: root.dataset.pause!, resume: root.dataset.resume!, done: root.dataset.done! };
-    let total = Number(modes[0].dataset.min) * 60, left = total, endAt = 0, tick = 0;
+    const say = { start: root.dataset.start!, pause: root.dataset.pause!, resume: root.dataset.resume!, done: root.dataset.done!, test: root.dataset.testLabel! };
+    const testSecs = Number(root.dataset.testSecs);
+    let total = Number(modes[0].dataset.min) * 60, left = total, endAt = 0, tick = 0, studying = true, sessions = 0, label = modes[0].textContent ?? '';
     bar.style.strokeDasharray = String(RING);
+    const setState = (s: string) => { root.dataset.state = s; };
     const paint = () => {
-      const s = Math.ceil(left);
+      const s = Math.ceil(left), frac = left / total;
       time.textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
-      bar.style.strokeDashoffset = String(RING * (1 - left / total));
+      bar.style.strokeDashoffset = String(RING * (1 - frac)); // the ring empties as time goes
+      head.style.transform = `rotate(${frac * 360}deg)`; // the bright head rides the end of what is left
+      head.style.opacity = left === 0 ? '0' : '1';
     };
     const stop = () => { window.clearInterval(tick); tick = 0; };
+    const finish = () => {
+      stop(); setState('done'); goLabel.textContent = say.start; msg.textContent = say.done;
+      if (studying) { sessions = sessions >= SESSIONS ? 1 : sessions + 1; dots.forEach((d, i) => d.classList.toggle('on', i < sessions)); } // a finished study run lights the next dot
+      root.classList.add('is-done');
+      window.setTimeout(() => root.classList.remove('is-done'), 1800);
+    };
     const step = () => {
       left = Math.max(0, (endAt - Date.now()) / 1000);
       paint();
-      if (left === 0) { stop(); go.textContent = say.start; msg.textContent = say.done; }
+      if (left === 0) finish();
     };
-    const setLength = (min: number) => { stop(); total = min * 60; left = total; msg.textContent = ''; go.textContent = say.start; paint(); };
-    go.addEventListener('click', () => {
-      if (tick) { stop(); go.textContent = say.resume; return; }
+    const setLength = (secs: number, study: boolean, text: string) => {
+      stop(); total = secs; left = secs; studying = study; label = text; status.textContent = text; msg.textContent = ''; goLabel.textContent = say.start; setState('idle'); paint();
+    };
+    const run = () => {
       if (left === 0) left = total;
       msg.textContent = '';
       endAt = Date.now() + left * 1000;
-      tick = window.setInterval(step, 200);
-      go.textContent = say.pause;
+      tick = window.setInterval(step, 100);
+      goLabel.textContent = say.pause;
+      setState('running');
       step();
+    };
+    go.addEventListener('click', () => {
+      if (tick) { stop(); goLabel.textContent = say.resume; setState('paused'); return; }
+      run();
     });
-    root.querySelector<HTMLButtonElement>('[data-reset]')!.addEventListener('click', () => setLength(total / 60));
+    root.querySelector<HTMLButtonElement>('[data-reset]')!.addEventListener('click', () => setLength(total, studying, label));
     modes.forEach((b) => b.addEventListener('click', () => {
       modes.forEach((m) => m.setAttribute('aria-pressed', String(m === b)));
-      setLength(Number(b.dataset.min));
+      setLength(Number(b.dataset.min) * 60, b === modes[0], b.textContent ?? '');
     }));
+    root.querySelector<HTMLButtonElement>('[data-test]')!.addEventListener('click', () => { // a 10-second run: it starts at once, so the whole ending can be seen
+      modes.forEach((m) => m.setAttribute('aria-pressed', 'false'));
+      setLength(testSecs, true, say.test);
+      run();
+    });
+    root.addEventListener('pointerdown', () => { root.dataset.touched = '1'; }, { once: true }); // the first tap anywhere puts the hint away
     paint();
   });
 </script>

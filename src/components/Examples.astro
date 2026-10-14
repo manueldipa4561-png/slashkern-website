@@ -20,6 +20,7 @@ const TILES = [
   { kind: 'jingle', hue: 'coral', tag: 'ai' },
   { kind: 'prompt', hue: 'navy', tag: 'answer' },
 ] as const;
+const PROMPT_KINDS = ['task', 'context', 'limit', 'format'] as const; // the four parts of the prompt, in the order of g.prompt.parts and g.prompt.kinds (each has its own colour)
 ---
 <section class="section section--soft examples" aria-labelledby="examples-title">
   <div class="wrap">
@@ -62,13 +63,27 @@ const TILES = [
             </div>
           )}
           {kind === 'prompt' && (
-            <div class="ex__media pr">
-              <p class="pr__l">{g.prompt.promptLabel}</p>
-              <p class="pr__text">{g.prompt.prompt}</p>
+            <div class="ex__media pr" data-prompt data-mode="strong" data-strong={g.prompt.parts.join(' ')} data-weak={g.prompt.weak} data-copy-label={g.prompt.copy} data-copied={g.prompt.copied}>
+              <div class="pr__top">
+                <p class="pr__l">{g.prompt.promptLabel}</p>
+                <div class="pr__switch" role="group" aria-label={g.prompt.switchLabel}>
+                  <button type="button" aria-pressed="false" data-mode-btn="weak">{g.prompt.weakLabel}</button>
+                  <button type="button" aria-pressed="true" data-mode-btn="strong">{g.prompt.strongLabel}</button>
+                </div>
+              </div>
+              <p class="pr__text" data-when="strong">{g.prompt.parts.map((text, i) => <><span class={`pr__p pr__p--${PROMPT_KINDS[i]}`}>{text}</span>{' '}</>)}</p>
+              <p class="pr__text" data-when="weak" hidden>{g.prompt.weak}</p>
+              <ul class="pr__legend" role="list">{g.prompt.kinds.map((k, i) => <li class={`pr__k pr__k--${PROMPT_KINDS[i]}`}>{k}</li>)}</ul>
+              <p class="pr__same">{g.prompt.same}</p>
               <div class="pr__ans">
                 <span class="chip chip--tag">{g.prompt.answerLabel}</span>
-                <ol>{g.prompt.answer.map((line) => <li>{line}</li>)}</ol>
+                <ol data-when="strong">{g.prompt.answer.map((line) => <li>{line}</li>)}</ol>
+                <p class="pr__weak" data-when="weak" hidden>{g.prompt.weakAnswer}</p>
               </div>
+              <button type="button" class="pr__copy" data-copy aria-live="polite">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5" /><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15" /></svg>
+                <span data-copy-text>{g.prompt.copy}</span>
+              </button>
             </div>
           )}
           <div class="ex__body">
@@ -83,3 +98,28 @@ const TILES = [
     <p class="gallery__cta"><a class="btn btn--accent" href={`#${copy.final.id}`}>{e.mine}</a></p>
   </div>
 </section>
+
+<script>
+  // The prompt card: Vague / Clear switches the prompt and the AI's answer; the copy button copies the prompt on show.
+  document.querySelectorAll<HTMLElement>('[data-prompt]').forEach((root) => {
+    const btns = [...root.querySelectorAll<HTMLButtonElement>('[data-mode-btn]')];
+    const parts = [...root.querySelectorAll<HTMLElement>('[data-when]')];
+    const copy = root.querySelector<HTMLButtonElement>('[data-copy]')!;
+    const label = root.querySelector<HTMLElement>('[data-copy-text]')!;
+    const text: Record<string, string> = { strong: root.dataset.strong!, weak: root.dataset.weak! };
+    let mode = 'strong', timer = 0;
+    const show = (m: string) => {
+      root.style.minHeight = m === 'weak' ? `${root.offsetHeight}px` : ''; // the card keeps its height, so the other cards do not move
+      mode = m; root.dataset.mode = m;
+      btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.modeBtn === m)));
+      parts.forEach((p) => { p.hidden = p.dataset.when !== m; });
+    };
+    btns.forEach((b) => b.addEventListener('click', () => show(b.dataset.modeBtn!)));
+    copy.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(text[mode]); } catch { return; } // no clipboard (an old browser, or blocked): nothing is claimed
+      label.textContent = root.dataset.copied!; copy.classList.add('is-ok');
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => { label.textContent = root.dataset.copyLabel!; copy.classList.remove('is-ok'); }, 1600);
+    });
+  });
+</script>

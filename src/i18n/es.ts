@@ -108,14 +108,14 @@ export const es: Copy = {
     gallery: {
       video: { field: 'Videos cortos', t: 'Anuncio de una bebida, 15 segundos', for: 'Cliente inventado: Saltz8salt', len: '0:15', alt: 'Video: un anuncio de 15 segundos de una bebida con gas de lima y sal. Cristales de sal caen sobre el hielo, una cuña de lima salpica dentro del vaso, se sirve la bebida y la botella queda quieta en la luz dorada junto a un lago. La última pantalla dice Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Pósters y logos', t: 'Póster para una noche de cine', for: 'Cliente inventado: Cinema Orsa', alt: 'Un póster azul que dice NOCHE DE CINE, con una luna amarilla sobre un perfil de tejados. Viernes, 21:00, en la azotea, Cinema Orsa.' },
-      timer: { field: 'Webs y herramientas pequeñas', t: 'Un temporizador para estudiar', for: 'Encargo inventado: la semana de exámenes de Sofia', modes: ['Estudio · 25 min', 'Descanso · 5 min'], group: 'Duración', start: 'Iniciar', pause: 'Pausa', resume: 'Reanudar', reset: 'Reiniciar', done: 'Se acabó el tiempo. Haz un descanso.' },
+      timer: { field: 'Webs y herramientas pequeñas', t: 'Un temporizador para estudiar', for: 'Encargo inventado: la semana de exámenes de Sofia', modes: ['Estudio · 25 min', 'Descanso · 5 min'], group: 'Duración', start: 'Iniciar', pause: 'Pausa', resume: 'Reanudar', reset: 'Reiniciar', done: 'Se acabó el tiempo. Haz un descanso.', try: 'Pruébalo: toca Iniciar. Funciona de verdad.', test: 'Prueba de 10 s' },
       listing: { field: 'Anuncios de productos', t: 'Anuncio de una vela artesanal', for: 'Cliente inventado: Cera Cera', title: 'Vela de cedro y humo', points: ['Cera de soja vertida a mano', 'Dura unas 40 horas', 'Hecha en tandas pequeñas'], alt: 'Una vela encendida en un tarro de vidrio ámbar ahumado con mecha de madera y una etiqueta de papel que dice Cera Cera, cedar & smoke, sobre una mesita de noche de lino junto a un libro y una taza.' },
       post: { field: 'Posts y textos', t: 'Post para una tienda de plantas', for: 'Cliente inventado: Sunny Plants', handle: 'sunnyplants', caption: 'Sábado: trae una planta triste, llévate una feliz. Cambiamos de maceta todo el día.', alt: 'Dos potos sobre una mesa de madera en una tienda de plantas: uno mustio y amarillento en una maceta de plástico agrietada, junto a uno frondoso recién trasplantado a terracota.' },
       jingle: { field: 'Música y sonido', t: 'Jingle para un taller de bicis', for: 'Cliente inventado: Pedal Pals', play: 'Escuchar el jingle', pause: 'Pausar el jingle', seek: 'Posición en el jingle', hook: '“Pedal Pals, Pedal Pals!”', note: 'Cantado en inglés.' },
       logo: { field: 'Pósters y logos', t: 'Logo para una panadería', for: 'Cliente inventado: Forno Gufo', alt: 'Un logo: la cara de un búho azul marino hecha con una barra de pan, con dos espigas de trigo como cejas, sobre fondo amarillo. Debajo: forno gufo.' },
       prompt: {
-        field: 'Prompts para IA', t: 'Un prompt para un plan de estudio', for: 'Encargo inventado: la semana de exámenes de Sofia', promptLabel: 'Prompt', answerLabel: 'IA',
-        prompt: 'Hazme un plan de estudio para esta semana. Tengo examen de matemáticas el viernes y tengo que entregar un ensayo de historia el miércoles. Puedo estudiar 90 minutos al día. Una línea por día.',
+        field: 'Prompts para IA', t: 'Un prompt para un plan de estudio', for: 'Encargo inventado: la semana de exámenes de Sofia', promptLabel: 'Prompt', answerLabel: 'IA', kinds: ['Tarea', 'Contexto', 'Límite', 'Formato'], weakLabel: 'Vago', strongLabel: 'Claro', switchLabel: 'Compara dos prompts', copy: 'Copiar el prompt', copied: 'Copiado', same: 'La misma IA, la misma pregunta. Solo cambia el prompt.',
+        parts: ['Hazme un plan de estudio para esta semana.', 'Tengo examen de matemáticas el viernes y tengo que entregar un ensayo de historia el miércoles.', 'Puedo estudiar 90 minutos al día.', 'Una línea por día.'], weak: 'Ayúdame a estudiar.', weakAnswer: '¡Claro! Estudia un poco cada día, haz pausas, duerme bien y no te desanimes. ¡Mucha suerte!',
         answer: ['Lun: ejercicios de matemáticas, 45 min, y luego lectura de historia, 45 min.', 'Mar: esquema del ensayo, 60 min, y luego fórmulas de matemáticas, 30 min.', 'Mié: termina el ensayo, 60 min, y entrégalo.', 'Jue: un examen anterior de matemáticas, 90 min.', 'Vie: repaso de matemáticas, 30 min. Luego el examen. Descansa.'],
       },
     },
@@ -205,11 +205,10 @@ export const es: Copy = {
     steps: ['Elige un proyecto de video corto.', 'Lee el encargo.', 'Escribe tu idea en una línea.', 'Recibe los planos y el texto.'],
     app: 'En la app',
     out: 'Lo que puedes hacer',
-    caps: ['Le pedí a una IA que describiera esta botella en una palabra.', 'Una palabra:', 'FRÍA.'],
     ai: 'Hecho con ayuda de IA',
     labelApp: 'Video: una idea convertida en planos y un texto dentro de la app',
-    labelOut: 'Video: un ejemplo corto terminado, hecho con una herramienta de video con IA',
-    note: 'Un proyecto de ejemplo con una botella inventada, acelerado. La parte de la app es una grabación del prototipo real. Este video está hecho con una herramienta de video con IA.',
+    labelOut: 'Video: un anuncio terminado de 15 segundos para una bebida inventada, hecho con herramientas de IA',
+    note: 'La bebida, Saltz8salt, es inventada. La parte de la app es una grabación del prototipo real. El anuncio está hecho con herramientas de IA y se indica como tal.',
   },
 
   how: {

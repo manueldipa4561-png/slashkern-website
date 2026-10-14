@@ -108,14 +108,14 @@ export const en = {
     gallery: {
       video: { field: 'Short videos', t: 'A drinks commercial, 15 seconds', for: 'Made-up client: Saltz8salt', len: '0:15', alt: 'Video: a 15-second commercial for a fizzy salted-lime drink. Salt crystals fall onto ice, a lime wedge splashes into the glass, the drink is poured, and the bottle stands in golden light by a lake. The last screen reads Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Posters and logos', t: 'Poster for a film night', for: 'Made-up client: Cinema Orsa', alt: 'A blue poster that says FILM NIGHT, with a yellow moon over a skyline of rooftops. Friday, 21:00, rooftop, Cinema Orsa.' },
-      timer: { field: 'Websites and small tools', t: 'A study timer', for: 'Made-up brief: Sofia’s exam week', modes: ['Study · 25 min', 'Break · 5 min'], group: 'Length', start: 'Start', pause: 'Pause', resume: 'Resume', reset: 'Reset', done: 'Time is up. Take a break.' },
+      timer: { field: 'Websites and small tools', t: 'A study timer', for: 'Made-up brief: Sofia’s exam week', modes: ['Study · 25 min', 'Break · 5 min'], group: 'Length', start: 'Start', pause: 'Pause', resume: 'Resume', reset: 'Reset', done: 'Time is up. Take a break.', try: 'Try it: tap Start. It really runs.', test: 'Test run · 10 s' },
       listing: { field: 'Product listings', t: 'Listing for a handmade candle', for: 'Made-up client: Cera Cera', title: 'Cedar & smoke candle', points: ['Hand-poured soy wax', 'Burns for about 40 hours', 'Made in small batches'], alt: 'A lit candle in a smoked amber glass jar with a wooden wick and a paper label that says Cera Cera, cedar & smoke, on a linen bedside table next to a book and a mug.' },
       post: { field: 'Posts and captions', t: 'Post for a plant shop', for: 'Made-up client: Sunny Plants', handle: 'sunnyplants', caption: 'Saturday: bring a sad plant, leave with a happy one. We repot all day.', alt: 'Two pothos plants on a workbench in a plant shop: a drooping, yellowing one in a cracked plastic pot next to a lush one freshly repotted in terracotta.' },
       jingle: { field: 'Music and sound', t: 'Jingle for a bike repair shop', for: 'Made-up client: Pedal Pals', play: 'Play the jingle', pause: 'Pause the jingle', seek: 'Position in the jingle', hook: '“Pedal Pals, Pedal Pals!”', note: '' },
       logo: { field: 'Posters and logos', t: 'Logo for a bakery', for: 'Made-up client: Forno Gufo', alt: 'A logo: a navy owl face made from a loaf of bread, with two wheat ears as eyebrows, on yellow. Under it: forno gufo.' },
       prompt: {
-        field: 'AI prompts', t: 'A prompt for a study plan', for: 'Made-up brief: Sofia’s exam week', promptLabel: 'Prompt', answerLabel: 'AI',
-        prompt: 'Make me a study plan for this week. I have a maths exam on Friday and a history essay due on Wednesday. I can study 90 minutes a day. One line per day.',
+        field: 'AI prompts', t: 'A prompt for a study plan', for: 'Made-up brief: Sofia’s exam week', promptLabel: 'Prompt', answerLabel: 'AI', kinds: ['Task', 'Context', 'Limit', 'Format'], weakLabel: 'Vague', strongLabel: 'Clear', switchLabel: 'Compare two prompts', copy: 'Copy prompt', copied: 'Copied', same: 'Same AI, same question. Only the prompt changed.',
+        parts: ['Make me a study plan for this week.', 'I have a maths exam on Friday and a history essay due on Wednesday.', 'I can study 90 minutes a day.', 'One line per day.'], weak: 'Help me study.', weakAnswer: 'Sure! Study a bit every day, take breaks, sleep well and stay positive. Good luck!',
         answer: ['Mon: maths exercises, 45 min, then history reading, 45 min.', 'Tue: outline the essay, 60 min, then maths formulas, 30 min.', 'Wed: finish the essay, 60 min, and hand it in.', 'Thu: one past maths paper, 90 min.', 'Fri: maths review, 30 min. Then the exam. Rest.'],
       },
     },
@@ -205,11 +205,10 @@ export const en = {
     steps: ['Pick a short video project.', 'Read the brief.', 'Type your idea in one line.', 'Get the shots and the caption.'],
     app: 'In the app',
     out: 'What you can make',
-    caps: ['I asked an AI to describe this bottle in one word.', 'One word:', 'COLD.'],
     ai: 'Made with AI help',
     labelApp: 'Video: turning one idea into shots and a caption in the app',
-    labelOut: 'Video: a finished short example, made with an AI video tool',
-    note: 'A sample project with a made-up bottle, sped up. The app part is recorded from the real prototype. This video was made with an AI video tool.',
+    labelOut: 'Video: a finished 15-second commercial for a made-up drink, made with AI tools',
+    note: 'The drink, Saltz8salt, is made up. The app part is recorded from the real prototype. The commercial was made with AI tools and is tagged as such.',
   },
 
   how: {

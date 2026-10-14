@@ -108,14 +108,14 @@ export const de: Copy = {
     gallery: {
       video: { field: 'Kurzvideos', t: 'Werbespot für ein Getränk, 15 Sekunden', for: 'Erfundener Kunde: Saltz8salt', len: '0:15', alt: 'Video: ein 15-sekündiger Werbespot für ein prickelndes Salz-Limetten-Getränk. Salzkristalle fallen auf Eis, ein Limettenstück platscht ins Glas, das Getränk wird eingeschenkt, und die Flasche steht im goldenen Licht an einem See. Der letzte Bildschirm zeigt Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Poster und Logos', t: 'Poster für einen Filmabend', for: 'Erfundener Kunde: Cinema Orsa', alt: 'Ein blaues Poster mit der Aufschrift FILMABEND und einem gelben Mond über einer Skyline aus Dächern. Freitag, 21:00 Uhr, auf dem Dach, Cinema Orsa.' },
-      timer: { field: 'Websites und kleine Tools', t: 'Ein Lern-Timer', for: 'Erfundenes Briefing: Sofias Prüfungswoche', modes: ['Lernen · 25 Min.', 'Pause · 5 Min.'], group: 'Länge', start: 'Starten', pause: 'Pause', resume: 'Weiter', reset: 'Zurücksetzen', done: 'Die Zeit ist um. Mach eine Pause.' },
+      timer: { field: 'Websites und kleine Tools', t: 'Ein Lern-Timer', for: 'Erfundenes Briefing: Sofias Prüfungswoche', modes: ['Lernen · 25 Min.', 'Pause · 5 Min.'], group: 'Länge', start: 'Starten', pause: 'Pause', resume: 'Weiter', reset: 'Zurücksetzen', done: 'Die Zeit ist um. Mach eine Pause.', try: 'Probier es aus: tippe auf Starten. Es läuft wirklich.', test: 'Testlauf · 10 Sek.' },
       listing: { field: 'Produktanzeigen', t: 'Anzeige für eine handgemachte Kerze', for: 'Erfundener Kunde: Cera Cera', title: 'Kerze Zeder & Rauch', points: ['Von Hand gegossenes Sojawachs', 'Brennt etwa 40 Stunden', 'In kleinen Chargen gemacht'], alt: 'Eine brennende Kerze in einem Glas aus rauchigem Bernstein mit Holzdocht und einem Papieretikett mit der Aufschrift Cera Cera, cedar & smoke, auf einem Nachttisch mit Leinendecke neben einem Buch und einer Tasse.' },
       post: { field: 'Posts und Bildunterschriften', t: 'Post für einen Pflanzenladen', for: 'Erfundener Kunde: Sunny Plants', handle: 'sunnyplants', caption: 'Samstag: Bring eine traurige Pflanze mit, geh mit einer glücklichen nach Hause. Wir topfen den ganzen Tag um.', alt: 'Zwei Efeututen auf einem Holztisch in einem Pflanzenladen: eine hängende, gelbliche in einem rissigen Plastiktopf neben einer üppigen, frisch in Terrakotta umgetopften.' },
       jingle: { field: 'Musik und Sound', t: 'Jingle für eine Fahrradwerkstatt', for: 'Erfundener Kunde: Pedal Pals', play: 'Jingle abspielen', pause: 'Jingle pausieren', seek: 'Position im Jingle', hook: '„Pedal Pals, Pedal Pals!“', note: 'Auf Englisch gesungen.' },
       logo: { field: 'Poster und Logos', t: 'Logo für eine Bäckerei', for: 'Erfundener Kunde: Forno Gufo', alt: 'Ein Logo: ein marineblaues Eulengesicht aus einem Laib Brot, mit zwei Weizenähren als Augenbrauen, auf Gelb. Darunter: forno gufo.' },
       prompt: {
-        field: 'KI-Prompts', t: 'Ein Prompt für einen Lernplan', for: 'Erfundenes Briefing: Sofias Prüfungswoche', promptLabel: 'Prompt', answerLabel: 'KI',
-        prompt: 'Mach mir einen Lernplan für diese Woche. Ich habe am Freitag eine Mathe-Prüfung und muss am Mittwoch einen Geschichts-Aufsatz abgeben. Ich kann täglich 90 Minuten lernen. Eine Zeile pro Tag.',
+        field: 'KI-Prompts', t: 'Ein Prompt für einen Lernplan', for: 'Erfundenes Briefing: Sofias Prüfungswoche', promptLabel: 'Prompt', answerLabel: 'KI', kinds: ['Aufgabe', 'Kontext', 'Grenze', 'Format'], weakLabel: 'Vage', strongLabel: 'Klar', switchLabel: 'Zwei Prompts vergleichen', copy: 'Prompt kopieren', copied: 'Kopiert', same: 'Dieselbe KI, dieselbe Frage. Nur der Prompt ist anders.',
+        parts: ['Mach mir einen Lernplan für diese Woche.', 'Ich habe am Freitag eine Mathe-Prüfung und muss am Mittwoch einen Geschichts-Aufsatz abgeben.', 'Ich kann täglich 90 Minuten lernen.', 'Eine Zeile pro Tag.'], weak: 'Hilf mir beim Lernen.', weakAnswer: 'Klar! Lerne jeden Tag ein bisschen, mach Pausen, schlaf gut und bleib zuversichtlich. Viel Erfolg!',
         answer: ['Mo: Matheaufgaben, 45 Min., dann Geschichte lesen, 45 Min.', 'Di: Aufsatz gliedern, 60 Min., dann Matheformeln, 30 Min.', 'Mi: Aufsatz fertig schreiben, 60 Min., und abgeben.', 'Do: eine alte Mathe-Prüfung, 90 Min.', 'Fr: Mathe wiederholen, 30 Min. Dann die Prüfung. Ausruhen.'],
       },
     },
@@ -204,11 +204,10 @@ export const de: Copy = {
     steps: ['Such dir ein kurzes Videoprojekt aus.', 'Lies das Briefing.', 'Schreib deine Idee in einer Zeile auf.', 'Hol dir die Einstellungen und die Bildunterschrift.'],
     app: 'In der App',
     out: 'Was du machen kannst',
-    caps: ['Ich habe eine KI gebeten, diese Flasche in einem Wort zu beschreiben.', 'Ein Wort:', 'KALT.'],
     ai: 'Mit KI-Hilfe erstellt',
     labelApp: 'Video: wie in der App aus einer Idee Einstellungen und eine Bildunterschrift werden',
-    labelOut: 'Video: ein fertiges kurzes Beispiel, gemacht mit einem KI-Videotool',
-    note: 'Ein Beispielprojekt mit einer erfundenen Flasche, beschleunigt. Der Teil in der App ist vom echten Prototyp aufgenommen. Dieses Video wurde mit einem KI-Videotool gemacht.',
+    labelOut: 'Video: ein fertiger 15-Sekunden-Werbespot für ein erfundenes Getränk, gemacht mit KI-Tools',
+    note: 'Das Getränk Saltz8salt ist erfunden. Der Teil in der App ist vom echten Prototyp aufgenommen. Der Werbespot wurde mit KI-Tools gemacht und ist entsprechend gekennzeichnet.',
   },
 
   how: {

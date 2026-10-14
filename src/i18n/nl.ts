@@ -108,14 +108,14 @@ export const nl: Copy = {
     gallery: {
       video: { field: 'Korte video’s', t: 'Een reclamespot voor een drankje, 15 seconden', for: 'Verzonnen klant: Saltz8salt', len: '0:15', alt: 'Video: een reclamespot van 15 seconden voor een bruisend drankje met zout en limoen. Zoutkristallen vallen op ijs, een stukje limoen spat in het glas, het drankje wordt ingeschonken en de fles staat stil in het gouden licht aan een meer. Het laatste scherm toont Saltz8salt, alkoholfrei, Ein bisschen Salz. Ganz viel Sommer.' },
       poster: { field: 'Posters en logo’s', t: 'Poster voor een filmavond', for: 'Verzonnen klant: Cinema Orsa', alt: 'Een blauwe poster met de tekst FILMAVOND en een gele maan boven een skyline van daken. Vrijdag, 21:00, op het dak, Cinema Orsa.' },
-      timer: { field: 'Websites en kleine tools', t: 'Een studietimer', for: 'Verzonnen briefing: Sofia’s examenweek', modes: ['Studeren · 25 min', 'Pauze · 5 min'], group: 'Lengte', start: 'Starten', pause: 'Pauze', resume: 'Hervatten', reset: 'Resetten', done: 'De tijd is om. Neem een pauze.' },
+      timer: { field: 'Websites en kleine tools', t: 'Een studietimer', for: 'Verzonnen briefing: Sofia’s examenweek', modes: ['Studeren · 25 min', 'Pauze · 5 min'], group: 'Lengte', start: 'Starten', pause: 'Pauze', resume: 'Hervatten', reset: 'Resetten', done: 'De tijd is om. Neem een pauze.', try: 'Probeer het: tik op Starten. Het loopt echt.', test: 'Testrun · 10 sec' },
       listing: { field: 'Productadvertenties', t: 'Advertentie voor een handgemaakte kaars', for: 'Verzonnen klant: Cera Cera', title: 'Kaars ceder & rook', points: ['Met de hand gegoten sojawas', 'Brandt zo’n 40 uur', 'Gemaakt in kleine oplages'], alt: 'Een brandende kaars in een gerookt barnsteenkleurig glazen potje met een houten lont en een papieren etiket met Cera Cera, cedar & smoke, op een nachtkastje met linnen kleed naast een boek en een mok.' },
       post: { field: 'Posts en captions', t: 'Post voor een plantenwinkel', for: 'Verzonnen klant: Sunny Plants', handle: 'sunnyplants', caption: 'Zaterdag: neem een zielige plant mee, ga naar huis met een vrolijke. We verpotten de hele dag.', alt: 'Twee pothos-planten op een houten tafel in een plantenwinkel: een slappe, gelig wordende in een gebarsten plastic pot naast een weelderige die net is verpot in terracotta.' },
       jingle: { field: 'Muziek en geluid', t: 'Jingle voor een fietsenmaker', for: 'Verzonnen klant: Pedal Pals', play: 'Speel de jingle af', pause: 'Pauzeer de jingle', seek: 'Positie in de jingle', hook: '“Pedal Pals, Pedal Pals!”', note: 'Gezongen in het Engels.' },
       logo: { field: 'Posters en logo’s', t: 'Logo voor een bakkerij', for: 'Verzonnen klant: Forno Gufo', alt: 'Een logo: een marineblauw uilengezicht gemaakt van een brood, met twee korenaren als wenkbrauwen, op geel. Eronder: forno gufo.' },
       prompt: {
-        field: 'AI-prompts', t: 'Een prompt voor een studieplan', for: 'Verzonnen briefing: Sofia’s examenweek', promptLabel: 'Prompt', answerLabel: 'AI',
-        prompt: 'Maak een studieplan voor deze week. Vrijdag heb ik een wiskunde-examen en woensdag moet ik een geschiedenisessay inleveren. Ik kan 90 minuten per dag studeren. Eén regel per dag.',
+        field: 'AI-prompts', t: 'Een prompt voor een studieplan', for: 'Verzonnen briefing: Sofia’s examenweek', promptLabel: 'Prompt', answerLabel: 'AI', kinds: ['Opdracht', 'Context', 'Grens', 'Formaat'], weakLabel: 'Vaag', strongLabel: 'Duidelijk', switchLabel: 'Vergelijk twee prompts', copy: 'Prompt kopiëren', copied: 'Gekopieerd', same: 'Dezelfde AI, dezelfde vraag. Alleen de prompt is anders.',
+        parts: ['Maak een studieplan voor deze week.', 'Vrijdag heb ik een wiskunde-examen en woensdag moet ik een geschiedenisessay inleveren.', 'Ik kan 90 minuten per dag studeren.', 'Eén regel per dag.'], weak: 'Help me studeren.', weakAnswer: 'Natuurlijk! Studeer elke dag een beetje, neem pauzes, slaap goed en blijf positief. Succes!',
         answer: ['Ma: wiskundeopgaven, 45 min, daarna geschiedenis lezen, 45 min.', 'Di: opzet van het essay, 60 min, daarna wiskundeformules, 30 min.', 'Wo: essay afmaken, 60 min, en inleveren.', 'Do: één oud wiskunde-examen, 90 min.', 'Vr: wiskunde herhalen, 30 min. Dan het examen. Rust.'],
       },
     },
@@ -205,11 +205,10 @@ export const nl: Copy = {
     steps: ['Kies een kort videoproject.', 'Lees de briefing.', 'Typ je idee in één regel.', 'Krijg de shots en de caption.'],
     app: 'In de app',
     out: 'Wat je kunt maken',
-    caps: ['Ik vroeg een AI om dit flesje in één woord te beschrijven.', 'Eén woord:', 'KOUD.'],
     ai: 'Gemaakt met hulp van AI',
     labelApp: 'Video: één idee omgezet in shots en een caption in de app',
-    labelOut: 'Video: een afgemaakt kort voorbeeld, gemaakt met een AI-videotool',
-    note: 'Een voorbeeldproject met een verzonnen flesje, versneld. Het deel in de app is opgenomen uit het echte prototype. Deze video is gemaakt met een AI-videotool.',
+    labelOut: 'Video: een afgemaakte reclamespot van 15 seconden voor een verzonnen drankje, gemaakt met AI-tools',
+    note: 'Het drankje, Saltz8salt, is verzonnen. Het deel in de app is opgenomen uit het echte prototype. De reclamespot is gemaakt met AI-tools en is als zodanig gemarkeerd.',
   },
 
   how: {

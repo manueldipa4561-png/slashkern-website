@@ -40,19 +40,64 @@
 .vid .vbtn { top: 0.75rem; right: 0.75rem; bottom: auto; z-index: 3; }
 @media (max-width: 39.99rem) { .vid { aspect-ratio: 4 / 5; } } /* on a phone the clip is a tile, not a whole screen */
 
-/* the study timer: a ring that empties, the time, two lengths, start and reset */
-.timer { display: grid; justify-items: center; gap: 1rem; padding: 1.5rem 1rem 1.25rem; background: var(--panel); color: var(--ink); line-height: 1.4; }
-.timer__ring { position: relative; display: grid; place-items: center; width: min(100%, 13rem); aspect-ratio: 1; }
-.timer__ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
-.timer__track, .timer__bar { fill: none; stroke-width: 8; }
-.timer__track { stroke: #d9f4ea; }
-.timer__bar { stroke: #0fa57a; stroke-linecap: round; }
-.timer__time { font: 500 clamp(2.5rem, 2rem + 2vw, 3.25rem)/1 var(--font-mono); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
-.timer__modes { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
-.timer__mode { min-height: 2.75rem; padding: 0 1rem; border: 0; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--ink); font: 600 0.9375rem/1 var(--font-ui); }
-.timer__mode[aria-pressed='true'] { background: var(--ink); color: #fff; box-shadow: none; }
-.timer__actions { display: flex; gap: 0.5rem; }
-.timer__done { min-height: 1.4em; font-weight: 700; text-align: center; }
+/* the study timer: a dark focus panel. A glowing ring (60 ticks, a bright head that rides the end of what is left), a length switch with a sliding thumb, a big Start that turns into Pause,
+   four dots for finished sessions, a hint that points at Start until the first tap, and a small burst when the time is up. Motion only when the visitor has not asked for less. */
+.timer { --t-mint: #8ff7d0; position: relative; isolation: isolate; overflow: hidden; display: grid; justify-items: center; gap: 1.125rem; padding: 1.25rem 1.125rem; color: #fff; line-height: 1.4; background: radial-gradient(120% 80% at 50% -10%, #12705c 0%, #0a4a3d 38%, #06312b 70%, #04231f 100%); }
+.timer::before { content: ''; position: absolute; inset: -30% -20% auto; height: 70%; z-index: -1; background: radial-gradient(closest-side, rgb(143 247 208 / 0.26), transparent); filter: blur(10px); }
+.timer__top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; width: 100%; }
+.timer__status { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3125rem 0.75rem 0.3125rem 0.625rem; border-radius: 999px; background: rgb(255 255 255 / 0.1); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14); font: 500 0.8125rem/1.2 var(--font-mono); letter-spacing: 0.02em; }
+.timer__status::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--t-mint); }
+.timer[data-state='running'] .timer__status::before { animation: t-live 1.6s ease-out infinite; }
+.timer[data-state='paused'] .timer__status::before { background: #ffd166; }
+.timer__dots { display: flex; gap: 0.375rem; }
+.timer__dots li { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: rgb(255 255 255 / 0.2); transition: background 0.4s, transform 0.4s, box-shadow 0.4s; }
+.timer__dots li.on { background: var(--t-mint); box-shadow: 0 0 10px rgb(143 247 208 / 0.7); transform: scale(1.15); }
+.timer__ring { position: relative; display: grid; place-items: center; width: min(100%, 14.5rem); aspect-ratio: 1; }
+.timer[data-state='running'] .timer__ring { animation: t-breathe 4s ease-in-out infinite; }
+.timer__ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; transform: rotate(-90deg); }
+.timer__ticks { fill: none; stroke: rgb(255 255 255 / 0.3); stroke-width: 3; stroke-dasharray: 0.9 5.07; }
+.timer__track, .timer__bar { fill: none; stroke-width: 7; }
+.timer__track { stroke: rgb(255 255 255 / 0.1); }
+.timer__bar { stroke: url(#timer-grad); stroke-linecap: round; filter: drop-shadow(0 0 6px rgb(143 247 208 / 0.55)); transition: stroke-dashoffset 0.25s linear; }
+.timer__head { transform-box: view-box; transform-origin: 50% 50%; transition: transform 0.25s linear, opacity 0.3s; }
+.timer__head circle { fill: #fff; filter: drop-shadow(0 0 5px #8ff7d0) drop-shadow(0 0 10px rgb(79 211 255 / 0.8)); }
+.timer__time { font: 500 clamp(2.75rem, 2.2rem + 2.6vw, 3.75rem)/1 var(--font-mono); letter-spacing: -0.05em; font-variant-numeric: tabular-nums; text-shadow: 0 0 24px rgb(143 247 208 / 0.35); }
+.timer__spark { position: absolute; inset: 0; pointer-events: none; } /* out of the grid, so the time stays in the middle of the ring */
+.timer__spark i { position: absolute; left: 50%; top: 50%; width: 0.375rem; height: 0.375rem; margin: -0.1875rem; border-radius: 50%; background: var(--t-mint); opacity: 0; transform: rotate(var(--a)) translateY(-6rem) scale(0.2); }
+.timer.is-done .timer__spark i { animation: t-burst 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.timer.is-done .timer__time { animation: t-pop 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.timer__modes { position: relative; display: grid; grid-template-columns: 1fr 1fr; width: 100%; padding: 0.25rem; border-radius: 999px; background: rgb(255 255 255 / 0.08); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); }
+.timer__modes::before { content: ''; position: absolute; inset: 0.25rem auto 0.25rem 0.25rem; width: calc(50% - 0.25rem); border-radius: 999px; background: #fff; box-shadow: 0 6px 16px -6px rgb(0 0 0 / 0.5); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s; }
+.timer__modes:has(.timer__mode:last-child[aria-pressed='true'])::before { transform: translateX(100%); }
+.timer__modes:not(:has([aria-pressed='true']))::before { opacity: 0; }
+.timer__mode { position: relative; z-index: 1; min-height: 2.75rem; padding: 0 0.5rem; border: 0; border-radius: 999px; background: transparent; color: rgb(255 255 255 / 0.85); font: 600 0.875rem/1 var(--font-ui); transition: color 0.25s; }
+.timer__mode[aria-pressed='true'] { color: var(--ink); }
+.timer__actions { display: flex; align-items: center; gap: 0.625rem; width: 100%; }
+.timer__go { position: relative; flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3.25rem; padding: 0 1.25rem; border: 0; border-radius: 999px; background: linear-gradient(180deg, #fff, #dff9ee); color: var(--ink); font: 700 1.0625rem/1 var(--font-ui); box-shadow: 0 10px 24px -10px rgb(143 247 208 / 0.7), inset 0 -2px 0 rgb(14 27 61 / 0.08); transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s; }
+.timer__go:hover { box-shadow: 0 14px 30px -10px rgb(143 247 208 / 0.9), inset 0 -2px 0 rgb(14 27 61 / 0.08); }
+.timer__go:active { transform: scale(0.97); }
+.timer__go svg { width: 1.125rem; height: 1.125rem; fill: currentColor; stroke: currentColor; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.timer__go .i-pause { display: none; fill: none; }
+.timer[data-state='running'] .timer__go .i-play { display: none; }
+.timer[data-state='running'] .timer__go .i-pause { display: block; }
+.timer:not([data-touched]) .timer__go::after { content: ''; position: absolute; inset: -4px; border-radius: inherit; border: 2px solid rgb(143 247 208 / 0.85); animation: t-ping 1.8s ease-out infinite; pointer-events: none; }
+.timer__reset { flex: none; display: grid; place-items: center; width: 3.25rem; height: 3.25rem; padding: 0; border: 0; border-radius: 50%; background: rgb(255 255 255 / 0.1); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.16); color: #fff; transition: transform 0.2s, background 0.2s; }
+.timer__reset:hover { background: rgb(255 255 255 / 0.18); }
+.timer__reset:active { transform: scale(0.94) rotate(-40deg); }
+.timer__reset svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.timer__hint { display: flex; align-items: center; gap: 0.5rem; margin-top: -0.25rem; font: 500 0.8125rem/1.3 var(--font-ui); color: #c4f9e3; }
+.timer__hint .slash { flex: none; }
+.timer[data-touched] .timer__hint { display: none; }
+.timer__test { min-height: 2.75rem; padding: 0 0.75rem; border: 0; background: none; color: #a4f0d3; font: 600 0.8125rem/1.2 var(--font-ui); text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
+.timer__test:hover { color: #fff; }
+.timer__done { min-height: 1.4em; margin-top: -0.5rem; font-weight: 700; text-align: center; color: var(--t-mint); }
+.timer :focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+@keyframes t-live { to { box-shadow: 0 0 0 0.5rem rgb(143 247 208 / 0); } }
+@keyframes t-breathe { 50% { transform: scale(1.018); } }
+@keyframes t-ping { 0% { opacity: 0.9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.08, 1.4); } }
+@keyframes t-burst { 0% { opacity: 0; transform: rotate(var(--a)) translateY(-5.6rem) scale(0.2); } 20% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-8rem) scale(1); } }
+@keyframes t-pop { 40% { transform: scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .timer *, .timer::after { animation: none !important; transition: none !important; } .timer[data-state='running'] .timer__ring { animation: none; } }
 
 /* the listing: photo, name, three points */
 .listing { background: var(--panel); color: var(--ink); line-height: 1.4; }
@@ -71,12 +116,40 @@
 .post__cap { padding: 0.875rem 1rem 1.125rem; }
 .post__heart { width: 1.5rem; height: 1.5rem; margin: 0.75rem 1rem 0; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
 
-/* the prompt and the AI's answer, on the dark card */
-.pr { display: grid; gap: 0.75rem; padding: 1.25rem 1.125rem; background: #1b2d63; color: #fff; line-height: 1.45; }
+/* the prompt: one prompt taken apart (task, context, limit, format, each in its own colour), a switch to compare it with a vague one, the AI's answer to each, and a button that copies it */
+.pr { align-content: start; --k-task: #7cf5c8; --k-context: #7cc4ff; --k-limit: #ffd166; --k-format: #ff9a8a; position: relative; display: grid; gap: 0.875rem; padding: 1.25rem 1.125rem 1.125rem; background: radial-gradient(120% 70% at 100% 0%, #2c4399 0%, #1b2d63 55%, #14224f 100%); color: #fff; line-height: 1.45; }
+.pr__top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .pr__l { font: 500 0.75rem/1.2 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-muted); }
-.pr__text { font: 500 1rem/1.45 var(--font-ui); }
-.pr__ans { display: grid; gap: 0.625rem; justify-items: start; padding-top: 0.75rem; border-top: 1px solid rgb(255 255 255 / 0.2); }
+.pr__switch { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 0.1875rem; border-radius: 999px; background: rgb(255 255 255 / 0.1); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.16); }
+.pr__switch::before { content: ''; position: absolute; inset: 0.1875rem auto 0.1875rem 0.1875rem; width: calc(50% - 0.1875rem); border-radius: 999px; background: #fff; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.pr[data-mode='strong'] .pr__switch::before { transform: translateX(100%); }
+.pr__switch button { position: relative; z-index: 1; min-height: 2.75rem; padding: 0 0.875rem; border: 0; border-radius: 999px; background: transparent; color: rgb(255 255 255 / 0.88); font: 650 0.8125rem/1 var(--font-ui); transition: color 0.25s; }
+.pr__switch button[aria-pressed='true'] { color: var(--ink); }
+.pr__text { font: 500 1.0625rem/1.65 var(--font-ui); }
+.pr__p { padding: 0.08em 0.25em; margin-inline: -0.05em; border-radius: 0.35em; background: color-mix(in srgb, var(--k) 18%, transparent); box-shadow: inset 0 -2px 0 var(--k); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.pr__p--task, .pr__k--task { --k: var(--k-task); }
+.pr__p--context, .pr__k--context { --k: var(--k-context); }
+.pr__p--limit, .pr__k--limit { --k: var(--k-limit); }
+.pr__p--format, .pr__k--format { --k: var(--k-format); }
+.pr__legend { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.pr__k { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.625rem 0.25rem 0.5rem; border-radius: 999px; background: rgb(255 255 255 / 0.08); font: 600 0.75rem/1.2 var(--font-ui); }
+.pr__k::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--k); }
+.pr[data-mode='weak'] .pr__k { opacity: 0.6; text-decoration: line-through; text-decoration-color: rgb(255 255 255 / 0.6); }
+.pr[data-mode='weak'] .pr__k::before { background: rgb(255 255 255 / 0.35); }
+.pr__same { font-size: 0.8125rem; color: var(--on-dark-muted); }
+.pr__ans { display: grid; gap: 0.625rem; justify-items: start; padding-top: 0.875rem; border-top: 1px solid rgb(255 255 255 / 0.2); }
 .pr__ans ol { display: grid; gap: 0.375rem; font: 400 0.9375rem/1.45 var(--font-mono); color: #e8edff; }
+.pr__ans li { padding-left: 0.75rem; border-left: 2px solid rgb(124 245 200 / 0.55); }
+.pr__weak { padding-left: 0.75rem; border-left: 2px solid rgb(255 255 255 / 0.25); font: 400 0.9375rem/1.45 var(--font-mono); color: #c6cfec; }
+.pr [data-when]:not([hidden]) { animation: pr-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.pr__copy { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem; padding: 0 1rem; border: 0; border-radius: 999px; background: #fff; color: var(--ink); font: 700 0.875rem/1 var(--font-ui); transition: transform 0.15s, background 0.25s; }
+.pr__copy:active { transform: scale(0.97); }
+.pr__copy.is-ok { background: #7cf5c8; }
+.pr__copy svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pr [hidden] { display: none; } /* the Vague / Clear switch hides things the .pr rules would otherwise show */
+.pr :focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+@keyframes pr-in { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .pr [data-when]:not([hidden]) { animation: none; } .pr__switch::before, .pr__copy { transition: none; } }
 
 /* the jingle: play button, the real loudness of the 20 seconds as bars, the sung hook */
 .jingle { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 0.75rem 1rem; padding: 1.25rem 1.125rem; background: var(--ink); color: #fff; line-height: 1.4; }

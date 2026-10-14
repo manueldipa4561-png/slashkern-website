@@ -586,13 +586,8 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
 .spot__note { grid-column: 1 / -1; max-width: 40rem; font-size: 0.875rem; color: var(--muted); }
 @media (min-width: 40rem) { .spot__stage { flex-direction: row; } .spot__arrow { rotate: 0deg; } }
 @media (min-width: 56rem) { .spot__grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
-/* captions over the finished spot follow the clip: one per beat, the last one is the punchline */
-.spot__ai { position: absolute; z-index: 2; top: 1.25rem; left: 1.25rem; font-size: 0.75rem; }
-.spot__cap { position: absolute; z-index: 1; left: 1.25rem; right: 1.25rem; bottom: 3.5rem; min-height: 6rem; display: grid; align-content: end; pointer-events: none; }
-.spot__cap p { grid-area: 1 / 1; align-self: end; opacity: 0; transform: translateY(8px); transition: opacity 0.25s, transform 0.25s; color: #fff; font: 700 1.0625rem/1.2 var(--font-ui); letter-spacing: -0.02em; text-shadow: 0 1px 12px rgb(0 0 0 / 0.55); }
-.spot__cap p:nth-child(3) { font-size: 2.5rem; letter-spacing: -0.04em; text-shadow: none; }
-.phone[data-beat='0'] .spot__cap p:nth-child(1), .phone[data-beat='1'] .spot__cap p:nth-child(2), .phone[data-beat='2'] .spot__cap p:nth-child(3) { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .spot__cap p { transition: none; } }
+/* the badge over the finished spot (the clip carries its own words, so no captions sit over it) */
+.spot__ai { position: absolute; z-index: 2; top: 1.25rem; left: 1.25rem; font-size: 0.75rem; transition: opacity 0.5s 0.3s; }
 
 /* Slash, the assistant: the eyes pointer with a white keyline so it reads on any ground. Motion only when the visitor has not asked for less. */
 .slash { flex: none; width: var(--s, 4rem); height: auto; overflow: visible; }
@@ -640,12 +635,18 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
 .spot__steps li.is-on::after { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .spot__steps li, .spot__steps li::before, .spot__steps li::after { transition: none; } .spot__steps li.is-on { transform: none; } }
 .spot__toggle { margin-top: 1rem; font-size: 0.9375rem; color: var(--muted); }
-/* before the spot arrives: Slash waits where it will appear */
-.spot__wait { position: absolute; inset: 0.5rem; z-index: 2; display: grid; place-items: center; border-radius: 2rem; background: var(--soft); transition: opacity 0.35s; }
-.phone[data-state='wait'] video[data-role='out'] { opacity: 0; } /* the spot is not shown before the app has made it */
-.phone video[data-role='out'] { transition: opacity 0.35s; }
+/* before the spot arrives: Slash waits where it will appear; then the spot comes in on a soft scale, the phone on the left steps back and the arrow pulses (the handoff) */
+.spot__wait { position: absolute; inset: 0.5rem; z-index: 2; display: grid; place-items: center; border-radius: 2rem; background: var(--soft); transition: opacity 0.5s; }
+.phone video[data-role='out'] { transition: opacity 0.5s, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+.phone[data-state='wait'] video[data-role='out'] { opacity: 0; transform: scale(1.06); } /* the spot is not shown before the app has made it */
 .phone[data-state='play'] .spot__wait { opacity: 0; pointer-events: none; }
-.phone[data-state='wait'] .spot__ai, .phone[data-state='wait'] .spot__cap { opacity: 0; }
+.phone[data-state='wait'] .spot__ai { opacity: 0; }
+.spot__fig { transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.7s; }
+.spot__stage[data-phase='out'] .spot__fig:first-of-type { opacity: 0.55; transform: scale(0.96); filter: saturate(0.75); }
+.spot__stage[data-phase='out'] .spot__fig:last-of-type { transform: scale(1.04); }
+.spot__stage[data-phase='out'] .spot__arrow { animation: spot-flow 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes spot-flow { 0% { box-shadow: 0 0 0 0 rgb(45 75 255 / 0.45); transform: scale(1); } 40% { transform: scale(1.22); } 100% { box-shadow: 0 0 0 1rem rgb(45 75 255 / 0); transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .spot__fig, .phone video[data-role='out'], .spot__wait { transition: none; } .spot__stage[data-phase='out'] .spot__fig:first-of-type, .spot__stage[data-phase='out'] .spot__fig:last-of-type { transform: none; } .spot__stage[data-phase='out'] .spot__arrow { animation: none; } }
 
 /* the mouse pointer is Slash (mouse and trackpad only; touch screens have no pointer). Clickable things get Slash smiling, text fields keep the text cursor. */
 @media (pointer: fine) {
