@@ -268,7 +268,7 @@ export const en = {
       { q: 'What can I make?', a: 'Seven kinds of projects: short videos, posters and logos, posts and captions, websites and small tools, product listings, music and sound, and AI prompts.' },
       { q: 'How do companies contact me?', a: `Through ${NAME}. You read the message and decide whether to reply. Your email stays private.` },
       { q: 'Who can join, and where?', a: 'Anyone aged 18 or over, across Europe. The app comes in six languages.' },
-      { q: 'When does it open?', a: `No date yet. We are still building it in Turin. Leave your email and we write once, when it opens.` },
+      { q: 'When does it open?', a: `No date yet. We are still building it. Leave your email and we write once, when it opens.` },
     ],
   },
 
@@ -308,7 +308,6 @@ export const en = {
     contact: 'Contact',
     follow: 'Instagram',
     legal: 'Legal',
-    built: 'Built in Turin, Italy.',
     share: 'Share this site',
     shareCopied: 'Link copied',
     shareMessage: `${NAME}: from zero to product.`,
@@ -453,7 +452,7 @@ export const en = {
       title: 'Terms',
       intro: `These terms cover this website and the early-access sign-up. The ${NAME} app will have its own terms when it opens.`,
       sections: [
-        { h: 'Early access', p: [`${NAME} is in early access and still being built in Turin, Italy. It is not open yet. This site, including the example screens, shows the idea and can change. We may change, pause or stop the project.`] },
+        { h: 'Early access', p: [`${NAME} is in early access and still being built. It is not open yet. This site, including the example screens, shows the idea and can change. We may change, pause or stop the project.`] },
         { h: 'Who can use it', p: ['You must be 18 or older to use the sign-up form.'] },
         { h: 'No guarantees', p: [`We give no guarantee about when ${NAME} opens, what it will include, or what you will get from it. We do not promise that anyone will contact, choose or pay you. This site is provided as it is.`] },
         { h: 'Examples', p: ['Screens and texts marked Example are samples. They are not real users, companies, projects or results.'] },

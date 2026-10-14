@@ -267,7 +267,7 @@ export const it: Copy = {
       { q: 'Cosa posso fare?', a: 'Sette tipi di progetto: video brevi, poster e loghi, post e didascalie, siti e piccoli strumenti, annunci di prodotti, musica e suoni, prompt per l’AI.' },
       { q: 'Come mi contattano le aziende?', a: `Tramite ${NAME}. Leggi il messaggio e decidi tu se rispondere. La tua email resta privata.` },
       { q: 'Chi può iscriversi, e dove?', a: 'Chiunque abbia 18 anni o più, in tutta Europa. L’app è in sei lingue.' },
-      { q: 'Quando apre?', a: `Non c’è ancora una data. Lo stiamo costruendo a Torino. Lascia la tua email e ti scriviamo una sola volta, quando apre.` },
+      { q: 'Quando apre?', a: `Non c’è ancora una data. Lo stiamo ancora costruendo. Lascia la tua email e ti scriviamo una sola volta, quando apre.` },
     ],
   },
 
@@ -307,7 +307,6 @@ export const it: Copy = {
     contact: 'Contatti',
     follow: 'Instagram',
     legal: 'Note legali',
-    built: 'Fatto a Torino.',
     share: 'Condividi il sito',
     shareCopied: 'Link copiato',
     shareMessage: `${NAME}: da zero al prodotto.`,
@@ -452,7 +451,7 @@ export const it: Copy = {
       title: 'Termini',
       intro: `Questi termini riguardano questo sito e l’iscrizione all’accesso anticipato. L’app ${NAME} avrà i suoi termini quando aprirà.`,
       sections: [
-        { h: 'Accesso anticipato', p: [`${NAME} è in accesso anticipato e lo stiamo ancora costruendo a Torino. Non è ancora aperto. Questo sito, schermate di esempio comprese, mostra l’idea e può cambiare. Possiamo cambiare, mettere in pausa o fermare il progetto.`] },
+        { h: 'Accesso anticipato', p: [`${NAME} è in accesso anticipato e lo stiamo ancora costruendo. Non è ancora aperto. Questo sito, schermate di esempio comprese, mostra l’idea e può cambiare. Possiamo cambiare, mettere in pausa o fermare il progetto.`] },
         { h: 'Chi può usarlo', p: ['Per usare il modulo di iscrizione devi avere 18 anni o più.'] },
         { h: 'Nessuna garanzia', p: [`Non garantiamo quando ${NAME} aprirà, cosa conterrà o cosa otterrai. Non promettiamo che qualcuno ti contatti, ti scelga o ti paghi. Questo sito è offerto così com’è.`] },
         { h: 'Esempi', p: ['Le schermate e i testi segnati come Esempio sono campioni. Non sono utenti, aziende, progetti o risultati reali.'] },
