@@ -207,8 +207,8 @@ export const en = {
     out: 'What you can make',
     ai: 'Made with AI help',
     labelApp: 'Video: building a four-frame storyboard, step by step, in the app',
-    labelOut: 'Video: a finished 15-second commercial for a made-up drink, made with AI tools',
-    note: 'The drink, Saltz8salt, is made up. The app part is recorded from the real prototype. The commercial was made with AI tools and is tagged as such.',
+    labelOut: 'Video: the finished 15-second spot for Rocco’s sandwich van, shot by shot from the storyboard, made with AI tools',
+    note: 'Rocco’s sandwich van is made up. The app part is recorded from the real prototype. The spot follows that storyboard, was made with AI tools and is tagged as such.',
   },
 
   how: {

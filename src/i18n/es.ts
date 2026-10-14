@@ -207,8 +207,8 @@ export const es: Copy = {
     out: 'Lo que puedes hacer',
     ai: 'Hecho con ayuda de IA',
     labelApp: 'Video: un storyboard de cuatro viñetas construido paso a paso en la app',
-    labelOut: 'Video: un anuncio terminado de 15 segundos para una bebida inventada, hecho con herramientas de IA',
-    note: 'La bebida, Saltz8salt, es inventada. La parte de la app es una grabación del prototipo real. El anuncio está hecho con herramientas de IA y se indica como tal.',
+    labelOut: 'Video: el anuncio terminado de 15 segundos para el food truck de sándwiches de Rocco, plano a plano según el storyboard, hecho con herramientas de IA',
+    note: 'El food truck de sándwiches de Rocco es inventado. La parte de la app es una grabación del prototipo real. El anuncio sigue ese storyboard, está hecho con herramientas de IA y se indica como tal.',
   },
 
   how: {

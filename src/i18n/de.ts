@@ -206,8 +206,8 @@ export const de: Copy = {
     out: 'Was du machen kannst',
     ai: 'Mit KI-Hilfe erstellt',
     labelApp: 'Video: ein Storyboard mit vier Bildern entsteht Schritt für Schritt in der App',
-    labelOut: 'Video: ein fertiger 15-Sekunden-Werbespot für ein erfundenes Getränk, gemacht mit KI-Tools',
-    note: 'Das Getränk Saltz8salt ist erfunden. Der Teil in der App ist vom echten Prototyp aufgenommen. Der Werbespot wurde mit KI-Tools gemacht und ist entsprechend gekennzeichnet.',
+    labelOut: 'Video: der fertige 15-Sekunden-Spot für Roccos Sandwichwagen, Einstellung für Einstellung nach dem Storyboard, gemacht mit KI-Tools',
+    note: 'Roccos Sandwichwagen ist erfunden. Der Teil in der App ist vom echten Prototyp aufgenommen. Der Spot folgt diesem Storyboard, wurde mit KI-Tools gemacht und ist entsprechend gekennzeichnet.',
   },
 
   how: {

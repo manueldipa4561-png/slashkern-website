@@ -206,8 +206,8 @@ export const sv: Copy = {
     out: 'Det du kan göra',
     ai: 'Gjord med hjälp av AI',
     labelApp: 'Video: en storyboard med fyra bilder byggs steg för steg i appen',
-    labelOut: 'Video: en färdig reklamfilm på 15 sekunder för en påhittad dryck, gjord med AI-verktyg',
-    note: 'Drycken Saltz8salt är påhittad. Delen från appen är inspelad från den riktiga prototypen. Reklamfilmen är gjord med AI-verktyg och är märkt som sådan.',
+    labelOut: 'Video: den färdiga filmen på 15 sekunder för Roccos foodtruck, bild för bild enligt storyboarden, gjord med AI-verktyg',
+    note: 'Roccos foodtruck är påhittad. Delen från appen är inspelad från den riktiga prototypen. Filmen följer den storyboarden, är gjord med AI-verktyg och är märkt som sådan.',
   },
 
   how: {

@@ -207,8 +207,8 @@ export const nl: Copy = {
     out: 'Wat je kunt maken',
     ai: 'Gemaakt met hulp van AI',
     labelApp: 'Video: stap voor stap een storyboard van vier beelden maken in de app',
-    labelOut: 'Video: een afgemaakte reclamespot van 15 seconden voor een verzonnen drankje, gemaakt met AI-tools',
-    note: 'Het drankje, Saltz8salt, is verzonnen. Het deel in de app is opgenomen uit het echte prototype. De reclamespot is gemaakt met AI-tools en is als zodanig gemarkeerd.',
+    labelOut: 'Video: de afgemaakte spot van 15 seconden voor Rocco’s broodjeswagen, shot voor shot volgens het storyboard, gemaakt met AI-tools',
+    note: 'Rocco’s broodjeswagen is verzonnen. Het deel in de app is opgenomen uit het echte prototype. De spot volgt dat storyboard, is gemaakt met AI-tools en is als zodanig gemarkeerd.',
   },
 
   how: {

@@ -1,5 +1,6 @@
 ---
-// One story, in order and on a loop: the app run plays (one take of the real app: pick a project, the hook and shots, the words and caption, the finished storyboard), then the finished example spot plays, then it starts over.
+// One story, in order and on a loop: the app run plays (one take of the real app: pick a project, the hook and shots, the words and caption, the finished storyboard), then the spot made from that storyboard plays
+// (the same four shots and words, for Rocco's sandwich van; the Saltz8salt commercial stays in the Examples), then it starts over.
 // The page script below runs the sequence; nothing plays while the section is off screen or when the visitor asked for less motion.
 import Rich from './Rich.astro';
 import Slash from './Slash.astro';
@@ -28,7 +29,7 @@ const CHAPTERS = '0,2.15,7.26,15.26'; // seconds into the app run where steps 1 
       <span class="spot__arrow" aria-hidden="true">→</span>
       <figure class="spot__fig">
         <div class="phone phone--sm" data-state="wait">
-          <video data-role="out" src="/examples/saltz8salt.mp4" poster="/examples/saltz8salt-poster.jpg" muted playsinline preload="metadata" aria-label={s.labelOut}></video>
+          <video data-role="out" src="/demo/spot-sandwich.mp4" poster="/demo/spot-sandwich-poster.jpg" muted playsinline preload="metadata" aria-label={s.labelOut}></video>
           <div class="spot__wait" aria-hidden="true"><Slash mood="thinking" size="4.5rem" speaking float /></div>
           <span class="chip chip--ink spot__ai">{s.ai}</span>
         </div>

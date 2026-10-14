@@ -582,7 +582,7 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
 .spot__stage { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
 .spot__fig { margin: 0; display: grid; gap: 0.75rem; justify-items: center; font-size: 0.875rem; font-weight: 600; color: var(--muted); }
 .phone--sm { width: min(100%, 13rem); }
-.spot__arrow { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; rotate: 90deg; }
+.spot__arrow { display: grid; place-items: center; flex: none; width: 2.5rem; height: 2.5rem; aspect-ratio: 1; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; rotate: 90deg; }
 .spot__note { grid-column: 1 / -1; max-width: 40rem; font-size: 0.875rem; color: var(--muted); }
 @media (min-width: 40rem) { .spot__stage { flex-direction: row; } .spot__arrow { rotate: 0deg; } }
 @media (min-width: 56rem) { .spot__grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
