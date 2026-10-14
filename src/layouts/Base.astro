@@ -108,6 +108,18 @@ const jsonLd = JSON.stringify({
       })();
     </script>
     <script>
+      // The main buttons: a soft light follows the pointer across them. Mouse and trackpad only, never with reduced motion.
+      if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+        document.addEventListener('pointermove', function (e) {
+          var b = e.target.closest && e.target.closest('.btn--go');
+          if (!b) return;
+          var r = b.getBoundingClientRect();
+          b.style.setProperty('--x', (e.clientX - r.left).toFixed(0) + 'px');
+          b.style.setProperty('--y', (e.clientY - r.top).toFixed(0) + 'px');
+        }, { passive: true });
+      }
+    </script>
+    <script>
       // Share buttons: the phone's share sheet where there is one, otherwise copy the link.
       document.addEventListener('click', function (e) {
         var b = e.target.closest && e.target.closest('[data-share]');

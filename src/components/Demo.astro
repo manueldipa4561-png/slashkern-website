@@ -1,6 +1,8 @@
 ---
-// The hero phone: a real screenshot of the app (sample profile), a still image. The animated run lives in SpotDemo.
+// The hero phone: the app's launch screen and nothing else (no app content). Slash flies from point to point, looks around,
+// settles in the middle and "slashkern" appears beside it, then the screen holds. Once per page load; with reduced motion the final screen shows at once.
 import Slash from './Slash.astro';
+import { WORDMARK } from '../site';
 import type { Copy } from '../i18n/en';
 interface Props { copy: Copy }
 const { copy } = Astro.props;
@@ -8,8 +10,64 @@ const d = copy.demo;
 ---
 <figure class="demo">
   <div class="phone">
-    <Slash class="phone__slash" size="5.25rem" look />
-    <img src="/demo/app-open.jpg" width="780" height="1688" alt={d.alt} fetchpriority="high" />
+    <div class="demo__screen" role="img" aria-label={d.alt}>
+      <div class="demo__lock">
+        <span class="demo__fx"><span class="demo__fy"><Slash size="16.4cqw" /></span></span>
+        <span class="demo__word" aria-hidden="true">{WORDMARK.slice(0, -2)}<span class="demo__rn">r</span>n</span>
+      </div>
+    </div>
   </div>
   <figcaption>{d.note}</figcaption>
 </figure>
+
+<style>
+  /* The screen is the app's launch screen. Sizes are in cqw/cqh (shares of the screen), so it looks the same on every phone size.
+     Smooth path: across (demo__fx) and up-down (demo__fy) are two animations with their own timing, so Slash travels on soft arcs
+     and slows near each spot instead of stopping dead. Every offset is measured from where it finally sits (left of the name), so the landing is exact. 4.6 s in all. */
+  .demo { width: 100%; } /* the hero centres the figure and shrinks it to its content; the screen has no content width of its own (size containment), so the figure takes the column and the phone keeps its 16.5rem */
+  .demo__screen { position: relative; aspect-ratio: 390 / 844; border-radius: 2rem; background: #f5f7ff; overflow: hidden; container-type: size; display: grid; place-items: center; }
+  .demo__lock { display: flex; align-items: center; gap: 3.6cqw; color: var(--ink); }
+  .demo__fx, .demo__fy { display: block; will-change: translate; }
+  .demo__fx { animation: d-x 4.6s cubic-bezier(0.45, 0, 0.3, 1) both; }
+  .demo__fy { animation: d-y 4.6s cubic-bezier(0.4, 0, 0.35, 1) both, d-in 0.6s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .demo__fy :global(.slash) { display: block; }
+  .demo__fy :global(.slash__eyes) { animation: d-look 4.6s cubic-bezier(0.45, 0, 0.35, 1) both; }
+  .demo__word { font: 800 11.3cqw/1 var(--font-ui); letter-spacing: -0.06em; padding-bottom: 0.1em; opacity: 0; transform: translateX(-2cqw); animation: d-word 0.7s 3.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+  .demo__rn { letter-spacing: -0.025em; } /* a hair of space between r and n, so "rn" never reads as "m" */
+  /* top right, then upper left, then lower right, then home with a small overshoot. The two axes turn at different moments: that makes the arcs. */
+  @keyframes d-x {
+    0% { translate: 52cqw 0; }
+    30% { translate: 4cqw 0; }
+    58% { translate: 46cqw 0; }
+    80% { translate: -2cqw 0; }
+    90%, 100% { translate: 0 0; }
+  }
+  @keyframes d-y {
+    0% { translate: 0 -30cqh; }
+    24% { translate: 0 -13cqh; }
+    52% { translate: 0 18cqh; }
+    77% { translate: 0 1.5cqh; }
+    90%, 100% { translate: 0 0; }
+  }
+  @keyframes d-in { from { opacity: 0; scale: 0.6; } to { opacity: 1; scale: 1; } }
+  /* the eyes lead the way while it travels, then glance around near each spot */
+  @keyframes d-look {
+    0%, 8% { translate: 0 0; }
+    18% { translate: -16px 0; }
+    28% { translate: 14px -8px; }
+    40% { translate: 12px 10px; }
+    52% { translate: -14px 4px; }
+    62% { translate: 14px -6px; }
+    74% { translate: -14px -6px; }
+    88%, 100% { translate: 0 0; }
+  }
+  @keyframes d-word { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .demo__fx, .demo__fy, .demo__fy :global(.slash__eyes) { animation: none; }
+    .demo__word { animation: none; opacity: 1; transform: none; }
+  }
+  @supports not (width: 1cqh) { /* an old browser shows the finished screen */
+    .demo__fx, .demo__fy, .demo__fy :global(.slash__eyes) { animation: none; }
+    .demo__word { animation: none; opacity: 1; transform: none; font-size: 1.75rem; }
+  }
+</style>

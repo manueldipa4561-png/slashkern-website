@@ -37,7 +37,6 @@ const data = {
     <div data-intro>
       <p class="lead">{q.lead}</p>
       <p class="quiz__friend" data-friend hidden></p>
-      <button class="btn btn--primary quiz__start" type="button" data-start hidden>{q.start}</button>
       <noscript><p class="notice">{q.noscript} <a href={`${hrefFor(copy.lang)}#${copy.final.id}`}>{copy.nav.cta}</a></p></noscript>
     </div>
     <div class="quiz__stage" data-stage></div>
@@ -58,10 +57,8 @@ const data = {
   };
   const raw = document.getElementById('quiz-data');
   const stage = document.querySelector<HTMLElement>('[data-stage]');
-  const intro = document.querySelector<HTMLElement>('[data-intro]');
-  const startBtn = document.querySelector<HTMLButtonElement>('[data-start]');
   const friend = document.querySelector<HTMLElement>('[data-friend]');
-  if (raw && stage && intro && startBtn && friend) {
+  if (raw && stage && friend) {
     const d: Data = JSON.parse(raw.textContent ?? '{}');
     const keys = Object.keys(d.results);
     const fmt = (s: string, vars: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
@@ -72,7 +69,6 @@ const data = {
       return node;
     };
 
-    startBtn.hidden = false;
     const fromFriend = new URLSearchParams(location.search).get('r');
     if (fromFriend && Object.prototype.hasOwnProperty.call(d.results, fromFriend)) {
       friend.textContent = fmt(d.t.friend, { name: d.results[fromFriend].name });
@@ -84,15 +80,15 @@ const data = {
     const picked: Record<string, number> = {}; // per type, the app project of the latest answer of that type
     let step = 0;
 
-    const start = () => {
+    const start = (focus = true) => {
       step = 0;
       for (const k of keys) { scores[k] = 0; delete lastSeen[k]; delete picked[k]; }
-      intro.hidden = true;
-      renderQuestion();
+      renderQuestion(focus);
     };
-    startBtn.addEventListener('click', start);
+    // The first question shows at once: they came here to take the quiz. Focus stays where the page put it.
+    start(false);
 
-    function renderQuestion() {
+    function renderQuestion(focus = true) {
       const item = d.questions[step];
       stage!.replaceChildren();
       const box = el('div', 'quiz__step');
@@ -116,6 +112,7 @@ const data = {
       d.questions.forEach((_, i) => dots.append(el('i', i <= step ? 'on' : '')));
       box.append(el('p', 'quiz__prog', fmt(d.t.progress, { n: step + 1, total: d.questions.length })), dots, heading, list);
       stage!.append(box);
+      if (!focus) return;
       heading.focus({ preventScroll: true });
       box.scrollIntoView({ block: 'nearest' });
     }
@@ -167,7 +164,7 @@ const data = {
       copyBtn.type = 'button';
       const again = el('button', 'btn btn--ghost', d.t.again);
       again.type = 'button';
-      const join = el('a', 'btn btn--accent', d.t.join);
+      const join = el('a', 'btn btn--accent btn--go', d.t.join);
       join.href = d.joinHref;
       actions.append(shareBtn, copyBtn, join, again);
       const live = el('p', 'form__small quiz__live', d.t.fun);

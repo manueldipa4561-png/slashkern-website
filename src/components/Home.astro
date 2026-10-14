@@ -44,8 +44,8 @@ const h = copy.hero;
 <section class="section section--tight" aria-labelledby="band-title">
   <div class="wrap">
     <div class="band">
-      <div><h2 id="band-title">{copy.band.title}</h2><p>{copy.band.text}</p></div>
-      <a class="btn btn--white" href={hrefFor(lang, copy.paths.quiz)}>{copy.band.cta}</a>
+      <h2 id="band-title">{copy.band.title}</h2>
+      <div class="band__row"><p>{copy.band.text}</p><a class="btn btn--white btn--go" href={hrefFor(lang, copy.paths.quiz)}>{copy.band.cta}</a></div>
     </div>
   </div>
 </section>

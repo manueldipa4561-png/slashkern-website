@@ -23,7 +23,7 @@ const hasVisual = Astro.slots.has('default');
       <h1>{before}{mark.split(' ').map((word, i) => <>{i > 0 && ' '}<span class="hl">{word}</span></>)}{after.split('\n').flatMap((line, i) => (i ? [<br />, line] : [line]))}</h1>
       <p class="hero__sub">{sub}</p>
       <div class="cta-row">
-        <a class="btn btn--primary" href={primary.href}>{primary.label}</a>
+        <a class="btn btn--primary btn--go" href={primary.href}>{primary.label}</a>
         {secondary && <a class="arrow-link" href={secondary.href}>{secondary.label}</a>}
       </div>
     </div>
