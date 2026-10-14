@@ -1,5 +1,5 @@
 ---
-// One story, in order: the app run plays (open the app, open a project, type the idea, get the plan), then the finished example spot plays.
+// One story, in order and on a loop: the app run plays (pick a project, read the brief, type the idea, get the shots), then the finished example spot plays, then it starts over.
 // The page script below runs the sequence; nothing plays while the section is off screen or when the visitor asked for less motion.
 import Rich from './Rich.astro';
 import Slash from './Slash.astro';
@@ -54,9 +54,10 @@ const CHAPTERS = '0,2,4,7.9'; // seconds into the app run where steps 1 to 4 sta
     const toggle = document.querySelector<HTMLButtonElement>('[data-spot-toggle]')!;
     const chapters = (stage.dataset.chapters ?? '0').split(',').map(Number);
     const cuts = (out.dataset.beats ?? '').split(',').map(Number);
+    const APP_RATE = 0.9; // the app run, 10% slower so each step can be read
     const SPOT_RATE = 1.2; // the finished spot plays a little faster too
     const REVEAL_MS = 700; // a short beat on the app's last frame before the spot appears
-    const SPOT_LOOPS = 2;
+    const SPOT_LOOPS = 1; // one full cycle: app run, the spot once, then the app run again, forever
     let phase: 'idle' | 'app' | 'out' = 'idle';
     let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let visible = false;
@@ -65,7 +66,7 @@ const CHAPTERS = '0,2,4,7.9'; // seconds into the app run where steps 1 to 4 sta
     const current = () => (phase === 'out' ? out : app);
     const setStep = (n: number) => steps.forEach((li, i) => li.classList.toggle('is-on', i === n));
     const label = () => { toggle.textContent = paused || phase === 'idle' ? toggle.dataset.play! : toggle.dataset.pause!; };
-    const play = (v: HTMLVideoElement) => { v.playbackRate = v === out ? SPOT_RATE : 1; v.play().catch(() => {}); };
+    const play = (v: HTMLVideoElement) => { v.playbackRate = v === out ? SPOT_RATE : APP_RATE; v.play().catch(() => {}); };
 
     function startApp() {
       phase = 'app'; loops = 0;
