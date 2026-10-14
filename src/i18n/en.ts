@@ -201,16 +201,16 @@ export const en = {
   },
 
   spot: {
-    title: 'Type the idea. *Get the spot.*',
-    text: 'Type your idea into a project and get the plan and the shot list. The water bottle here is made up.',
-    steps: ['Open the app.', 'Open a project.', 'Type your idea.', 'Get your spot.'],
+    title: 'Your idea, *shot by shot.*',
+    text: 'Type one line. Slash turns it into shots and a caption. Then you make it: film it on your phone, or use an AI video tool.',
+    steps: ['Pick a short video project.', 'Read the brief.', 'Type your idea in one line.', 'Get the shots and the caption.'],
     app: 'In the app',
-    out: 'The spot',
+    out: 'What you can make',
     caps: ['I asked an AI to describe this bottle in one word.', 'One word:', 'COLD.'],
     ai: 'Made with AI help',
-    labelApp: 'Video: making a product spot in the app',
-    labelOut: 'Video: the finished example spot',
-    note: 'Made-up product, sped up. The app run is recorded from the prototype, and the clip was made with an AI video tool. We promise no views.',
+    labelApp: 'Video: turning one idea into shots and a caption in the app',
+    labelOut: 'Video: a finished short example, made with an AI video tool',
+    note: 'A sample project with a made-up bottle, sped up. The app part is recorded from the real prototype. This video was made with an AI video tool.',
   },
 
   how: {

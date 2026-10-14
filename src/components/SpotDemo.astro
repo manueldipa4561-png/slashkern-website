@@ -16,7 +16,7 @@ const CHAPTERS = '0,2,4,7.9'; // seconds into the app run where steps 1 to 4 sta
       <h2 id="spot-title"><Rich text={s.title} /></h2>
       <p class="lead">{s.text}</p>
       <ol class="spot__steps" data-spot-steps>{s.steps.map((t) => <li><span>{t}</span></li>)}</ol>
-      <button type="button" class="btn btn--ghost btn--sm spot__toggle" data-spot-toggle data-play={d.play} data-pause={d.pause}>{d.play}</button>
+      <button type="button" class="share-btn spot__toggle" data-spot-toggle data-play={d.play} data-pause={d.pause}>{d.play}</button>
     </div>
     <div class="spot__stage" data-spot data-chapters={CHAPTERS}>
       <figure class="spot__fig">

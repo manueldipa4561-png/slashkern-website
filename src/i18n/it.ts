@@ -200,16 +200,16 @@ export const it: Copy = {
   },
 
   spot: {
-    title: 'Scrivi l’idea. *Ricevi lo spot.*',
-    text: 'Scrivi la tua idea in un progetto e ricevi il piano e l’elenco delle inquadrature. La borraccia è inventata.',
-    steps: ['Apri l’app.', 'Apri un progetto.', 'Scrivi la tua idea.', 'Ricevi il tuo spot.'],
+    title: 'La tua idea, *scena per scena.*',
+    text: 'Scrivi una riga. Slash la trasforma in inquadrature e didascalia. Poi lo fai tu: giralo col telefono o usa uno strumento video AI.',
+    steps: ['Scegli un progetto video breve.', 'Leggi il brief.', 'Scrivi la tua idea in una riga.', 'Ricevi inquadrature e didascalia.'],
     app: 'Nell’app',
-    out: 'Lo spot',
+    out: 'Cosa puoi fare',
     caps: ['Ho chiesto a un’AI di descrivere questa borraccia in una parola.', 'Una parola:', 'FREDDA.'],
     ai: 'Fatto con l’aiuto dell’AI',
-    labelApp: 'Video: come si crea uno spot di prodotto nell’app',
-    labelOut: 'Video: lo spot di esempio finito',
-    note: 'Prodotto inventato, video accelerato. La parte nell’app è registrata dal prototipo e la clip è fatta con uno strumento video AI. Non promettiamo visualizzazioni.',
+    labelApp: 'Video: un’idea trasformata in inquadrature e didascalia nell’app',
+    labelOut: 'Video: un breve esempio finito, fatto con uno strumento video AI',
+    note: 'Un progetto di esempio con una borraccia inventata, accelerato. La parte nell’app è registrata dal prototipo vero. Questo video è fatto con uno strumento video AI.',
   },
 
   how: {

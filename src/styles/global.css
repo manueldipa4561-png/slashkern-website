@@ -574,7 +574,7 @@ select.input { appearance: none; padding-right: 2.5rem; background-image: linear
 .spot__steps li span { transition: color 0.25s; }
 .spot__steps li.is-on { color: var(--ink); }
 .spot__steps li.is-on span { color: var(--accent); }
-.spot__toggle { margin-top: 1.5rem; }
+.spot__toggle { margin-top: 1rem; font-size: 0.9375rem; color: var(--muted); }
 /* before the spot arrives: Slash waits where it will appear */
 .spot__wait { position: absolute; inset: 0.5rem; z-index: 2; display: grid; place-items: center; border-radius: 2rem; background: var(--soft); transition: opacity 0.35s; }
 .phone[data-state='wait'] video[data-role='out'] { opacity: 0; } /* the spot is not shown before the app has made it */
